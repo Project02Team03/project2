@@ -11,7 +11,7 @@ const {
 const withAuth = require('../../utils/auth');
 
 
-//i need to get all of the blog posts
+//i need to get all of the recipes
 router.get("/", (req, res) => {
     Recipe.findAll({
             attributes: ["", "", "" ],
@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
                 },
                 {
                     model: SelectedRecipe,
-                    attributes: ["id", "SelectedRecipe_text", "Ingredients_id", "user_id"],
+                    attributes: ["id", "is_favorite", "recipe_id", "user_id"],
                     include: {
                         model: User,
                         attributes: ["username"],
@@ -38,7 +38,7 @@ router.get("/", (req, res) => {
             res.status(500).json(err);
         });
 });
-//then i need to get a single post
+//then i need to get a single recipe
 router.get("/:id", (req, res) => {
     Recipe.findOne({
             where: {
@@ -51,7 +51,7 @@ router.get("/:id", (req, res) => {
                 },
                 {
                     model: Comment,
-                    attributes: ["id", "SelectedRecipe_text", "Ingredients_id", "user_id"],
+                    attributes: ["id", "is_favorite", "recipe_id", "user_id"]],
                     include: {
                         model: User,
                         attributes: ["username"],
@@ -73,45 +73,8 @@ router.get("/:id", (req, res) => {
             res.status(500).json(err);
         });
 });
-//then need to create a post
-router.post("/", withAuth, (req, res) => {
-    Recipe.create({
-            title: req.body.title,
-            content: req.body.Recipe_content,
-            user_id: req.session.user_id
-        })
-        .then((RecipeData) => res.json(RecipeData))
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
 
-//then need to be able to update the post
-router.put("/:id", withAuth, (req, res) => {
-    Recipe.update({
-            title: req.body.title,
-            content: req.body.Recipe_content,
-        }, {
-            where: {
-                id: req.params.id,
-            },
-        })
-        .then((RecipeData) => {
-            if (!RecipeData) {
-                res.status(404).json({
-                    message: "Error"
-                });
-                return;
-            }
-            res.json(RecipeData);
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-//the need to delete the post
+//the need to delete the recipe
 router.delete("/:id", withAuth, (req, res) => {
     Recipe.destroy({
             where: {
