@@ -11,19 +11,19 @@ ShoppingList.init(
             autoIncrement: true,
         },
         
-        recipe_id: {
+        user_id: {
             type: DataTypes.INTEGER,
             references: {
-             model: 'recipe',
+             model: 'user',
              key: 'id',
              unique: false
             },
        },
-        ingredient_name: {
-            type: DataTypes.STRING,
+        ingredient: {
+            type: DataTypes.INTEGER,
             references: {
                model: 'ingredients',
-               key: 'ingredient_name',
+               key: 'id',
                unique: false
              },
         },    
