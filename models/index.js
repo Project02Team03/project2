@@ -1,16 +1,16 @@
 const User = require('./User');
-const Recipe=require('/Recipe');
-const Ingredients =require('/Ingredients');
+const Recipe=require('./Recipe');
+const Ingredients =require('./Ingredients');
 const SelectedRecipe = require('./SelectedRecipe');
 const ShoppingList = require('./ShoppingList');
 //relationships User-Recipe
 User.belongsToMany(Recipe, {
     through: {
-        model: SelectedRecipes,
+        model: SelectedRecipe,
         unique: false
       },
       
-      as: 'user_id'
+      as: 'recipes'
 });
 
 Recipe.belongsToMany(User, {
@@ -19,7 +19,7 @@ Recipe.belongsToMany(User, {
         unique: false
       },
       
-      as: 'recipe_id'
+      as: 'users'
 });
 
 //relationships User-Ingredients
@@ -39,7 +39,7 @@ Ingredients.belongsToMany(Recipe, {
         unique: false
       },
       
-      as: 'ingredient_name',
+      as: 'ingredients',
 });
 
 Recipe.belongsToMany(Ingredients, {
@@ -48,7 +48,7 @@ Recipe.belongsToMany(Ingredients, {
         unique: false
       },
       
-      as: 'recipe_id',
+      as: 'recipes',
 })
 
 
