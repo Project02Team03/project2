@@ -404,6 +404,7 @@ h4 {
 h5 {
   font-size: 1.5rem;
   font-family: var(--font-primary);
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
 }
 
 h6 {
@@ -1348,8 +1349,13 @@ form [type='radio'] {
 }
 
 .recipe_card {
+  width: 18rem;
   background-color: #fff;
   box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+
+.card-header {
+  min-height: 18rem;
 }
 
 

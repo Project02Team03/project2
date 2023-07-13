@@ -18,7 +18,7 @@
 </head>
 <body>
     <!-- Nav -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">What's For Dinner?</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,24 +90,33 @@
         </div>
       </nav>
     <!-- Recipes List -->
-    <div class="row justify-content-center">
-    <div class="card m-2 recipe_card" style="width: 24rem;">
-        <img src="https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Recipe Title</h5>
-          <div class="row justify-content-center">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">An item</li>
-                <li class="list-group-item">A second item</li>
-                <li class="list-group-item">A third item</li>
-              </ul>
+    <div class="d-flex flex-wrap justify-content-center">
+      <div class="card m-4 recipe_card">
+        <div class="position-relative">
+          <img src="https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg" class="card-img-top" alt="...">
+          <div class="card-img-overlay d-flex flex-column justify-content-end">
+            <h5 class="card-title text-white">Recipe Title</h5>
           </div>
-          <div class="row justify-content-center">
-          <a href="#" class="btn m-2">View Details</a>
-          <a href="#" class="btn m-2">Save to Recipes</a>
+        </div>
+        <div class="card-body">
+          <div class="overflow-auto" style="max-height: 200px;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">An item</li>
+              <li class="list-group-item">A second item</li>
+              <li class="list-group-item">A third item</li>
+              <li class="list-group-item">A fourth item</li>
+              <li class="list-group-item">A fifth item</li>
+              <li class="list-group-item">A sixth item</li>
+            </ul>
+          </div>
+          <div class="d-flex flex-wrap justify-content-center mt-3">
+            <a href="#" class="btn m-2">View Details</a>
+            <a href="#" class="btn m-2">Save to Recipes</a>
           </div>
         </div>
       </div>
+      
+      
       
     </div>
 
