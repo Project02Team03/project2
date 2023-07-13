@@ -14,13 +14,14 @@
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/custom.css">
 
+    <script src="https://kit.fontawesome.com/b6896b1ef3.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
     <!-- Nav -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">What's For Dinner?</a>
+          <a class="navbar-brand text-primary-emphasis" href="/">What's For Dinner?</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -91,15 +92,15 @@
       </nav>
     <!-- Recipes List -->
     <div class="d-flex flex-wrap justify-content-center">
-      <div class="card m-4 recipe_card">
+      <div class="card m-4 border-secondary border-3 recipe_card">
         <div class="position-relative">
+          <div class="gradient-overlay"></div>
+          <h5 class="card-title position-absolute start-0 bottom-0 text-white p-3">Recipe Title</h5>
           <img src="https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg" class="card-img-top" alt="...">
-          <div class="card-img-overlay d-flex flex-column justify-content-end">
-            <h5 class="card-title text-white">Recipe Title</h5>
-          </div>
         </div>
         <div class="card-body">
-          <div class="overflow-auto" style="max-height: 200px;">
+          <h6 class="border-bottom pb-3">Ingredients</h6>
+          <div class="overflow-auto inset-list">
             <ul class="list-group list-group-flush">
               <li class="list-group-item text-dark">An item</li>
               <li class="list-group-item text-dark">A second item</li>
@@ -110,12 +111,76 @@
             </ul>
           </div>
           <div class="d-flex flex-wrap justify-content-center mt-3">
-            <a href="#" class="btn btn-info m-2">View Details</a>
-            <a href="#" class="btn btn-success m-2">Save to Recipes</a>
+            <a href="#" class="btn btn-info w-100 m-2">View Details</a>
           </div>
+        </div>
+        <div class="card-footer d-flex flex-wrap justify-content-between align-items-center">
+          <p class="m-0">Save to recipes?</p>
+          <a href="#" class="btn-sm">
+            <i class="far fa-star"></i>
+          </a>
         </div>
       </div>
       
+      <div class="card m-4 border-secondary border-3 recipe_card">
+        <div class="position-relative">
+          <div class="gradient-overlay"></div>
+          <h5 class="card-title position-absolute start-0 bottom-0 text-white p-3">Recipe Title</h5>
+          <img src="https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg" class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+          <h6 class="border-bottom pb-3">Ingredients</h6>
+          <div class="overflow-auto inset-list">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-dark">An item</li>
+              <li class="list-group-item text-dark">A second item</li>
+              <li class="list-group-item text-dark">A third item</li>
+              <li class="list-group-item text-dark">A fourth item</li>
+              <li class="list-group-item text-dark">A fifth item</li>
+              <li class="list-group-item text-dark">A sixth item</li>
+            </ul>
+          </div>
+          <div class="d-flex flex-wrap justify-content-center mt-3">
+            <a href="#" class="btn btn-info w-100 m-2">View Details</a>
+          </div>
+        </div>
+        <div class="card-footer d-flex flex-wrap justify-content-between align-items-center">
+          <p class="m-0">Save to recipes?</p>
+          <a href="#" class="btn-sm">
+            <i class="far fa-star"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="card m-4 border-secondary border-3 recipe_card">
+        <div class="position-relative">
+          <div class="gradient-overlay"></div>
+          <h5 class="card-title position-absolute start-0 bottom-0 text-white p-3">Recipe Title</h5>
+          <img src="https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg" class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+          <h6 class="border-bottom pb-3">Ingredients</h6>
+          <div class="overflow-auto inset-list">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-dark">An item</li>
+              <li class="list-group-item text-dark">A second item</li>
+              <li class="list-group-item text-dark">A third item</li>
+              <li class="list-group-item text-dark">A fourth item</li>
+              <li class="list-group-item text-dark">A fifth item</li>
+              <li class="list-group-item text-dark">A sixth item</li>
+            </ul>
+          </div>
+          <div class="d-flex flex-wrap justify-content-center mt-3">
+            <a href="#" class="btn btn-info w-100 m-2">View Details</a>
+          </div>
+        </div>
+        <div class="card-footer d-flex flex-wrap justify-content-between align-items-center">
+          <p class="m-0">Save to recipes?</p>
+          <a href="#" class="btn-sm">
+            <i class="far fa-star"></i>
+          </a>
+        </div>
+      </div>
       
       
     </div>
