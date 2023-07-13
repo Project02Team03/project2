@@ -33,8 +33,8 @@ Ingredients.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'list',
+    modelName: 'Ingredients',
     }
 );
 
-module.exports=List;
+module.exports=Ingredients;
