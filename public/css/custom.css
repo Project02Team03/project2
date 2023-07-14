@@ -4,6 +4,11 @@
     --font-secondary: "Roboto Mono", monospace;
 }
 
+h3 {
+    font-size: 2.5rem;
+    font-family: var(--font-primary);
+}
+
 h5 {
     font-size: 1.5rem;
     font-family: var(--font-primary);
@@ -58,6 +63,11 @@ h5 {
     max-height: 12rem;
     box-shadow: inset 0 -20px 20px -20px rgba(0, 0, 0, 0.2);
   }
+
+.subtitle {
+    font-style: italic;
+    font-size: .85rem;
+}
 
 @media only screen and (max-width: 600px) {
     .recipe_card {
