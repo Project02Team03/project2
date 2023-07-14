@@ -1,21 +1,24 @@
 const router = require('express').Router();
-const { User } = require('../models');
-const withAuth = require('../utils/auth');
+const { Recipe} = require('../models');
+//const withAuth = require('../utils/auth');
 
 // Prevent non logged in users from viewing the homepage
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
+  console.log('HI THERE! ');
+  
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+    console.log('TRYING');
+    
+    const allRecipesData = await Recipe.findAll({
+      attributes: [['image_link', 'recipe_name']],
     });
 
-    const users = userData.map((project) => project.get({ plain: true }));
+    const recipes = allRecipesData.map((recipes) => recipes.get({ plain: true }));
 
     res.render('homepage', {
-      users,
-      // Pass the logged in flag to the template
-      logged_in: req.session.logged_in,
+      recipes,
+      
+     
     });
   } catch (err) {
     res.status(500).json(err);
