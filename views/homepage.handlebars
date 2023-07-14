@@ -1,0 +1,22 @@
+<div class="d-flex flex-wrap justify-content-center">
+{{#each recipes as |recipe|}}
+  {{#if recipe-ready}}
+    <!-- This loads the Recipe card that is in favorites and ready to cook -->
+    {{#if is-favorite }}
+      {{> ready-card-favorite}}
+    {{else}}
+      <!-- Otherwise it loads the Recipe card that is only ready to cook -->
+      {{> ready-card}}
+    {{/if}}
+  {{else}}
+    
+    {{#if is-favorite }}
+      <!-- This loads the Recipe card that is favorited but not ready to cook -->
+      {{> recipe-card-favorite}}
+    {{else}}
+      <!-- Otherwise it loads the default card view -->
+      {{> recipe-card}}
+    {{/if}}
+  {{/if}} 
+{{/each}}
+</div>
