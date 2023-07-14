@@ -15,7 +15,7 @@ SelectedRecipe.init(
         allowNull: false,
         defaultValue: false
     },
-      users:{
+      user_id:{
         type: DataTypes.INTEGER,
         references: {
           model: 'user',
@@ -23,7 +23,7 @@ SelectedRecipe.init(
           unique: false
         }
       },
-      recipes: {
+      recipe_id: {
         type: DataTypes.INTEGER,
         references: {
           model: 'recipe',
