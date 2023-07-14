@@ -11,18 +11,11 @@ const withAuth = require('../../utils/auth');
 
 //get all ingredients
 router.get("/", (req, res) => {
+   console.log('HI THERE');
+   
     Ingredients.findAll({
             attributes: ["id", "ingredient_name", "amount", "in_stock"],
-            include: [
-                {
-                  model: SelectedRecipe,
-                  attributes: ['id', 'recipe_name', 'description', 'is_favorite'],
-                  include: {
-                    model: User,
-                    attributes: ['username'],
-                  },
-                },
-              ],
+            include: [{ model: Recipe, through: ShoppingList , as: 'recipes'}],
             })
         .then((IngredientsData) => res.json(IngredientsData))
         .catch((err) => {
@@ -33,7 +26,7 @@ router.get("/", (req, res) => {
 //get all ingredients from one recipe?
 router.get("/recipe/:id", (req, res) => {
     const { id } = req.params;
-    Ingredients.findAll({ where: { id } })
+    Ingredients.findByPk({ where: { id } })
       .then((ingredientsData) => {
         if (ingredientsData.length === 0) {
           res.status(404).json({ message: `No ingredients found` });

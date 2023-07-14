@@ -1,10 +1,11 @@
 const sequelize = require('../config/connection');
-const { Recipe, User, Ingredients, SelectedRecipe}=require('../models');
+const { Recipe, User, Ingredients, SelectedRecipe, ShoppingList}=require('../models');
 //const rawRecipesData = require('./recipesData.json');
 const recipeData=require('./recipes.json');
 const userData = require('./userData.json');
 const ingredientsData=require('./ingredientsData.json');
 const selectedData=require('./selectedData.json');
+const shoppingListData=require('./shoppingData.json');
 //let recipes=[];
 // const pickData=()=>{
 //    for (var i=0; i<rawRecipesData.length; i++){
@@ -34,6 +35,10 @@ const seedDatabase = async () => {
         returning: true,
       });
       await SelectedRecipe.bulkCreate(selectedData, {
+        individualHooks: true,
+        returning: true,
+      });
+      await ShoppingList.bulkCreate(shoppingListData, {
         individualHooks: true,
         returning: true,
       });

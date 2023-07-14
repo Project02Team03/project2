@@ -11,14 +11,14 @@ ShoppingList.init(
             autoIncrement: true,
         },
         
-        user_id: {
-            type: DataTypes.INTEGER,
-            references: {
-             model: 'user',
-             key: 'id',
-             unique: false
-            },
-        },
+        // user_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //      model: 'user',
+        //      key: 'id',
+        //      unique: false
+        //     },
+        // },
 
        recipe_id: {
         type: DataTypes.INTEGER,
@@ -29,7 +29,7 @@ ShoppingList.init(
             },
         },  
 
-        ingredient: {
+        ingredient_id: {
             type: DataTypes.INTEGER,
             references: {
                model: 'ingredients',
@@ -38,10 +38,10 @@ ShoppingList.init(
              },
         }, 
            
-        amount: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        // amount: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        // },
 
         in_stock: {
          type: DataTypes.BOOLEAN,

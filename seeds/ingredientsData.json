@@ -59,6 +59,11 @@
             "ingredient_name": "shredded Italian cheese blend",
              "amount": 1,
              "units": "c."
+        },
+        {
+            "ingredient_name": "salt",
+             "amount": 1,
+             "units": "tsp"
         }
 
 
