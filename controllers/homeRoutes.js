@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { Recipe, Ingredients, ShoppingList} = require('../models');
-//const withAuth = require('../utils/auth');
+const withAuth = require('../utils/auth');
 
-// Prevent non logged in users from viewing the homepage
+// homepage
 router.get('/', async (req, res) => {
   console.log('HI THERE! ');
   
@@ -36,5 +36,19 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
+//all recipes, favorited by logged in user
+router.get('/favorites', withAuth, async(req,res) => {
+  try {
+    const myRecipes=await User.findOne({
+      where: {id: req.session.user_id},
+      include: {model: Recipe, through: SelectedRecipes, as: 'recipes'},
+    })
+    res.status(200).json(myRecipes)
+  } catch (err){
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;

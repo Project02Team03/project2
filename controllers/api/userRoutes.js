@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Recipe , SelectedRecipe} = require('../../models');
 
 router.post('/login', async (req, res) => {
   try {
@@ -46,5 +46,32 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+//all recipes, favorited by logged in user????? we can add auth later
+router.get('/:id', async(req,res) => {
+  try {
+    const myRecipes=await User.findByPk(req.params.id, {
+      
+      include: 
+      {model: Recipe, through: SelectedRecipe, as: 'recipes'},
+      attributes: { exclude: ['email','password'] }
+    });
+    res.status(200).json(myRecipes);
+  } catch (err){
+    res.status(500).json(err);
+  }
+});
+//all users
+router.get('/', async(req,res) => {
+  try {
+    const myRecipes=await User.findAll({include: 
+      {model: Recipe, through: SelectedRecipe, as: 'recipes'}
+    });
+    res.status(200).json(myRecipes);
+  } catch (err){
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;
