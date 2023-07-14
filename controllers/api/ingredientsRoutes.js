@@ -1,33 +1,29 @@
 
 const router = require('express').Router();
 
-const {
-    Recipe,
+const { Recipe, 
     SelectedRecipe,
-    Ingredients,
-    ShoppingList
-} = require('../../models');
+    Ingredients, 
+    ShoppingList, 
+    User } = require('../../models');
 
 const withAuth = require('../../utils/auth');
 
 //get all ingredients
 router.get("/", (req, res) => {
     Ingredients.findAll({
-            attributes: ["", "", "" ]
-            include: [{
-                    model: User,
-                    attributes: ["username"],
-                },
+            attributes: ["id", "ingredient_name", "amount", "in_stock"],
+            include: [
                 {
-                    model: Recipe,
-                    attributes: ["id", "recipe_name", "description", "is-favorite"],
-                    include: {
-                        model: User,
-                        attributes: ["username"],
-                    },
+                  model: SelectedRecipe,
+                  attributes: ['id', 'recipe_name', 'description', 'is_favorite'],
+                  include: {
+                    model: User,
+                    attributes: ['username'],
+                  },
                 },
-            ],
-        })
+              ],
+            })
         .then((IngredientsData) => res.json(IngredientsData))
         .catch((err) => {
             console.log(err);
@@ -35,15 +31,15 @@ router.get("/", (req, res) => {
         });
 });
 //get all ingredients from one recipe?
-router.get("/", (req, res) => {
-    const { id } = req.query;
-   Ingredients.findAll({ where: { id } })
-      .then((IngredientsData) => {
-        if (IngredientsData.length === 0) {
-          res.status(404).json({ message: `No comment` });
+router.get("/recipe/:id", (req, res) => {
+    const { id } = req.params;
+    Ingredients.findAll({ where: { id } })
+      .then((ingredientsData) => {
+        if (ingredientsData.length === 0) {
+          res.status(404).json({ message: `No ingredients found` });
           return;
         }
-        res.status(200).json(IngredientsData);
+        res.status(200).json(ingredientsData);
       })
       .catch((err) => {
         res.status(500).json(err);
