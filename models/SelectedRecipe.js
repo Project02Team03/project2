@@ -12,7 +12,8 @@ SelectedRecipe.init(
       },
       is_favorite: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: false,
+        defaultValue: false
     },
       user_id:{
         type: DataTypes.INTEGER,
@@ -36,7 +37,7 @@ SelectedRecipe.init(
       timestamps: false,
       freezeTableName: true,
       underscored: true,
-      modelName: 'product_tag',
+      modelName: 'selected_recipes',
     }
   );
   

@@ -18,7 +18,17 @@ ShoppingList.init(
              key: 'id',
              unique: false
             },
-       },
+        },
+
+       recipe_id: {
+        type: DataTypes.INTEGER,
+            references: {
+             model: 'recipe',
+             key: 'id',
+             unique: false
+            },
+        },  
+
         ingredient: {
             type: DataTypes.INTEGER,
             references: {
@@ -26,7 +36,8 @@ ShoppingList.init(
                key: 'id',
                unique: false
              },
-        },    
+        }, 
+           
         amount: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -35,11 +46,12 @@ ShoppingList.init(
         in_stock: {
          type: DataTypes.BOOLEAN,
          allowNull:false,
+         defaultValue: false
         }, 
 
         note: {
             type: DataTypes.TEXT,
-            allowNull: false ,
+            allowNull: true ,
         }
     },
     {
@@ -47,7 +59,7 @@ ShoppingList.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'list',
+    modelName: 'shopping_list',
     }
 );
 

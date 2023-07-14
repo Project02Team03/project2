@@ -1,0 +1,73 @@
+[
+    
+       {
+        "ingredient_name": "potato",
+         "amount": 2,
+         "units": "ea"
+        },
+        {
+        "ingredient_name": "olive oil",
+         "amount": 1,
+         "units": "tbsp"
+        },
+        {
+            "ingredient_name": "small lean beef meatball",
+             "amount": 250,
+             "units": "g"
+        },
+        {
+            "ingredient_name": "onion",
+             "amount": 1,
+             "units": "ea"
+        },
+        {
+            "ingredient_name": "garlic",
+             "amount": 2,
+             "units": "clove"
+        },
+        {
+            "ingredient_name": "rosemary",
+             "amount": 1,
+             "units": "tbsp"
+        },
+        {
+            "ingredient_name": "passata",
+             "amount": 560,
+             "units": "ml"
+        },
+        {
+            "ingredient_name": "frozen pea",
+             "amount": 200,
+             "units": "g"
+        },
+        {
+            "ingredient_name": "parmesan",
+             "amount": 1,
+             "units": "few shaving"
+        },
+        {
+            "ingredient_name": "refrigerated pizza crust",
+             "amount": 1,
+             "units": "can"
+        },
+        {
+            "ingredient_name": "mini-meatball pasta sauce",
+             "amount": 1,
+             "units": "jar"
+        },
+        {
+            "ingredient_name": "shredded Italian cheese blend",
+             "amount": 1,
+             "units": "c."
+        }
+
+
+
+
+
+
+
+
+
+        
+]

@@ -10,14 +10,18 @@ Recipe.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        image_link:{ 
+           type: DataTypes.TEXT,
+           allowNull: true,
+        },
         recipe_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        description: {
-            type: DataTypes.TEXT,
-            allowNull: false
-        },
+        // description: {
+        //     type: DataTypes.TEXT,
+        //     allowNull: false
+        // },
         // is_favorite: {
         //     type: DataTypes.BOOLEAN,
         //     allowNull: false
