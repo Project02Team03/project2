@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe} = require('../models');
+const { Recipe, Ingredients, ShoppingList} = require('../models');
 //const withAuth = require('../utils/auth');
 
 // Prevent non logged in users from viewing the homepage
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     const allRecipesData = await Recipe.findAll({
       attributes: ["id", "image_link", "recipe_name", "recipe_url", "ingredients"],
      
-      include: [{model: Ingredients, through: ShoppingList, as: 'recipe_id'}]
+      include: [{model: Ingredients, through: ShoppingList, as: 'ingredientList'}]
     });
 
     const recipes = allRecipesData.map((recipes) => recipes.get({ plain: true }));
