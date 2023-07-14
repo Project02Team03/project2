@@ -19,6 +19,10 @@ Ingredients.init(
             type: DataTypes.DECIMAL,
             allowNull: false,
         },
+        units: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         in_stock: {
          type: DataTypes.BOOLEAN,
          allowNull:false,
@@ -34,7 +38,7 @@ Ingredients.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Ingredients',
+    modelName: 'ingredients',
     }
 );
 

@@ -1,6 +1,7 @@
 [
     {   "image_link":   "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1075583_11-c033c8c.jpg",
        "recipe_name": "Speedy meatball stew",
+       "recipe_url": "http://www.edamam.com/ontologies/edamam.owl#recipe_edb19a464bb694565c551ba14ce7e7a8",
        
        "ingredients": [
         "2 medium potato, peeled and cut into bite-size cubes",
@@ -17,6 +18,7 @@
     },
     {   "image_link":   "https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg",
        "recipe_name": "Meatball Calzones",
+       "recipe_url": "http://www.edamam.com/ontologies/edamam.owl#recipe_24a4a3853bc9b804657fc6495f1bc875",
        
        "ingredients":  [
         "1 can refrigerated pizza crust",

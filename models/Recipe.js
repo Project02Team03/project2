@@ -18,10 +18,10 @@ Recipe.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        // description: {
-        //     type: DataTypes.TEXT,
-        //     allowNull: false
-        // },
+        recipe_url: {
+            type: DataTypes.TEXT,
+            allowNull: false
+        },
         // is_favorite: {
         //     type: DataTypes.BOOLEAN,
         //     allowNull: false

@@ -13,31 +13,23 @@ const withAuth = require('../../utils/auth');
 
 
 //i need to get all of the recipes
-router.get("/", (req, res) => {
-    Recipe.findAll({
-            attributes: ["id", "recipe_name", "description", "ingredients", "is_favorite" ],
-            order: [
-                ["id", "DESC"]
-            ],
-            include: [{
-                    model: Ingredients,
-                    attributes: ["id", "ingredient_name", "amount", "in_stock" ],
-                },
-                {
-                    model: User,
-                    attributes: ["id", "name", "email", "password"],
-                    include: {
-                        model: User,
-                        attributes: ["username"],
-                    },
-                },
-            ],
-        })
-        .then((recipeData) => res.json(recipeData))
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
+router.get("/", async (req, res) => {
+    console.log('---------------------------THERE-----------------');
+    
+    try {
+        console.log('---------------------------------------------------------------------------');
+        
+        const allRecipesData=await Recipe.findAll
+            ({         
+                include: [{model: Ingredients, through: ShoppingList, as: "ingredientList"}]
+              
         });
+        console.log(allRecipesData);
+        
+       res.status(200).json(allRecipesData) ;
+    } catch (err){   
+        res.status(500).json(err);
+    }
 });
 //then i need to get a single recipe
 router.get("/:id", (req, res) => {

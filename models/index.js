@@ -39,7 +39,7 @@ Ingredients.belongsToMany(Recipe, {
         unique: false
       },
       
-      as: 'ingredients',
+      as: 'recipes',
 });
 
 Recipe.belongsToMany(Ingredients, {
@@ -48,7 +48,7 @@ Recipe.belongsToMany(Ingredients, {
         unique: false
       },
       
-      as: 'recipes',
+      as: 'ingredientList',
 })
 
 
