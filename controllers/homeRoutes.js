@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     console.log('TRYING');
     
     const allRecipesData = await Recipe.findAll({
-      attributes: [['image_link', 'recipe_name']],
+      attributes: ["id", "image_link", "recipe_name", "ingredients" ],
     });
 
     const recipes = allRecipesData.map((recipes) => recipes.get({ plain: true }));
