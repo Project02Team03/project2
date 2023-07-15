@@ -4,10 +4,35 @@
     --font-secondary: "Roboto Mono", monospace;
 }
 
+body {
+    font-family: var(--font-default);
+    font-size: 14px;
+}
+
+h2 {
+    font-size: 3rem;
+    font-family: var(--font-primary);
+}
+
+h3 {
+    font-size: 2.5rem;
+    font-family: var(--font-primary);
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-family: var(--font-primary);
+}
+
 h5 {
     font-size: 1.5rem;
     font-family: var(--font-primary);
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+h6 {
+    font-size: 1.25rem;
+    font-family: var(--font-default);
 }
 
 .navbar-brand {
@@ -59,8 +84,93 @@ h5 {
     box-shadow: inset 0 -20px 20px -20px rgba(0, 0, 0, 0.2);
   }
 
-@media only screen and (max-width: 600px) {
+.subtitle {
+    font-style: italic;
+    font-size: .85rem;
+}
+
+.img-container-card {
+    width: 100%;
+    height: 18rem;
+    overflow: hidden;
+    border-radius: 0px;
+  }
+
+.img-container-wide {
+    width: 18rem;
+    height: 12rem;
+    overflow: hidden;
+    border-radius: 0px;
+  }
+
+.img-container {
+    position: relative;
+    width: 5rem;
+    /* height: 5rem; */
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+.need-it {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(181,137,0,0.50) 50%, rgba(181,137,0,0.50) 50%);
+  }
+
+.have-it {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(42,161,152,0.50) 50%, rgba(42,161,152,0.50) 50%);
+  }
+
+  .bg-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+@media only screen and (max-width: 768px) {
     .recipe_card {
         width: 90%;
+    }
+
+    .img-container-wide {
+        width: 100%;
+        height: 12rem;
+        overflow: hidden;
+        border-radius: 0px;
+      }
+
+    .btn-container {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ing-btn {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 490px) {
+    h6 {
+        font-size: 1rem;
+    }
+
+    .btn-container {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ing-btn {
+        width: 100%;
     }
 }

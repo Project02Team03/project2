@@ -20,76 +20,79 @@
 <body>
     <!-- Nav -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
-        <div class="container-fluid">
-          <a class="navbar-brand text-primary-emphasis" href="/">What's For Dinner?</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              
-              <li class="nav-item">
-                <a class="nav-link" href="/recipes">Recipes</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/shopping-list">Lists</a>
-              </li>
-              <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+      <div class="container-fluid">
+        <a class="navbar-brand text-primary-emphasis" href="/public/layout.html">What's For Dinner?</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/public/my-recipes.html">Recipes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/public/shopping-list.html">Shopping List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/public/pantry.html">Pantry</a>
+            </li>
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li> -->
+          </ul>
+          <form class="d-flex mx-lg-5 w-50" role="search">
+            <input class="form-control me-2" type="search" placeholder="Get random recipes... or type a search term to get started!" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          <div class="d-flex align-items-center">
+              <button class="btn btn-primary mx-2" type="submit">Login</button>
+              <button class="btn btn-primary mx-2" type="submit">Sign Up</button>
+              <!-- Avatar -->
+              <div class="dropdown">
+                <a
+                  class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                  href="#"
+                  id="navbarDropdownMenuAvatar"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                    class="rounded-circle"
+                    height="25"
+                    alt="Black and White Portrait of a Man"
+                    loading="lazy"
+                  />
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="navbarDropdownMenuAvatar"
+                >
+                  <li>
+                    <a class="dropdown-item" href="#">My profile</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Settings</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Logout</a>
+                  </li>
                 </ul>
-              </li> -->
-            </ul>
-            <form class="d-flex mx-lg-5 w-50" role="search">
-              <input class="form-control me-2" type="search" placeholder="Get random recipes... or type a search term to get started!" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            <div class="d-flex align-items-center">
-                <button class="btn btn-primary mx-2" type="submit">Login</button>
-                <button class="btn btn-primary mx-2" type="submit">Sign Up</button>
-                <!-- Avatar -->
-                <div class="dropdown">
-                  <a
-                    class="dropdown-toggle d-flex align-items-center hidden-arrow"
-                    href="#"
-                    id="navbarDropdownMenuAvatar"
-                    role="button"
-                    data-mdb-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <img
-                      src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                      class="rounded-circle"
-                      height="25"
-                      alt="Black and White Portrait of a Man"
-                      loading="lazy"
-                    />
-                  </a>
-                  <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdownMenuAvatar"
-                  >
-                    <li>
-                      <a class="dropdown-item" href="#">My profile</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Settings</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Logout</a>
-                    </li>
-                  </ul>
-                </div>
               </div>
-          </div>
+            </div>
         </div>
-      </nav>
+      </div>
+    </nav>
     <!-- Recipes List -->
     <div class="d-flex flex-wrap justify-content-center">
       <!-- Default Recipe card view -->
@@ -97,7 +100,9 @@
         <div class="position-relative">
           <div class="gradient-overlay"></div>
           <h5 class="card-title position-absolute start-0 bottom-0 text-white p-3">Recipe Title</h5>
-          <img src="https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg" class="card-img-top" alt="...">
+          <div class="d-flex img-container-card">
+            <div class="bg-image" style="background-image: url('https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg');"></div>
+          </div>
         </div>
         <div class="card-body">
           <h6 class="border-bottom pb-3">Ingredients</h6>
@@ -127,7 +132,9 @@
         <div class="position-relative">
           <div class="gradient-overlay"></div>
           <h5 class="card-title position-absolute start-0 bottom-0 text-white p-3">Recipe Title</h5>
-          <img src="https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg" class="card-img-top" alt="...">
+          <div class="d-flex img-container-card">
+            <div class="bg-image" style="background-image: url('https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg');"></div>
+          </div>
         </div>
         <div class="card-body">
           <h6 class="border-bottom pb-3">Ingredients</h6>
@@ -157,7 +164,9 @@
         <div class="position-relative">
           <div class="gradient-overlay ready"></div>
           <h5 class="card-title position-absolute start-0 bottom-0 text-white p-3">Recipe Title</h5>
-          <img src="https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg" class="card-img-top" alt="...">
+          <div class="d-flex img-container-card">
+            <div class="bg-image" style="background-image: url('https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg');"></div>
+          </div>
         </div>
         <div class="card-body">
           <h6 class="border-bottom pb-3">Ingredients</h6>
@@ -187,7 +196,9 @@
         <div class="position-relative">
           <div class="gradient-overlay ready"></div>
           <h5 class="card-title position-absolute start-0 bottom-0 text-white p-3">Recipe Title</h5>
-          <img src="https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg" class="card-img-top" alt="...">
+          <div class="d-flex img-container-card">
+            <div class="bg-image" style="background-image: url('https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg');"></div>
+          </div>
         </div>
         <div class="card-body">
           <h6 class="border-bottom pb-3">Ingredients</h6>
