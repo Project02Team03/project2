@@ -2,7 +2,9 @@
         <div class="position-relative">
           <div class="gradient-overlay"></div>
           <h5 class="card-title position-absolute start-0 bottom-0 text-white p-3">{{recipe_name}}</h5>
-          <img src="{{image_link}}" class="card-img-top" alt="{{recipe_name}}">
+          <div class="d-flex img-container-card">
+            <div class="bg-image" style="background-image: url('{{image_link}}');"></div>
+          </div>
         </div>
         <div class="card-body">
           <h6 class="border-bottom pb-3">Ingredients</h6>
