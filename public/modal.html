@@ -150,9 +150,19 @@
           <h6 class="border-bottom pb-3">Ingredients</h6>
           <div class="overflow-auto inset-list">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item text-dark">An item</li>
+                <li class="list-group-item text-dark">
+                    <div class="d-flex flex-wrap flex-row justify-content-between align-content-center">
+                        <p class="m-0">{{amount}} {{units}} {{ingredient_name}}</p>
+                    </div>
+                </li>
               <li class="list-group-item text-dark">A second item</li>
-              <li class="list-group-item text-dark"><i class="far fa-solid fa-check text-success"></i>  A third item</li>
+              
+              <li class="list-group-item text-success">
+                <div class="d-flex flex-wrap flex-row justify-content-between align-content-center">
+                <p class="m-0">A third item</p><i class="d-flex flex-wrap fa-solid fa-circle-check text-success align-content-center"></i>
+            </div>
+            </li>
+                
               <li class="list-group-item text-dark">A fourth item</li>
               <li class="list-group-item text-dark"><i class="far fa-solid fa-check text-success"></i>  A fifth item</li>
               <li class="list-group-item text-dark">A sixth item</li>

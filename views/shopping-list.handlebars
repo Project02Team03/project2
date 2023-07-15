@@ -1,0 +1,12 @@
+<div class="list-title">
+    <h2 class="text-center text-white m-4">Shopping List</h2>
+    <p class="subtitle text-center">Let's head to the store and complete your pantry!</p>
+</div>
+
+{{#each ingredients as |ingredients|}}
+    {{#if in-stock}}
+        {{>ingredient-shopping-list}}
+    {{else}}
+        {{>ingredient-list-in-stock}}
+    {{/if}}
+{{/each}}
