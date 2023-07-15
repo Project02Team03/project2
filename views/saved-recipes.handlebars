@@ -1,0 +1,16 @@
+<div class="list-title">
+    <h2 class="text-center text-white m-4">Saved Recipes</h2>
+    <p class="subtitle text-center">Here's all the recipes you have favorited</p>
+</div>
+<div class="d-flex flex-wrap justify-content-center">
+
+{{#each recipes as |recipe|}}
+    {{#if is-favorite }}
+        {{#if recipe-ready}}
+            {{> ready-card-favorite}}
+        {{else}}
+            {{> recipe-card-favorite}}
+        {{/if}} 
+    {{/if}}
+{{/each}}
+</div>
