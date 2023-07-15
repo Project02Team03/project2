@@ -14,7 +14,6 @@ const withAuth = require('../../utils/auth');
 
 //i need to get all of the recipes
 router.get("/", async (req, res) => {
-        
     try {
                 
         const allRecipesData=await Recipe.findAll

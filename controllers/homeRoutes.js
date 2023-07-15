@@ -4,10 +4,10 @@ const withAuth = require('../utils/auth');
 
 // homepage
 router.get('/', async (req, res) => {
-  console.log('HI THERE! ');
+  
   
   try {
-    console.log('TRYING');
+   
     
     const allRecipesData = await Recipe.findAll({
       attributes: ["id", "image_link", "recipe_name", "recipe_url", "ingredients"],
