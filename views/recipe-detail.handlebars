@@ -29,7 +29,18 @@
                 List or <span class="text-success">"Have It"</span> to indicate you have it on hand!</p>
         </div>
         {{#each ingredients as |ingredients|}}
-
+            {{#if in_stock}}
+                <!-- If in_stock: true AND shopping_list: false, the view is  -->
+                {{>ingdt-recipe-in-pantry}}
+            {{else}}
+                {{#if shopping_list}}
+                    <!-- If in_stock: false AND shopping_list: true, the view is  -->
+                    {{>ingdt-recipe-in-list}}
+                {{else}}
+                    <!-- If in_stock: false AND shopping_list: false, the view is  -->
+                    {{>ingdt-recipe-card}}
+                {{/if}}
+            {{/if}}
         {{/each}}
     </div>
 </div>
