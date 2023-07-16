@@ -10,7 +10,11 @@ Ingredients.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        
+        ingredient_img:{
+            type: DataTypes.TEXT,
+            allowNull:false
+        }
+        ,
         ingredient_name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -28,10 +32,16 @@ Ingredients.init(
          allowNull:false,
          defaultValue: false
         }, 
-        // note: {
-        //     type: DataTypes.TEXT,
-        //     allowNull:true ,
-        // }
+        in_list: {
+            type: DataTypes.BOOLEAN,
+            allowNull:false,
+            defaultValue: false
+           }, 
+
+        note: {
+            type: DataTypes.TEXT,
+            allowNull:true ,
+        }
     },
     {
         sequelize,
