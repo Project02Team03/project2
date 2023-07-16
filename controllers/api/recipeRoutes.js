@@ -9,7 +9,7 @@ const {
     User
 } = require('../../models');
 
-const withAuth = require('../../utils/auth');
+//const withAuth = require('../../utils/auth');
 
 
 //i need to get all of the recipes
@@ -31,6 +31,8 @@ router.get("/", async (req, res) => {
 });
 //then i need to get a single recipe
 router.get("/:id", async (req, res) => {
+    console.log('=======================================================================================');
+    
     try {
         const RecipeData=await Recipe.findOne({  
             where: {
@@ -82,7 +84,7 @@ router.get("/:id", async (req, res) => {
 
 
 //then I need to delete the recipe
-router.delete("/:id", withAuth, (req, res) => {
+router.delete("/:id",(req, res) => {
     Recipe.destroy({
             where: {
                 id: req.params.id,
