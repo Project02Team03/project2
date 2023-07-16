@@ -53,6 +53,34 @@
   {
     "recipe_id": 2,
     "ingredient_id": 13
+  },
+  {
+    "recipe_id": 3,
+    "ingredient_id": 13
+  },
+  {
+    "recipe_id": 3,
+    "ingredient_id": 14
+  },
+  {
+    "recipe_id": 3,
+    "ingredient_id": 15
+  },
+  {
+    "recipe_id": 3,
+    "ingredient_id": 16
+  },
+  {
+    "recipe_id": 3,
+    "ingredient_id": 17
+  },
+  {
+    "recipe_id": 3,
+    "ingredient_id": 18
+  },
+  {
+    "recipe_id": 3,
+    "ingredient_id": 19
   }
   
 

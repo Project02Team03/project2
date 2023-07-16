@@ -77,15 +77,42 @@
             "ingredient_name": "salt",
              "amount": 1,
              "units": "tsp"
+        },
+        {
+            "ingredient_img": "https://www.edamam.com/food-img/d4e/d4e29ae7cde7eb5415fa8ef451a5ac26.png",
+            "ingredient_name": "Italian Meatball",
+             "amount": 3,
+             "units": "cups"
+        },
+        {
+            "ingredient_img": "https://www.edamam.com/food-img/a39/a39102018ed39c6008134e0570af8a6c.jpg",
+            "ingredient_name": "cannellini beans",
+             "amount": 15,
+             "units": "ounce"
+        },
+        {
+            "ingredient_img": "https://www.edamam.com/food-img/bcd/bcd94dde1fcde1475b5bf0540f821c5d.jpg",
+            "ingredient_name": "Cheese",
+             "amount": 2,
+             "units": "cup"
+        },
+        {
+            "ingredient_img": "https://www.edamam.com/food-img/aef/aef4e029118da71388e526086506053a.jpg",
+            "ingredient_name": "tomato paste",
+             "amount": 6,
+             "units": "ounce"
+        },
+        {
+            "ingredient_img": "https://www.edamam.com/food-img/d4e/d4e8110d51db4311bc894167a8f77816.jpg",
+            "ingredient_name": "diced tomatoes",
+             "amount": 14.5,
+             "units": "ounce"
+        },
+        {
+            "ingredient_img": "https://www.edamam.com/food-img/b8a/b8ad23dcc06f2324f944e47eb579d644.jpg",
+            "ingredient_name": "corn tortillas",
+             "amount": 12,
+             "units": "ea"
         }
-
-
-
-
-
-
-
-
-
         
 ]
