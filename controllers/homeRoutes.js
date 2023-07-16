@@ -37,6 +37,17 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+//signup route
+router.get('/signup', (req,res) => {
+  if(req.session.logged_in){
+    res.redirect('/');
+    return;
+  };
+  res.render('signup');
+})
+
+
+
 //all recipes, favorited by logged in user
 router.get('/favorites', withAuth, async(req,res) => {
   try {
@@ -49,6 +60,9 @@ router.get('/favorites', withAuth, async(req,res) => {
     res.status(500).json(err);
   }
 });
+
+
+
 
 
 module.exports = router;
