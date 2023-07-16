@@ -1,3 +1,5 @@
+<!-- view for Ingredients on Recipe Search -->
+<!-- renders Ingredient IF in_stock: true -->
 {{#if in-stock}}
     <li class="list-group-item text-success">
         <div class="d-flex flex-wrap flex-row justify-content-between align-content-center">
@@ -5,6 +7,7 @@
             <i class="d-flex flex-wrap fa-solid fa-circle-check text-success align-content-center"></i>
         </div>
     </li>
+<!-- renders Ingredient IF in_stock: false -->
 {{else}}
     <li class="list-group-item text-dark">
         <div class="d-flex flex-wrap flex-row justify-content-between align-content-center">

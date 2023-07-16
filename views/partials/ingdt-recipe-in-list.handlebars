@@ -1,3 +1,5 @@
+<!-- This is an ingredient item which appears on the RECIPE modal -->
+<!-- if the Ingredient has a NOTE then it renders this version -->
 {{#if note}}
    <div class="card border-primary bg-primary-subtle mx-3 mb-1">
         <div class="row g-0">
@@ -7,6 +9,7 @@
                     <div class="d-flex img-container">
                         <div class="d-flex justify-content-center align-items-center need-it"><i
                                 class="fa-solid fa-cart-shopping fa-2xl text-white"></i></div>
+                        <!-- Static ingredient image is used for background -->
                         <div class="bg-image"
                             style="background-image: url('{{ingredient_img}}');">
                         </div>
@@ -14,35 +17,45 @@
                     <div class="d-flex flex-row justify-content-start align-items-center w-100">
                         <div class="d-flex flex-row align-items-center">
                             <div class="card-body">
+                                <!-- Ingredient amount, the units, and the name are listed -->
                                 <h6 class="card-title m-0 p-3 p-sm-1 text-body-tertiary">{{amount}} {{units}}
                                 {{ingredient_name}}</h6>
                                 <div class="d-flex flex-row">
+                                    <!-- Ingredient notes are only available for authorized users -->
+                                    {{#if logged_in}}
+                                    <!-- Ingredient note is rendered -->
                                     <p class="card-text m-0 p-3 p-sm-1 pt-1 ">{{note}}</p>
                                     <button class="btn btn-sm btn-outline-dark justify-content-start" type="submit"><i
                                             class="fa-solid fa-comment"></i></button>
+                                    {{/if}}
                                 </div>
                             </div>
-                            <button class="btn btn-sm btn-dark justify-content-start" type="submit"><i
-                                    class="fa-solid fa-comment"></i></button>
+                            
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Can only check for ingredient in shopping_list if user authorized -->
+            {{#if logged_in}}
             <div
                 class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
                 <div class="d-flex justify-content-between flex-wrap">
                     <div class="d-flex btn-container">
+                        <!-- This button takes the User to /shopping-list -->
                         <button class="btn btn-info mx-2 my-1 ing-btn" type="submit"><i
                                 class="fa-solid fa-list-ul pe-3"></i>In List</button>
                     </div>
+                    <!-- This button reverts ingredient to default values; in_stock: false AND shopping_list: false -->
                     <div class="d-flex btn-container">
                         <button class="btn btn-dark mx-2 my-1 ing-btn" type="submit"><i
                                 class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
             </div>
+            {{/if}}
         </div>
     </div>
+<!-- Otherwise the Ingredient is rendered without a note -->
 {{else}}
     <div class="card border-primary bg-primary-subtle mx-3 mb-1">
         <div class="row g-0">
@@ -52,6 +65,7 @@
                     <div class="d-flex img-container">
                         <div class="d-flex justify-content-center align-items-center need-it"><i
                                 class="fa-solid fa-cart-shopping fa-2xl text-white"></i></div>
+                        <!-- Static ingredient image is used for background -->
                         <div class="bg-image"
                             style="background-image: url('{{ingredient_img}}');">
                         </div>
@@ -59,6 +73,7 @@
                     <div class="d-flex flex-row justify-content-start align-items-center w-100">
                         <div class="d-flex flex-row align-items-center">
                             <div class="card-body">
+                                <!-- Ingredient amount, the units, and the name are listed -->
                                 <h6 class="card-title m-0 p-3 p-sm-1 text-body-tertiary">{{amount}} {{units}}
                                 {{ingredient_name}}</h6>
                             </div>
@@ -68,19 +83,24 @@
                     </div>
                 </div>
             </div>
+            <!-- Can only check for ingredient in shopping_list if user authorized -->
+            {{#if logged_in}}
             <div
                 class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
                 <div class="d-flex justify-content-between flex-wrap">
                     <div class="d-flex btn-container">
+                        <!-- This button takes the User to /shopping-list -->
                         <button class="btn btn-info mx-2 my-1 ing-btn" type="submit"><i
                                 class="fa-solid fa-list-ul pe-3"></i>In List</button>
                     </div>
                     <div class="d-flex btn-container">
+                        <!-- This button reverts ingredient to default values; in_stock: false AND shopping_list: false -->
                         <button class="btn btn-dark mx-2 my-1 ing-btn" type="submit"><i
                                 class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
             </div>
+            {{/if}}
         </div>
     </div>
 {{/if}}
