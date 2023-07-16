@@ -29,13 +29,22 @@
 <body>
     <!-- Nav -->
     {{>nav-menu}}
+
+    <!-- Recipe Modal -->
+    <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content bg-white">
+                {{>recipe-modal}}
+            </div>
+        </div>
+    </div>
     <!-- Recipes List -->
     
     {{{ body }}}
 
-    <!-- Recipe Modal -->
-
-    {{>modal}}
+    
+    
     
     <!-- Custom js-->
    {{!--  <script src="/js/main.js"></script> --}}
