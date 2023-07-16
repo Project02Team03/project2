@@ -4,9 +4,11 @@
 </div>
 
 {{#each ingredients as |ingredients|}}
-    {{#if in-stock}}
-        {{>ingredient-shopping-list}}
-    {{else}}
-        {{>ingredient-list-in-stock}}
+    {{#if shopping_list}}
+        {{#if in-stock}}
+            {{>ingredient-shopping-list}}
+        {{else}}
+            {{>ingredient-list-in-stock}}
+        {{/if}}
     {{/if}}
 {{/each}}
