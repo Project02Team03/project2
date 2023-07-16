@@ -1,3 +1,4 @@
+<!-- This Recipe Search is when all ingredients are marked in_stock: true AND is_favorite: true  -->
 <div class="card m-4 border-primary border-3 bg-success-subtle recipe_card favorited">
   <div class="position-relative">
     <div class="gradient-overlay ready"></div>
@@ -10,16 +11,19 @@
     <h6 class="border-bottom pb-3">Ingredients</h6>
     <div class="overflow-auto inset-list">
       <ul class="list-group list-group-flush">
+        <!-- This renders each ingredient -->
         {{#each ingredients as |ingredients|}}
-        {{> ingredient-list}}
+          {{> ingredient-list}}
         {{/each}}
       </ul>
     </div>
+    <!-- This button opens the recipe URL -->
     <div class="d-flex flex-wrap justify-content-center mt-3">
       <a href="{{recipe_url}}" class="btn btn-outline-success w-100 m-2">Ready to Cook!</a>
     </div>
   </div>
   <div class="card-footer bg-primary d-flex flex-wrap justify-content-between align-items-center">
+    <!-- This button sets is_favorite: false -->
     <a href="/recipe/{{$id}}" class="btn-sm"></a>
     <p class="text-white m-0">Remove from your favorites?</p>
     <i class="far fa-star fa-solid text-white"></i>

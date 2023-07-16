@@ -6,7 +6,8 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              
+              <!-- These views appear for authorized users -->
+              {{#if logged_in}}
               <li class="nav-item">
                 <a class="nav-link" href="/recipes">Recipes</a>
               </li>
@@ -14,60 +15,21 @@
                 <a class="nav-link" href="/shopping-list">Shopping List</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/shopping-list">Pantry</a>
+                <a class="nav-link" href="/pantry">Pantry</a>
               </li>
-              <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li> -->
+              {{/if}}
             </ul>
             <form class="d-flex mx-lg-5 w-50" role="search">
               <input class="form-control me-2" type="search" placeholder="Get random recipes... or type a search term to get started!" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <div class="d-flex align-items-center">
-                <button class="btn btn-primary mx-2" type="submit"><a href="/login" class="text-white text-decoration-none">Login</a></button>
-                <button class="btn btn-primary mx-2" type="submit"><a href="/signup" class="text-white text-decoration-none">Sign Up</a></button>
-                <!-- Avatar -->
-                <div class="dropdown">
-                  <a
-                    class="dropdown-toggle d-flex align-items-center hidden-arrow"
-                    href="#"
-                    id="navbarDropdownMenuAvatar"
-                    role="button"
-                    data-mdb-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <img
-                      src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                      class="rounded-circle"
-                      height="25"
-                      alt="Black and White Portrait of a Man"
-                      loading="lazy"
-                    />
-                  </a>
-                  <ul
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="navbarDropdownMenuAvatar"
-                  >
-                    <li>
-                      <a class="dropdown-item" href="#">My profile</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Settings</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Logout</a>
-                    </li>
-                  </ul>
-                </div>
+                {{#if logged_in}}
+                  <button class="btn btn-primary mx-2" type="submit"><a href="/logout" id="logout" class="text-white text-decoration-none">Logout</a></button>
+                {{else}}
+                  <button class="btn btn-primary mx-2" type="submit"><a href="/login" class="text-white text-decoration-none">Login</a></button>
+                  <button class="btn btn-primary mx-2" type="submit"><a href="/signup" class="text-white text-decoration-none">Sign Up</a></button>
+                {{/if}}
               </div>
           </div>
         </div>
