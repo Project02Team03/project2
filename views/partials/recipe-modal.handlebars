@@ -20,11 +20,19 @@
 
                         <div class="d-flex flex-row align-items-center justify-content-between">
                             <h3 class="card-title text-dark ps-2">{{recipe_name}}</h3>
-                            <div class="d-flex btn-container">
+                            {{#if is_favorite}}
+                                <div class="d-flex btn-container">
+                                  <!-- This button saves the recipe to User's Recipes -->
+                                  <button class="btn btn-primary mx-2 my-1 ing-btn" id="removeRecipe" type="submit" data-recipe="{{recipe_id}}">
+                                      <i class="far fa-star fa-solid pe-3"></i>Remove from your Saved Recipes?</button>
+                                </div>
+                            {{else}}
+                                <div class="d-flex btn-container">
                                   <!-- This button saves the recipe to User's Recipes -->
                                   <button class="btn btn-outline-info mx-2 my-1 ing-btn" id="savedRecipe" type="submit" data-recipe="{{recipe_id}}">
                                       <i class="far fa-star pe-3"></i>Save to Favorites</button>
                                 </div>
+                            {{/if}}                            
                             <p class="card-text"><small class="text-muted">{{recipe_source}}</small></p>
                         </div>
 
