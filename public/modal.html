@@ -137,10 +137,11 @@
 
         </div>
         <div class="card-footer bg-light-subtle d-flex flex-wrap justify-content-between align-items-center">
-          <p class="text-info m-0">Save to your favorites?</p>
-          <a href="#" class="btn-sm">
-            <i class="far fa-star text-info"></i>
-          </a>
+          <button type="button" class="btn btn-sm btn-outline-primary w-100" id="saveRecipe">
+            Add to your favorites?
+            <i class="far fa-star text-primary ps-5"></i>
+          </button>
+            
         </div>
       </div>
       <!-- Favorited Recipe Card View -->
@@ -181,10 +182,10 @@
           </div>
         </div>
         <div class="card-footer bg-primary d-flex flex-wrap justify-content-between align-items-center">
-          <p class="text-white m-0">Saved in Recipes!</p>
-          <a href="#" class="btn-sm">
-            <i class="far fa-star fa-solid text-white"></i>
-          </a>
+          <button type="button" class="btn btn-sm btn-primary w-100" id="removeRecipe">
+            Saved in Your Recipes!
+            <i class="far fa-star fa-solid ps-5"></i>
+          </button>
         </div>
       </div>
       <!-- Ready to Cook Recipe Card View -->
@@ -213,10 +214,10 @@
           </div>
         </div>
         <div class="card-footer bg-primary d-flex flex-wrap justify-content-between align-items-center">
-          <p class="text-white m-0">Saved in Recipes</p>
-          <a href="#" class="btn-sm">
-            <i class="far fa-star fa-solid text-white"></i>
-          </a>
+          <button type="button" class="btn btn-sm btn-primary w-100" id="removeRecipe">
+            Saved in Your Recipes!
+            <i class="far fa-star fa-solid ps-5"></i>
+          </button>
         </div>
       </div>
       <!-- Ready to Cook Recipe Card unfavorited View -->
@@ -245,10 +246,10 @@
           </div>
         </div>
         <div class="card-footer bg-success-subtle d-flex flex-wrap justify-content-between align-items-center">
-          <p class="text-success m-0">Save to your favorites?</p>
-          <a href="#" class="btn-sm">
-            <i class="far fa-star text-success"></i>
-          </a>
+          <button type="button" class="btn btn-sm btn-outline-primary w-100" id="saveRecipe">
+            Add to your favorites?
+            <i class="far fa-star text-primary ps-5"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -280,8 +281,8 @@
                                 <h3 class="card-title text-dark ps-2">Card title</h3>
                                 <div class="d-flex btn-container">
                                   <!-- This button saves the recipe to User's Recipes -->
-                                  <button class="btn btn-primary mx-2 my-1 ing-btn" id="removeRecipe" type="submit" data-recipe="{{recipe_id}}">
-                                      <i class="far fa-star fa-solid pe-3"></i>Remove from your Saved Recipes?</button>
+                                  <button class="btn btn-outline-primary mx-2 my-1 ing-btn" id="savedRecipe" type="submit" data-recipe="{{recipe_id}}">
+                                      <i class="far fa-star pe-3"></i>Save to Favorites</button>
                                 </div>
                                 </div>
                   
