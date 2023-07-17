@@ -19,7 +19,7 @@
           </div>
           <div class="d-flex flex-wrap justify-content-center mt-3">
             <!-- This button opens the Recipe Modal -->
-            <button type="button" class="btn btn-info w-100 m-2" data-toggle="modal" data-target="#recipeModal">
+            <button type="button" class="btn btn-info w-100 m-2" data-toggle="modal" data-target="#recipeModal" id="openModal" data-recipe="{{recipe_id}}">
                 View Recipe
               </button>
           </div>
@@ -28,9 +28,10 @@
         {{#if logged_in}}
         <div class="card-footer bg-light-subtle d-flex flex-wrap justify-content-between align-items-center">
             <!-- This button sets is_favorite: true -->
-            <a href="#" class="btn-sm"></a>
-            <p class="text-info m-0">Save to your Recipes?</p>
-            <i class="far fa-star text-info"></i>
+            <button type="submit" class="btn btn-sm btn-outline-primary w-100" id="saveRecipe" data-recipe="{{recipe_id}}">
+            Add to your favorites?
+            <i class="far fa-star text-primary ps-5"></i>
+          </button>
           </a>
         </div>
         {{/if}}

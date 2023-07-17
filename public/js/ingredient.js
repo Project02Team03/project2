@@ -1,6 +1,6 @@
 const updateIngredients = async (event, shoppingList, inStock) => {
     event.preventDefault();
-
+    console.log(event, shoppingList, inStock);
     const id = event.target.getAttribute("data-button");
     console.log(id);
 
