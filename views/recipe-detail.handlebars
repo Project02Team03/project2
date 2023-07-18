@@ -1,46 +1,63 @@
 <div class="d-flex flex-wrap justify-content-center">
     <div class="card bg-white m-3 col-md-10 col-sm-12">
-        <div class="row g-0">
-            <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
-                <div class="d-flex img-container-wide">
-                    <div class="bg-image"
-                        style="background-image: url('{{image_link}}');">
+        <div class="row g-0"> 
+                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
+                    <div class="d-flex img-container-wide">
+                        <div class="bg-image" style="background-image: url('{{image_link}}');">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
-                <div class="card-body">
+                <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
+                    <div class="card-body">
 
-                    <div class="d-flex flex-row align-items-center justify-content-between">
-                        <h3 class="card-title text-dark">{{recipe_name}}</h3>
-                        <button class="btn btn-sm btn-dark" type="submit">Return to Search</button>
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                            <h3 class="card-title text-dark ps-2">{{recipe_name}}</h3>
+                            {{#if is_favorite}}
+                                <div class="d-flex btn-container">
+                                  <!-- This button saves the recipe to User's Recipes -->
+                                  <button class="btn btn-primary mx-2 my-1 ing-btn" id="removeRecipe" type="submit" data-recipe="{{id}}">
+                                      <i class="far fa-star fa-solid pe-3"></i>Remove from your Saved Recipes?</button>
+                                </div>
+                            {{else}}
+                                <div class="d-flex btn-container">
+                                  <!-- This button saves the recipe to User's Recipes -->
+                                  <button class="btn btn-outline-primary mx-2 my-1 ing-btn" id="saveRecipe" type="submit" data-recipe="{{id}}">
+                                      <i class="far fa-star pe-3"></i>Save to Favorites</button>
+                                </div>
+                            {{/if}} 
+                            <a href="/" class="btn btn-outline-dark mx-2 my-1 ing-btn">
+                                Back</a>                           
+                            <p class="card-text"><small class="text-muted">{{recipe_source}}</small></p>
+                        </div>
+
+                        <div class="d-flex flex-wrap justify-content-center mt-3">
+                            <a href="{{recipe_source}}" class="btn btn-dark w-100 m-2">View Full Instructions</a>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+
                     </div>
 
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
-
             </div>
-        </div>
-        <div class="ingredients-title">
-            <h4 class="text-center">Ingredients</h4>
-            <p class="subtitle text-center">Click <span class="text-primary">"Need It"</span> to add to your Shopping
-                List or <span class="text-success">"Have It"</span> to indicate you have it on hand!</p>
-        </div>
-        {{#each ingredients as |ingredients|}}
-            {{#if in_stock}}
-                <!-- If in_stock: true AND shopping_list: false, the view is  -->
-                {{>ingdt-recipe-in-pantry}}
-            {{else}}
-                {{#if shopping_list}}
-                    <!-- If in_stock: false AND shopping_list: true, the view is  -->
-                    {{>ingdt-recipe-in-list}}
+            <div class="ingredients-title">
+                <h4 class="text-center">Ingredients</h4>
+                <p class="subtitle text-center">Click <span class="text-primary">"Need It"</span> to add to your
+                    Shopping
+                    List or <span class="text-success">"Have It"</span> to indicate you have it on hand!</p>
+            </div>
+            {{#each ingredients as |ingredients|}}
+                {{#if in_stock}}
+                    <!-- If in_stock: true AND shopping_list: false, the view is  -->
+                    {{>ingdt-recipe-in-pantry}}
                 {{else}}
-                    <!-- If in_stock: false AND shopping_list: false, the view is  -->
-                    {{>ingdt-recipe-card}}
+                    {{#if shopping_list}}
+                        <!-- If in_stock: false AND shopping_list: true, the view is  -->
+                        {{>ingdt-recipe-in-list}}
+                    {{else}}
+                        <!-- If in_stock: false AND shopping_list: false, the view is  -->
+                        {{>ingdt-recipe-card}}
+                    {{/if}}
                 {{/if}}
-            {{/if}}
-        {{/each}}
+            {{/each}}
     </div>
 </div>

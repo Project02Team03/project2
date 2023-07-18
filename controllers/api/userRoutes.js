@@ -2,7 +2,9 @@ const router = require('express').Router();
 const { User, Recipe , SelectedRecipe} = require('../../models');
 const withAuth=require('../../utils/auth')
 
-router.post('/login', async (req, res) => {
+router.post('/login', withAuth, async (req, res) => {
+  console.log("I am logged in");
+  
   try {
     // Find the user who matches the posted e-mail address
     const userData = await User.findOne({ where: { email: req.body.email } });
