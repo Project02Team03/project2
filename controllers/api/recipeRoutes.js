@@ -85,6 +85,9 @@ router.get("/", async (req, res) => {
 });
 //then i need to get a single recipe
 router.get("/:id", async (req, res) => {
+    
+    
+    
     try {
         const RecipeData=await Recipe.findOne({  
             where: {
