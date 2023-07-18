@@ -46,10 +46,13 @@ router.get("/:id", async (req, res) => {
         }
 
         const recipe = RecipeData.get({ plain: true });
+        console.log("INGREDIENTS", recipe.ingredientList);
+        
+        
         res.render("recipe-detail", {
             recipe,
             id: req.params.id,
-            logged_in: req.session.logged_in,
+            
         });
 
     }  catch(err){
