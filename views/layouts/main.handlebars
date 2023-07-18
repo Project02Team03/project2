@@ -35,23 +35,12 @@
     
     {{{ body }}}
 
-    <!-- Recipe Modal -->
-    <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content bg-white" id="recipeModalContent">
-                {{>recipe-modal}}
-            </div>
-        </div>
-    </div>
-    
     
     <!-- Custom js-->
     <script src="/js/ingredient.js"></script>
-    <script src="/js/recipeModal.js"></script>
 
     {{#if logged_in}}
-        <script src="/js/logout.js"></script>
+        <script src="./js/logout.js"></script>
     {{/if}}
 </body>
 </html>

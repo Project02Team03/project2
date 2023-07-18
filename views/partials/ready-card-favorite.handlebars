@@ -12,19 +12,19 @@
     <div class="overflow-auto inset-list">
       <ul class="list-group list-group-flush">
         <!-- This renders each ingredient -->
-        {{#each ingredients as |ingredients|}}
+        
           {{> ingredient-list}}
-        {{/each}}
+        
       </ul>
     </div>
     <!-- This button opens the recipe URL -->
     <div class="d-flex flex-wrap justify-content-center mt-3">
-      <a href="{{recipe_url}}" class="btn btn-outline-success w-100 m-2">Ready to Cook!</a>
+      <a href="{{recipe_url}}" class="btn btn-outline-success w-100 m-2" role="button">Ready to Cook!</a>
     </div>
   </div>
   <div class="card-footer bg-primary d-flex flex-wrap justify-content-between align-items-center">
     <!-- This button sets is_favorite: false -->
-    <button type="submit" class="btn btn-sm btn-primary w-100" id="removeRecipe" data-recipe="{{recipe_id}}">
+    <button type="submit" class="btn btn-sm btn-primary w-100" id="removeRecipe" data-recipe="{{id}}">
             Saved in Your Recipes!
             <i class="far fa-star fa-solid ps-5"></i>
           </button>

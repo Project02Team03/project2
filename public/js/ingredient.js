@@ -24,14 +24,14 @@ const updateIngredients = async (event, shoppingList, inStock) => {
     }
 };
 
-document.querySelector("#inStockBtn").addEventListener("click", (event) => {
-    updateIngredients(event, false, true);
-});
+// document.querySelector("#inStockBtn").addEventListener("click", (event) => {
+//     updateIngredients(event, false, true);
+// });
 
-document.querySelector("#shoppingListBtn").addEventListener("click", (event) => {
-    updateIngredients(event, true, false);
-});
+// document.querySelector("#shoppingListBtn").addEventListener("click", (event) => {
+//     updateIngredients(event, true, false);
+// });
 
-document.querySelector("#defaultBtn").addEventListener("click", (event) => {
-    updateIngredients(event, false, false);
-});
+// document.querySelector("#defaultBtn").addEventListener("click", (event) => {
+//     updateIngredients(event, false, false);
+// });
