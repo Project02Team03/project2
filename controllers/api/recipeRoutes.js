@@ -35,15 +35,26 @@ router.post("/", async (req, res) => {
             const { quantity, measure, food, image: ingredient_img } = recipeIngredient;
             console.log("Ingredient:", food, quantity, measure, ingredient_img);
 
-            const createdIngredient = await Ingredients.create({
+            const ingredientsData = {
                 ingredient_img: ingredients.image || "",
                 ingredient_name: ingredients.food || "",
                 amount: ingredients.quantity || 0,
                 units: ingredients.measure || "",
                 in_stock: false,
                 in_list: false,
-            });
+            };
 
+            const createdIngredient = await Ingredients.create(ingredientsData);
+
+            /*
+            await Ingredients.create({ 
+                ingredient_img, 
+                ingredient_name: food, 
+                amount: quantity, 
+                units: measure, 
+                recipe_id: createdRecipe.id 
+            });
+            */
         }
       }
   

@@ -129,8 +129,8 @@ const searchRecipes = async (event) => {
         const { quantity, measure, food, image } = ingredient;
         return { quantity, measure, food, image };
       });
-      return { label, image, url, ingredients: JSON.stringify(ingredients) };
-    });
+    return { label, image, url, ingredients };
+});
 
     function clearRecipeCardGrid() {
       recipeCardGrid.innerHTML = ``;
