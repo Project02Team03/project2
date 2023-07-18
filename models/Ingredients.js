@@ -39,8 +39,9 @@ Ingredients.init(
            }, 
 
         note: {
-            type: DataTypes.TEXT,
-            allowNull:true ,
+            type: DataTypes.STRING,
+            allowNull:true,
+           
         }
     },
     {
