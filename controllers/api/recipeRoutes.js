@@ -19,19 +19,19 @@ router.post("/", async (req, res) => {
   
       for (const recipe of recipes) {
         const { label, image: image_link, url, ingredients } = recipe;
-        const recipeIngredients = JSON.parse(ingredients);
+        // const recipeIngredients = JSON.parse(ingredients);
 
         console.log("Recipe:", label, image_link, url);
-        console.log("Ingredients:", recipeIngredients);
+        console.log("Ingredients:", ingredients);
 
         const createdRecipe = await Recipe.create({ 
             recipe_name: label, 
             image_link, 
             recipe_url: url,
-            ingredients: recipeIngredients, 
+            ingredients, 
         });
 
-        for (const recipeIngredient of recipeIngredients) {
+        for (const recipeIngredient of ingredients) {
             const { quantity, measure, food, image: ingredient_img } = recipeIngredient;
             console.log("Ingredient:", food, quantity, measure, ingredient_img);
 
