@@ -143,9 +143,13 @@ const searchRecipes = async (event) => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        const recipeIds = data.map((recipe) => recipe.id);
-        updateRecipeCards(recipesIds);
-      })
+        if (Array.isArray(data)) {
+          const recipeIds = data.map((recipe) => recipe.id);
+          updateRecipeCards(recipeIds);
+        } else {
+          console.error('Data is not an array.');
+        }
+      })      
       .catch((error) => console.error(error));
 
     /* This function clears the recipe card div of previously rendered cards */
