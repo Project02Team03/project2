@@ -52,7 +52,7 @@ router.post('/logout', (req, res) => {
 });
 
 //sing up new user
-//CREATE new user after Sign Up
+
 router.post('/', async (req, res) => {
   try {
     const dbUserData = await User.create({
@@ -64,12 +64,12 @@ router.post('/', async (req, res) => {
     // Set up sessions with the 'loggedIn' variable
     req.session.save(() => {
       // Set the 'loggedIn' session variable to 'true'
-      req.session.loggedIn=true
-    if (req.session.loggedIn){
+      req.session.logged_in=true
+    if (req.session.logged_in){
       return true;
     }
     res.render("homepage", {
-       loggedIn: req.session.loggedIn
+       logged_in: req.session.logged_in
     }
     )
       res.status(200).json(dbUserData);
@@ -81,29 +81,29 @@ router.post('/', async (req, res) => {
 });
 
 //all users
-router.get('/', async (req,res) => {
-  try{
-    const allUsersData=await User.findAll();
-    res.status(200).json(allUsersData)
-  } catch(err){
-    res.status(500).json(err);
-  }
-});
+// router.get('/', async (req,res) => {
+//   try{
+//     const allUsersData=await User.findAll();
+//     res.status(200).json(allUsersData)
+//   } catch(err){
+//     res.status(500).json(err);
+//   }
+// });
 
 //all recipes, favorited by logged in user????? we can add auth later
-router.get('/:id',withAuth, async(req,res) => {
-  try {
-    const myRecipes=await User.findByPk(req.params.id, {
-      where:{id: req.session.id},
-      include: 
-      {model: Recipe, through: SelectedRecipe, as: 'recipes'},
-      attributes: { exclude: ['email','password'] }
-    });
-    res.status(200).json(myRecipes);
-  } catch (err){
-    res.status(500).json(err);
-  }
-});
+// router.get('/:id',withAuth, async(req,res) => {
+//   try {
+//     const myRecipes=await User.findByPk(req.params.id, {
+//       where:{id: req.session.id},
+//       include: 
+//       {model: Recipe, through: SelectedRecipe, as: 'recipes'},
+//       attributes: { exclude: ['email','password'] }
+//     });
+//     res.status(200).json(myRecipes);
+//   } catch (err){
+//     res.status(500).json(err);
+//   }
+// });
 
 //all users
 router.get('/', async(req,res) => {
@@ -117,7 +117,24 @@ router.get('/', async(req,res) => {
   }
 });
 
+router.get('/user', withAuth, async (req, res) => {
+  try {
+   
+    const userData = await User.findByPk(req.session.user_id, {
+      
+      attributes: { exclude: ['password'] },
+    });
 
+    if (!userData) {
+     
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 module.exports = router;
