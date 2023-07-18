@@ -104,33 +104,33 @@
               </div>
           </div>
           <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
-              <div class="card-body">
-
-                  <div class="d-flex flex-row align-items-center justify-content-between">
-                      <h3 class="card-title text-dark ps-2">Recipe Title</h3>
-                      
-         
-                          <div class="d-flex btn-container">
-                            <!-- This button saves the recipe to User's Recipes -->
-                            <button class="btn btn-outline-primary mx-2 my-1 ing-btn" id="saveRecipe" type="submit" data-recipe="{{id}}">
-                                <i class="far fa-star pe-3"></i>Save to Favorites</button>
-                          </div>
-                          <div class="d-flex btn-container">
-                            <!-- This button saves the recipe to User's Recipes -->
-                            <a href="/" class="btn btn-outline-dark mx-2 my-1 ing-btn">
-                                Back</a>
-                          </div>
-                      <p class="card-text"><small class="text-muted">{{recipe_source}}</small></p>
-                  </div>
-
-                  <div class="d-flex flex-wrap justify-content-center mt-3">
-                      <a href="{{recipe_source}}" class="btn btn-dark w-100 m-2">View Full Instructions</a>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-
+            <div class="card-body">
+          
+              <div class="row justify-content-between">
+                <div class="col-auto">
+                  <h3 class="card-title text-dark ps-2">Recipe Title</h3>
+                </div>
+                <div class="col-auto">
+                  <a href="/" class="btn btn-outline-dark mx-2 my-1 ing-btn">
+                    Back
+                  </a>
+                </div>
               </div>
-
+          
+              <div class="row justify-content-between">
+                <div class="col-auto">
+                  <a href="{{recipe_source}}" class="btn btn-dark m-2">View Full Instructions</a>
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-outline-primary m-2" id="saveRecipe" type="submit" data-recipe="{{id}}">
+                    <i class="far fa-star pe-3"></i>Save to Favorites
+                  </button>
+                </div>
+              </div>
+          
+            </div>
           </div>
+          
       </div>
 
         <div class="ingredients-title">

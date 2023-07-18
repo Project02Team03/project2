@@ -8,38 +8,42 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
                     <div class="card-body">
-
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h3 class="card-title text-dark ps-2">{{recipe.recipe_name}}</h3>
-                            {{#if recipe.is_favorite}}
-                                <div class="d-flex btn-container">
-                                  <!-- This button saves the recipe to User's Recipes -->
-                                  <button class="btn btn-primary mx-2 my-1 ing-btn" id="removeRecipe" type="submit" data-recipe="{{recipe.id}}">
-                                      <i class="far fa-star fa-solid pe-3"></i>Remove from your Saved Recipes?</button>
-                                </div>
-                            {{else}}
-                                <div class="d-flex btn-container">
-                                  <!-- This button saves the recipe to User's Recipes -->
-                                  <button class="btn btn-outline-primary mx-2 my-1 ing-btn" id="saveRecipe" type="submit" data-recipe="{{recipe.id}}">
-                                      <i class="far fa-star pe-3"></i>Save to Favorites</button>
-                                </div>
-                            {{/if}} 
-                            <a href="/" class="btn btn-outline-dark mx-2 my-1 ing-btn">
-                                Back</a>                           
-                            <p class="card-text"><small class="text-muted">{{recipe.recipe_url}}</small></p>
+                
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                        <h3 class="card-title text-dark ps-2">{{recipe.recipe_name}}</h3>
                         </div>
-
-
-                        <div class="d-flex flex-wrap justify-content-center mt-3">
-                            <a href="{{recipe.recipe_url}}" class="btn btn-dark w-100 m-2">View Full Instructions</a>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <div class="col-auto">
+                        <a href="/" class="btn btn-outline-dark mx-2 my-1 ing-btn">
+                            Back
+                        </a>
                         </div>
-
                     </div>
-
+                
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                        <a href="{{recipe.recipe_url}}" class="btn btn-dark m-2">View Full Instructions</a>
+                        </div>
+                        <div class="col-auto">
+                        {{#if recipe.is_favorite}}
+                            <button class="btn btn-primary m-2" id="removeRecipe" type="submit" data-recipe="{{recipe.id}}">
+                            <i class="far fa-star fa-solid pe-3"></i>Remove from your Saved Recipes?
+                        </button>
+                        {{else}}
+                            <button class="btn btn-outline-primary m-2" id="saveRecipe" type="submit" data-recipe="{{recipe.id}}">
+                            <i class="far fa-star pe-3"></i>Save to Favorites
+                        </button>
+                        {{/if}}
+                        </div>
+                    </div>
+                
+                    </div>
                 </div>
+
+
             </div>
             <div class="ingredients-title">
                 <h4 class="text-center">Ingredients</h4>

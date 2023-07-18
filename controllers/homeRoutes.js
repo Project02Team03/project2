@@ -11,12 +11,24 @@ router.get('/', async (req, res) => {
     console.log('TRYING');
     
     const allRecipesData = await Recipe.findAll({
-      attributes: ["id", "image_link", "recipe_name", "recipe_url", "ingredients"],
-     
-      include: [{model: Ingredients, through: ShoppingList, as: 'ingredientList'}]
+      include: {
+        model: Ingredients,
+        through: ShoppingList,
+        as: 'ingredientList'
+      }
     });
 
-    const recipes = allRecipesData.map((recipes) => recipes.get({ plain: true }));
+    const recipes = allRecipesData.map((recipe) => {
+      const plainRecipe = recipe.get({ plain: true });
+      plainRecipe.ingredients = plainRecipe.ingredientList.map((ingredient) => ({
+        quantity: ingredient.amount,
+        measure: ingredient.units,
+        food: ingredient.ingredient_name,
+        image: ingredient.ingredient_img
+      }));
+      delete plainRecipe.ingredientList;
+      return plainRecipe;
+    });
 
     res.render('homepage', {
       recipes,
@@ -24,6 +36,7 @@ router.get('/', async (req, res) => {
      
     });
   } catch (err) {
+    console.error(err)
     res.status(500).json(err);
   }
 });

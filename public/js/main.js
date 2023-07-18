@@ -113,8 +113,6 @@ const searchRecipes = async (event) => {
 
   const searchTerms = document.querySelector('input[name="search-terms"]').value;
 
-  console.log(searchTerms);
-
   const response = await fetch(`https://api.edamam.com/api/recipes/v2?q=${searchTerms}&app_id=${app_id}&app_key=${app_key}&_cont=CHcVQBtNNQphDmgVQntAEX4BYldtBAYEQ21GBWQaaldyDAQCUXlSB2ZCNl17BgcESmVBAjAaZ1RyUFFUEmAWB2tFMVQiBwUVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&type=public&app_id=9b79a237"`, {
     method: "GET",
     headers: {
@@ -125,25 +123,52 @@ const searchRecipes = async (event) => {
   if (response.ok) {
 
     const data = await response.json();
-    const recipes = data.hits.map((recipe) => recipe.recipe);
+    const recipes = data.hits.map((recipe, index) => {
+      const { label, image, url } = recipe.recipe;
+      const ingredients = recipe.recipe.ingredients.map((ingredient) => {
+        const { quantity, measure, food, image } = ingredient;
+        return { quantity, measure, food, image };
+      });
+    return { id: index + 1, label, image, url, ingredients };
+});
 
+    /* This posts the returned Recipes and their associated Ingredients to the local db */
+    fetch("/api/recipes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ recipes }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (Array.isArray(data)) {
+          const recipeIds = data.map((recipe) => recipe.id);
+          updateRecipeCards(recipeIds);
+        } else {
+          console.error('Data is not an array.');
+        }
+      })      
+      .catch((error) => console.error(error));
+
+    /* This function clears the recipe card div of previously rendered cards */
     function clearRecipeCardGrid() {
       recipeCardGrid.innerHTML = ``;
     };
     clearRecipeCardGrid();
 
+    /* for loop for creating values for each recipe */
     for (var i = 0; i < recipes.length; i++) {
       
-      console.log(recipes[i].label);
-
       let ingredientsArr = recipes[i].ingredients
       
       function createIngredientList(ingredients) {
         return new Promise((resolve) => {
           var ingredientsList = [];
-      
+          /* for loop for creating ingredient value for each ingredient */
           for (var j = 0; j < ingredients.length; j++) {
-
+            /* this creates the ingredient list item HTML */
             var ingredientHTML = `
             <li class="list-group-item text-dark">
             <div class="d-flex flex-wrap flex-row justify-content-between align-content-center">
@@ -159,10 +184,12 @@ const searchRecipes = async (event) => {
         });
       }
 
+      /* this function uses the returned recipe and created ingredientsList to create a recipe card for each Recipe */
       function createRecipeCard(recipe, ingredientsList) {
         var recipeCard = document.createElement("div");
-        
+        /* classes for the container div */
         recipeCard.className = "card m-4 border-info border-3 recipe_card";
+        /* full HTML for the recipe card */
         recipeCard.innerHTML = `
         <div class="position-relative">
         <div class="gradient-overlay"></div>
@@ -202,7 +229,7 @@ const searchRecipes = async (event) => {
       var ingredientListHTML = await createIngredientList(ingredientsArr);
       var recipeCard = createRecipeCard(recipes[i], ingredientListHTML);
       recipeCardGrid.appendChild(recipeCard);
-    }
+    } 
 
       return recipeCardGrid;
     
