@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Recipe, Ingredients, ShoppingList} = require('../models');
 const withAuth = require('../utils/auth');
 
+
 // homepage
 router.get('/', async (req, res) => {
   console.log('HI THERE! ');
