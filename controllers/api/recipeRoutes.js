@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
     try {
         const RecipeData=await Recipe.findOne({  
             where: {
-            id: req.params.id,
+                id: req.params.id,
             },
             include:{model: Ingredients, through: ShoppingList, as: 'ingredientList'}
         });  
@@ -44,7 +44,14 @@ router.get("/:id", async (req, res) => {
             });
             return;
         }
-        res.status(200).json(RecipeData);
+
+        const recipe = RecipeData.get({ plain: true });
+        res.render("recipe-detail", {
+            recipe,
+            id: req.params.id,
+            logged_in: req.session.logged_in,
+        });
+
     }  catch(err){
         res.status(500).json(err)
     }
