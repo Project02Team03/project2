@@ -1,5 +1,6 @@
 <!-- This is an ingredient item which appears on the RECIPE modal -->
 <!-- if the Ingredient has a NOTE then it renders this version -->
+
 {{#if note}}
     <div class="card border-secondary mx-3 mb-1">
         <div class="row g-0">
@@ -19,13 +20,13 @@
                                 {{ingredient_name}}</h6>
                                 <div class="d-flex flex-row">
                                     <!-- Ingredient notes are only available for authorized users -->
-                                    {{#if logged_in}}
+                                   
                                     <!-- Ingredient note is rendered -->
                                     <p class="card-text m-0 p-3 p-sm-1 pt-1 ">{{note}}</p>
                                     
                                     <button class="btn btn-sm btn-outline-dark justify-content-start" type="submit"><i
                                             class="fa-solid fa-comment"></i></button>
-                                    {{/if}}
+                                   
                                 </div>
                             </div>
                             
@@ -34,7 +35,7 @@
                 </div>
             </div>
             <!-- Marking ingredient state is only available for authorized users -->
-            {{#if logged_in}}
+            
             <div
                 class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
                 <div class="d-flex justify-content-between flex-wrap">
@@ -50,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            {{/if}}
+           
         </div>
     </div>
 <!-- Otherwise the Ingredient is rendered without a note -->
@@ -73,17 +74,17 @@
                                 {{ingredient_name}}</h6>
                             </div>
                             <!-- Ingredient notes are only available for authorized users -->
-                            {{#if logged_in}}
+                            
                             <!-- This button opens the note field -->
                             <button class="btn btn-sm btn-dark justify-content-start" type="submit"><i
                                     class="fa-solid fa-comment"></i></button>
-                            {{/if}}
+                            
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Marking ingredient state is only available for authorized users -->
-            {{#if logged_in}}
+           
             <div
                 class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
                 <div class="d-flex btn-container">
@@ -97,7 +98,7 @@
                             <i class="fa-solid fa-cart-shopping pe-3"></i>Need It</button>
                     </div>
             </div>
-            {{/if}}
+          
         </div>
     </div>
 {{/if}}
