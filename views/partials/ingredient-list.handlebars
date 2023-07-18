@@ -1,9 +1,10 @@
 <!-- view for Ingredients on Recipe Search -->
 <!-- renders Ingredient IF in_stock: true -->
-{{#if in-stock}}
+{{#each ingredientList as |ingredient|}}
+{{#if ingredient.in_stock}}
     <li class="list-group-item text-success">
         <div class="d-flex flex-wrap flex-row justify-content-between align-content-center">
-            <p class="m-0">{{amount}} {{units}} {{ingredient_name}}</p>
+            <p class="m-0">{{ingredient.ingredient_name}}</p>
             <i class="d-flex flex-wrap fa-solid fa-circle-check text-success align-content-center"></i>
         </div>
     </li>
@@ -11,7 +12,8 @@
 {{else}}
     <li class="list-group-item text-dark">
         <div class="d-flex flex-wrap flex-row justify-content-between align-content-center">
-            <p class="m-0">{{amount}} {{units}} {{ingredient_name}}</p>
+            <p class="m-0">{{ingredient.amount}} {{ingredient.units}} {{ingredient.ingredient_name}}</p>
         </div>
     </li>
 {{/if}} 
+{{/each}}
