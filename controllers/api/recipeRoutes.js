@@ -89,6 +89,29 @@ router.get("/:id", async (req, res) => {
 //             res.status(500).json(err);
 //         });
 // });
+//post route
+router.post('/', (req, res) => {
+    Recipe.create(req.body)
+    .then((recipe) => {
+      // if there's ingredientList, we need to create pairings to bulk create in the ingredientList model
+      if (req.body.ingredientList.length) {
+        const ingredientListArr = req.body.ingredientList.map((tag_id) => {
+          return {
+            recipe_id: recipe.id,
+            ingredient,
+          };
+        });
+        return ingredientList.bulkCreate(ingredientListArr);
+      }
+      // if no ingredients attached, just respond
+      res.status(200).json(recipe);
+    })
+    .then((ingredientLists) => res.status(200).json(ingredientLists))
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
+});
 
 
 //then I need to delete the recipe

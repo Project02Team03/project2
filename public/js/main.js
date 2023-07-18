@@ -211,4 +211,19 @@ const searchRecipes = async (event) => {
   }
 };
 
+//function for adding the selected recipe to db table
+const getRecipeDetails=async(event) =>{
+   event.preventDefault();
+   const postRecipe=await fetch('api/recipes', {
+    method: 'POST',
+    body: JSON.stringify({
+      recipe.label: recipe_name,
+      recipe.image: recipe.image_link,
+      recipe.
+    })
+   })
+}
+
+
+
 document.querySelector("#recipeSearch").addEventListener("submit", searchRecipes);
