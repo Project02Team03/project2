@@ -27,9 +27,17 @@ Recipe.init(
         //     allowNull: false
         // },
        ingredients: {
-        type: DataTypes.TEXT,
+        type: DataTypes.JSON,
         allowNull: false,
-       }
+        validate: {
+                notNull: {
+                msg: "Ingredients cannot be null",
+                },
+                notEmpty: {
+                msg: "Ingredients cannot be empty",
+                },
+            },
+        },
     },
     {
         sequelize,

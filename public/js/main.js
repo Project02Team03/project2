@@ -125,7 +125,14 @@ const searchRecipes = async (event) => {
   if (response.ok) {
 
     const data = await response.json();
-    const recipes = data.hits.map((recipe) => recipe.recipe);
+    const recipes = data.hits.map((recipe) => {
+      const { label, image, url } = recipe.recipe;
+      const ingredients = recipe.recipe.ingredients.map((ingredient) => {
+        const { quantity, measure, food, image } = ingredient;
+        return { quantity, measure, food, image };
+      });
+      return { label, image, url, ingredients: JSON.stringify(ingredients) };
+    });
 
     function clearRecipeCardGrid() {
       recipeCardGrid.innerHTML = ``;
@@ -202,7 +209,18 @@ const searchRecipes = async (event) => {
       var ingredientListHTML = await createIngredientList(ingredientsArr);
       var recipeCard = createRecipeCard(recipes[i], ingredientListHTML);
       recipeCardGrid.appendChild(recipeCard);
-    }
+
+      fetch("/api/recipes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ recipes }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error(error));
+    } 
 
       return recipeCardGrid;
     

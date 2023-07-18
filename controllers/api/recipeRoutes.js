@@ -12,6 +12,40 @@ const {
 const withAuth = require('../../utils/auth');
 
 
+/* This route stores search for recipes in local database */
+router.post("/", async (req, res) => {
+    try {
+      const { recipes } = req.body;
+  
+      for (const recipe of recipes) {
+        const { label, image: image_link, url, ingredients } = recipe;
+
+        const createdRecipe = await Recipe.create({ 
+            recipe_name: label, 
+            image_link, 
+            recipe_url: url,
+            ingredients: JSON.parse(ingredients), 
+        });
+
+        for (const recipeIngredients of ingredients) {
+            const { quantity, measure, food, image } = recipeIngredients
+            await Ingredients.create({ 
+                ingredient_img: image, 
+                ingredient_name: food, 
+                amount: quantity, 
+                units: measure, 
+                recipe_id: createdRecipe.recipe_id 
+            });
+        }
+      }
+  
+      res.status(200).json({ message: "Recipe stored!" });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+
 //i need to get all of the recipes
 router.get("/", async (req, res) => {
         
