@@ -26,26 +26,26 @@ Recipe.init(
         //     type: DataTypes.BOOLEAN,
         //     allowNull: false
         // },
-       ingredients: {
-        type: DataTypes.JSON,
-        allowNull: false,
-        validate: {
-                notNull: {
-                msg: "Ingredients cannot be null",
-                },
-                notEmpty: {
-                msg: "Ingredients cannot be empty",
-                },
+        ingredients: {
+            type: DataTypes.JSON,
+            allowNull: false,
+            validate: {
+              notNull: {
+                msg: 'Ingredients cannot be null',
+              },
+              notEmpty: {
+                msg: 'Ingredients cannot be empty',
+              },
             },
+          },
         },
-    },
     {
         sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'recipe',
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'recipe',
     }
 );
 
-module.exports=Recipe;
+module.exports = Recipe;

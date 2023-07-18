@@ -113,8 +113,6 @@ const searchRecipes = async (event) => {
 
   const searchTerms = document.querySelector('input[name="search-terms"]').value;
 
-  console.log(searchTerms);
-
   const response = await fetch(`https://api.edamam.com/api/recipes/v2?q=${searchTerms}&app_id=${app_id}&app_key=${app_key}&_cont=CHcVQBtNNQphDmgVQntAEX4BYldtBAYEQ21GBWQaaldyDAQCUXlSB2ZCNl17BgcESmVBAjAaZ1RyUFFUEmAWB2tFMVQiBwUVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&type=public&app_id=9b79a237"`, {
     method: "GET",
     headers: {
@@ -141,8 +139,6 @@ const searchRecipes = async (event) => {
 
     for (var i = 0; i < recipes.length; i++) {
       
-      console.log(recipes[i].label);
-
       let ingredientsArr = recipes[i].ingredients
       
       function createIngredientList(ingredients) {

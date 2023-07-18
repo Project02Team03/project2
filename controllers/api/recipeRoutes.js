@@ -19,29 +19,38 @@ router.post("/", async (req, res) => {
   
       for (const recipe of recipes) {
         const { label, image: image_link, url, ingredients } = recipe;
+        const recipeIngredients = JSON.parse(ingredients);
+
+        console.log("Recipe:", label, image_link, url);
+        console.log("Ingredients:", recipeIngredients);
 
         const createdRecipe = await Recipe.create({ 
             recipe_name: label, 
             image_link, 
             recipe_url: url,
-            ingredients: JSON.parse(ingredients), 
+            ingredients: recipeIngredients, 
         });
 
-        for (const recipeIngredients of ingredients) {
-            const { quantity, measure, food, image } = recipeIngredients
-            await Ingredients.create({ 
-                ingredient_img: image, 
-                ingredient_name: food, 
-                amount: quantity, 
-                units: measure, 
-                recipe_id: createdRecipe.recipe_id 
+        for (const recipeIngredient of recipeIngredients) {
+            const { quantity, measure, food, image: ingredient_img } = recipeIngredient;
+            console.log("Ingredient:", food, quantity, measure, ingredient_img);
+
+            const createdIngredient = await Ingredients.create({
+                ingredient_img: ingredients.image || "",
+                ingredient_name: ingredients.food || "",
+                amount: ingredients.quantity || 0,
+                units: ingredients.measure || "",
+                in_stock: false,
+                in_list: false,
             });
+
         }
       }
   
       res.status(200).json({ message: "Recipe stored!" });
     } catch (err) {
-      res.status(500).json(err);
+        console.error(err);
+        res.status(500).json(err);
     }
   });
 
