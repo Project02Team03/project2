@@ -46,11 +46,11 @@ Ingredients.init(
     },
     {
         sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'ingredients',
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'ingredients',
     }
 );
 
-module.exports=Ingredients;
+module.exports = Ingredients;

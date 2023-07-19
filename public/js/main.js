@@ -138,7 +138,7 @@ const searchRecipes = async (event) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ recipes }),
+      body: JSON.stringify({ recipes: recipes.map(({ label, image, url, ingredients }) => ({ label, image, url, ingredients })) }),
     })
       .then((response) => response.json())
       .then((data) => {
