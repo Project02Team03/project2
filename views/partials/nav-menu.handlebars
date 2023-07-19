@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
         <div class="container-fluid">
           <a class="navbar-brand text-primary-emphasis" href="/">What's For Dinner?</a>
@@ -7,7 +8,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <!-- These views appear for authorized users -->
-              {{#if logged_in}}
+              {{#if user}}
               <li class="nav-item">
                 <a class="nav-link" href="/recipes">Recipes</a>
               </li>
@@ -24,13 +25,14 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <div class="d-flex align-items-center">
-                <!--{{#if session.logged_in}}-->
-                  <button class="btn btn-primary mx-2" type="submit"><a href="/logout" id="logout" class="text-white text-decoration-none">Logout</a></button>
-                <!--{{else}}-->
+                  {{#unless user}}
+                  <button class="btn btn-primary mx-2" type="submit"><a href="/" id="logout" class="text-white text-decoration-none">Logout</a></button>
+                   {{/unless}}
                   <button class="btn btn-primary mx-2" type="submit"><a href="/login" class="text-white text-decoration-none">Login</a></button>
                   <button class="btn btn-primary mx-2" type="submit"><a href="/signup" class="text-white text-decoration-none">Sign Up</a></button>
-                <!--{{/if}}-->
+               
               </div>
           </div>
         </div>
       </nav>
+    

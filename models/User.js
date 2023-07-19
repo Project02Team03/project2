@@ -35,11 +35,11 @@ User.init(
         len: [8],
       },
     },
-    logged_in: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
-    }
+    // logged_in: {
+    //   type: DataTypes.BOOLEAN,
+    //   allowNull: true,
+    //   //defaultValue: false
+    // }
   },
   {
     hooks: {

@@ -1,10 +1,59 @@
 const router = require('express').Router();
-const { Recipe, Ingredients, ShoppingList} = require('../models');
+const {User, Recipe, Ingredients, ShoppingList} = require('../models');
 const withAuth = require('../utils/auth');
-
+const withOption=require('../utils/helpers');
 
 // homepage
-router.get('/', async (req, res) => {
+router.get('/' ,async (req, res) => {
+  console.log('HI THERE! ');
+  
+  try {
+    console.log('TRYING');
+    
+    const allRecipesData = await Recipe.findAll({
+      include: {
+        model: Ingredients,
+        through: ShoppingList,
+        as: 'ingredientList'
+      }
+    });
+
+    const recipes = allRecipesData.map((recipe) => {
+      const plainRecipe = recipe.get({ plain: true });
+      plainRecipe.ingredients = plainRecipe.ingredientList.map((ingredient) => ({
+        quantity: ingredient.amount,
+        measure: ingredient.units,
+        food: ingredient.ingredient_name,
+        image: ingredient.ingredient_img
+      }));
+      delete plainRecipe.ingredientList;
+      return plainRecipe;
+    });
+     
+    if (req.session.logged_in){
+      console.log('****************************************************8');
+      
+      return  res.render('homepage', {
+        recipes,
+        user,
+        logged_in:req.session.logged_in
+      });
+    } else {
+      console.log('================================');
+     return res.render('homepage', {
+        recipes,
+          
+      });
+    }
+  } catch (err) {
+    console.error(err)
+    res.status(500).json(err);
+  }
+});
+
+//homepage after login
+
+router.get('/dashboard',  withAuth, async (req, res) => {
   console.log('HI THERE! ');
   
   try {
@@ -30,8 +79,8 @@ router.get('/', async (req, res) => {
       return plainRecipe;
     });
 
-    res.render('homepage', {
-      recipes,
+    res.render('dashboard', {
+      logged_in: req.session.logged_in,
       
      
     });

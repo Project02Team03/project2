@@ -6,8 +6,12 @@ router.post('/login', async (req, res) => {
   console.log("I am logged in");
   
   try {
+
+    //console.log('================================');
+    
     // Find the user who matches the posted e-mail address
     const userData = await User.findOne({ where: { email: req.body.email } });
+     console.log('-------------------------------');
 
     if (!userData) {
       res
@@ -20,6 +24,7 @@ router.post('/login', async (req, res) => {
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
+        
       res
         .status(400)
         .json({ message: 'Incorrect email or password, please try again' });
@@ -29,11 +34,19 @@ router.post('/login', async (req, res) => {
     // Create session variables based on the logged in user
     req.session.save(() => {
       req.session.user_id = userData.id;
-      req.session.logged_in = true;
+      req.session.loggedIn = true;
+      res.render('homepage',{ user: userData, loggedIn: req.session.loggedIn });
+  
       
-      res.json({ user: userData, message: 'You are now logged in!' });
+     
+      
     });
-
+    
+    
+    
+    
+    
+    
   } catch (err) {
     res.status(400).json(err);
   }
@@ -63,12 +76,12 @@ router.post('/', async (req, res) => {
     // Set up sessions with the 'loggedIn' variable
     req.session.save(() => {
       // Set the 'loggedIn' session variable to 'true'
-      req.session.loggedIn=true
-    if (req.session.loggedIn){
+      req.session.logged_in=true
+    if (req.session.logged_in){
       return true;
     }
     res.render("homepage", {
-       loggedIn: req.session.loggedIn
+       logged_in: req.session.logged_in
     }
     )
       res.status(200).json(dbUserData);
@@ -93,7 +106,7 @@ router.get('/', async (req,res) => {
 router.get('/:id',withAuth, async(req,res) => {
   try {
     const myRecipes=await User.findByPk(req.params.id, {
-      where:{id: req.session.id},
+      where:{id: req.session.user_id},
       include: 
       {model: Recipe, through: SelectedRecipe, as: 'recipes'},
       attributes: { exclude: ['email','password'] }

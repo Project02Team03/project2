@@ -1,13 +1,13 @@
 const loginFormHandler = async (event) => {
-  // Stop the browser from submitting the form so we can do so with JavaScript
+  // TODO: Add a comment describing the functionality of this statement
   event.preventDefault();
 
-  // Gather the data from the form elements on the page
+  // TODO: Add a comment describing the functionality of these expressions
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
   if (email && password) {
-    // Send the e-mail and password to the server
+    // TODO: Add a comment describing the functionality of this expression
     const response = await fetch('/api/users/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -16,6 +16,7 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       document.location.replace('/');
+      console.log(response)
     } else {
       alert('Failed to log in');
     }
