@@ -111,7 +111,7 @@ router.post("/", async (req, res) => {
 
 
 //i need to get all of the recipes
-router.get("/", async (req, res) => {
+router.get("/recipe", async (req, res) => {
         
     try {
                 
