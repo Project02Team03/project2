@@ -1,5 +1,9 @@
 
 const router = require('express').Router();
+const fetch = require('node-fetch');
+
+/* adds middleware to use .env file */
+require('dotenv').config();
 
 const {
     Recipe,
@@ -10,6 +14,46 @@ const {
 } = require('../../models');
 
 const withAuth = require('../../utils/auth');
+
+router.post("/edamam", async (req, res) => {
+    try {
+        const { searchTerms } = req.body;
+
+        const app_id = process.env.API_ID;
+        const app_key = process.env.API_KEY;
+        // const apiUrl = "https://api.edamam.com/api/recipes/v2";
+
+        const response = await fetch(`https://api.edamam.com/api/recipes/v2?q=${searchTerms}&app_id=${app_id}&app_key=${app_key}&_cont=CHcVQBtNNQphDmgVQntAEX4BYldtBAYEQ21GBWQaaldyDAQCUXlSB2ZCNl17BgcESmVBAjAaZ1RyUFFUEmAWB2tFMVQiBwUVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&type=public&app_id=${app_id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (!response.ok) {
+            res.status(response.status).json(response.statusText);
+            return;
+        }
+
+        const data = await response.json();
+        const recipes = data.hits.map((recipe, index) => {
+          const { label, image, url } = recipe.recipe;
+          
+          const ingredients = recipe.recipe.ingredients.map((ingredient) => {
+            const { quantity, measure, food, image } = ingredient;
+            return { quantity, measure, food, image };
+          });
+          
+          return { id: index + 1, label, image, url, ingredients };
+        });
+
+          res.json(recipes);
+        
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err)
+    }
+});
 
 
 /* This route stores search for recipes in local database */
