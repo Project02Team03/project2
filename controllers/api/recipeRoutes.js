@@ -13,7 +13,7 @@ const withAuth = require('../../utils/auth');
 
 
 //i need to get all of the recipes
-router.get("/", async (req, res) => {
+router.get("/recipe", async (req, res) => {
         
     try {
                 

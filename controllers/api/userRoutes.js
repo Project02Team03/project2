@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, } = require("../../models");
+const { User, Recipe, SelectedRecipe } = require("../../models");
 
 router.post("/login",  async (req, res) => {
   console.log(req.body.email);
@@ -40,7 +40,7 @@ router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
       // Set the logged_in session variable to false upon logout
-      req.session.logged_in = false;
+      // req.session.logged_in = false;
       res.status(204).end();
     });
   } else {
@@ -50,7 +50,7 @@ router.post("/logout", (req, res) => {
 
 //sing up new user
 
-router.post("/", async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     const dbUserData = await User.create({
       name: req.body.name,
