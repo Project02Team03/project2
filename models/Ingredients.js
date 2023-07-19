@@ -39,17 +39,18 @@ Ingredients.init(
            }, 
 
         note: {
-            type: DataTypes.TEXT,
-            allowNull:true ,
+            type: DataTypes.STRING,
+            allowNull:true,
+           
         }
     },
     {
         sequelize,
-    timestamps: false,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'ingredients',
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'ingredients',
     }
 );
 
-module.exports=Ingredients;
+module.exports = Ingredients;

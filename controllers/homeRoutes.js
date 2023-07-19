@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Recipe, Ingredients, ShoppingList} = require('../models');
 const withAuth = require('../utils/auth');
 
+
 // homepage
 router.get('/', async (req, res) => {
   console.log('HI THERE! ');
@@ -10,22 +11,77 @@ router.get('/', async (req, res) => {
     console.log('TRYING');
     
     const allRecipesData = await Recipe.findAll({
-      attributes: ["id", "image_link", "recipe_name", "recipe_url", "ingredients"],
-     
-      include: [{model: Ingredients, through: ShoppingList, as: 'ingredientList'}]
+      include: {
+        model: Ingredients,
+        through: {
+          model: ShoppingList,
+          unique: false
+        },
+        as: 'ingredientList'
+      }
     });
 
-    const recipes = allRecipesData.map((recipes) => recipes.get({ plain: true }));
+    const recipes = allRecipesData.map((recipe) => {
+      const plainRecipe = recipe.get({ plain: true });
+      plainRecipe.ingredients = plainRecipe.ingredientList.map((ingredient) => ({
+        quantity: ingredient.amount,
+        measure: ingredient.units,
+        food: ingredient.ingredient_name,
+        image: ingredient.ingredient_img
+      }));
+      delete plainRecipe.ingredientList;
+      return plainRecipe;
+    });
 
     res.render('homepage', {
       recipes,
+
       logged_in: req.session.logged_in
      
+
+
     });
   } catch (err) {
+    console.error(err)
     res.status(500).json(err);
   }
 });
+
+router.post('/recipes', async (req, res) => {
+  try {
+    const recipes = req.body.recipes;
+
+    console.log(req.body.recipes);
+
+    const savedRecipes = await Promise.all(
+      recipes.map(async (recipe) => {
+        const { label, image, url, ingredients } = recipe;
+        const createdRecipe = await Recipe.create({ recipe_name: label, image_link: image, recipe_url: url });
+
+        const savedIngredients = await Promise.all(
+          ingredients.map(async (ingredient) => {
+            const { quantity, measure, food, image } = ingredient;
+            return await Ingredients.create({
+              ingredient_img: image,
+              ingredient_name: food,
+              amount: quantity,
+              units: measure,
+            });
+          })
+        );
+
+        await createdRecipe.setIngredientList(savedIngredients);
+
+        return createdRecipe;
+      })
+    );
+
+    res.status(200).json("Recipe saved with Ingredients pushed!", savedRecipes);
+  } catch (err) {
+    console.error(err)
+    res.status(500).json(err);
+  }
+})
 
 router.get('/login', (req, res) => {
   // If a session exists, redirect the request to the homepage

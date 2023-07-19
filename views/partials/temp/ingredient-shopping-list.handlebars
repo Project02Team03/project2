@@ -1,11 +1,4 @@
-{{#if logged_in}}
-<div class="list-title">
-    <h2 class="text-center text-white m-4">Shopping List</h2>
-    <p class="subtitle text-center">Let's head to the store and complete your pantry!</p>
-</div>
-
-{{#each ingredients as |ingredients|}}
-    <!-- This is an ingredient that appears on the /shopping-list view with value in_stock: false -->
+<!-- This is an ingredient that appears on the /shopping-list view with value in_stock: false -->
     <div class="card bg-white border-secondary mx-3 mb-1">
         <div class="row g-0">
             <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
@@ -44,5 +37,4 @@
             </div>
         </div>
     </div>
-{{/each}}
-{{/if}}
+

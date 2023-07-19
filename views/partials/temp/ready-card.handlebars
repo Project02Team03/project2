@@ -12,9 +12,22 @@
           <div class="overflow-auto inset-list">
             <ul class="list-group list-group-flush">
               <!-- This renders each ingredient -->
-              
-                {{> ingredient-list}}
-              
+              {{#each ingredients}}
+          {{#if this.in_stock}}
+            <li class="list-group-item text-success">
+              <div class="d-flex flex-wrap flex-row justify-content-between align-content-center">
+                <p class="m-0">{{this.quantity}} {{this.measure}} {{this.food}}</p>
+                <i class="d-flex flex-wrap fa-solid fa-circle-check text-success align-content-center"></i>
+              </div>
+            </li>
+          {{else}}
+              <li class="list-group-item text-dark">
+                <div class="d-flex flex-wrap flex-row justify-content-between align-content-center">
+                  <p class="m-0">{{this.quantity}} {{this.measure}} {{this.food}}</p>
+                </div>
+              </li>
+          {{/if}}
+        {{/each}}
             </ul>
           </div>
           <!-- This button opens the recipe URL -->
