@@ -1,3 +1,5 @@
+const sequelize = require('../config/connection');
+
 const User = require('./User');
 const Recipe=require('./Recipe');
 const Ingredients =require('./Ingredients');
@@ -50,7 +52,7 @@ Recipe.belongsToMany(Ingredients, {
 
 
 
-
+sequelize.sync();
 
 module.exports = { 
     User,

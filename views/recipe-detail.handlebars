@@ -51,8 +51,55 @@
                     Shopping
                     List or <span class="text-success">"Have It"</span> to indicate you have it on hand!</p>
             </div>
-
-            {{#each recipe.ingredientList as |ingredient|}}
+            <!-- This is a test partial to fill in ingredients per Recipe -->
+            {{#each recipe.ingredients as |ingredient|}}
+                <div class="card border-secondary mx-3 mb-1">
+                    <div class="row g-0">
+                        <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
+                            <div class="d-flex justify-content-center">
+                                <div class="d-flex img-container">
+                                    <!-- Static ingredient image is used for background -->
+                                    <div class="bg-image" style="background-image: url('{{this.image}}');">
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-start align-items-center w-100">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="card-body">
+                                            <!-- Ingredient amount, the units, and the name are listed -->
+                                            <h6 class="card-title m-0 p-3 p-sm-1 text-dark">{{this.quantity}} {{this.measure}} {{this.food}}</h6>
+                                        </div>
+                                        <!-- Ingredient notes are only available for authorized users -->
+                
+                                        <!-- This button opens the note field -->
+                                        <button class="btn btn-sm btn-dark justify-content-start" type="submit"><i
+                                                class="fa-solid fa-comment"></i></button>
+                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Marking ingredient state is only available for authorized users -->
+                
+                        <div
+                            class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
+                            <div class="d-flex btn-container">
+                                <!-- This button marks the ingredient as in_stock: true AND leaves default shopping_list: false -->
+                                <button class="btn btn-success mx-2 my-1 ing-btn" id="inStockBtn" type="submit"
+                                    data-button="{{recipe.id}}">
+                                    <i class="fa-solid fa-circle-check pe-3"></i>Have It</button>
+                            </div>
+                            <div class="d-flex btn-container">
+                                <!-- This button marks the ingredient as shopping_list: true -->
+                                <button class="btn btn-primary mx-2 my-1 ing-btn" id="shoppingListBtn" type="submit"
+                                    data-button="{{recipe.id}}">
+                                    <i class="fa-solid fa-cart-shopping pe-3"></i>Need It</button>
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+        {{/each}}
+            {{!-- {{#each recipe.ingredientList as |ingredient|}}
            
                 {{#if ingredient.in_stock}}
                 
@@ -67,6 +114,6 @@
                         {{>ingdt-recipe-card}}
                     {{/if}}
                 {{/if}}
-            {{/each}}
+            {{/each}} --}}
     </div>
 </div>

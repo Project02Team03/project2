@@ -46,6 +46,8 @@ router.post('/recipes', async (req, res) => {
   try {
     const recipes = req.body.recipes;
 
+    console.log(req.body.recipes);
+
     const savedRecipes = await Promise.all(
       recipes.map(async (recipe) => {
         const { label, image, url, ingredients } = recipe;
