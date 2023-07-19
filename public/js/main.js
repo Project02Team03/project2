@@ -1,6 +1,9 @@
-// require('dotenv').config();
-const app_id = `9b79a237`; 
-const app_key = `150185214857b1583f258fc60e628a04`;
+const apiUrl = "https://api.edamam.com/api/recipes/v2";
+const app_id = process.env.VITE_API_ID;
+const app_key = process.env.VITE_API_KEY;
+
+// const app_id = `9b79a237`; 
+// const app_key = `150185214857b1583f258fc60e628a04`;
 
 var recipeCardGrid = document.querySelector("#recipeCardGrid");
 var recipeIngredientsUl = document.querySelector("#recipeIngredientsList")
@@ -8,7 +11,7 @@ var recipeIngredientsUl = document.querySelector("#recipeIngredientsList")
 /* This function loads a random selection of recipes on page load
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const response = await fetch(`https://api.edamam.com/api/recipes/v2?&q=asparagus&app_id=${app_id}&app_key=${app_key}&random=true&_cont=CHcVQBtNNQphDmgVQntAEX4BYldtBAYEQ21GBWQaaldyDAQCUXlSB2ZCNl17BgcESmVBAjAaZ1RyUFFUEmAWB2tFMVQiBwUVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&type=public&app_id=9b79a237"`, {
+    const response = await fetch(`${apiUrl}?&q=chicken&app_id=${app_id}&app_key=${app_key}&random=true&_cont=CHcVQBtNNQphDmgVQntAEX4BYldtBAYEQ21GBWQaaldyDAQCUXlSB2ZCNl17BgcESmVBAjAaZ1RyUFFUEmAWB2tFMVQiBwUVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&type=public&app_id=9b79a237"`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -113,7 +116,7 @@ const searchRecipes = async (event) => {
 
   const searchTerms = document.querySelector('input[name="search-terms"]').value;
 
-  const response = await fetch(`https://api.edamam.com/api/recipes/v2?q=${searchTerms}&app_id=${app_id}&app_key=${app_key}&_cont=CHcVQBtNNQphDmgVQntAEX4BYldtBAYEQ21GBWQaaldyDAQCUXlSB2ZCNl17BgcESmVBAjAaZ1RyUFFUEmAWB2tFMVQiBwUVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&type=public&app_id=9b79a237"`, {
+  const response = await fetch(`${apiUrl}?q=${searchTerms}&app_id=${app_id}&app_key=${app_key}&_cont=CHcVQBtNNQphDmgVQntAEX4BYldtBAYEQ21GBWQaaldyDAQCUXlSB2ZCNl17BgcESmVBAjAaZ1RyUFFUEmAWB2tFMVQiBwUVLnlSVSBMPkd5BgMbUSYRVTdgMgksRlpSAAcRXTVGcV84SU4%3D&type=public&app_id=9b79a237"`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
