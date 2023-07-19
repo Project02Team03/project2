@@ -1,10 +1,8 @@
-const router = require('express').Router();
-const { User, Recipe , SelectedRecipe} = require('../../models');
-const withAuth=require('../../utils/auth')
+const router = require("express").Router();
+const { User, } = require("../../models");
 
-router.post('/login', withAuth, async (req, res) => {
-  console.log("I am logged in");
-  
+router.post("/login",  async (req, res) => {
+  console.log(req.body.email);
   try {
     // Find the user who matches the posted e-mail address
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -12,7 +10,7 @@ router.post('/login', withAuth, async (req, res) => {
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: "Incorrect email or password, please try again" });
       return;
     }
 
@@ -22,7 +20,7 @@ router.post('/login', withAuth, async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: "Incorrect email or password, please try again" });
       return;
     }
 
@@ -30,16 +28,15 @@ router.post('/login', withAuth, async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
 
+      res.json({ user: userData, message: "You are now logged in!" });
+    });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
       // Set the logged_in session variable to false upon logout
@@ -53,27 +50,21 @@ router.post('/logout', (req, res) => {
 
 //sing up new user
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const dbUserData = await User.create({
-      username: req.body.username,
+      name: req.body.name,
       email: req.body.email,
       password: req.body.password,
     });
 
     // Set up sessions with the 'loggedIn' variable
     req.session.save(() => {
-      // Set the 'loggedIn' session variable to 'true'
-      req.session.logged_in=true
-    if (req.session.logged_in){
-      return true;
-    }
-    res.render("homepage", {
-       logged_in: req.session.logged_in
-    }
-    )
-      res.status(200).json(dbUserData);
-  });
+      req.session.user_id = dbUserData.id;
+      req.session.logged_in = true;
+
+      res.json({ message: "You are now signed up!" });
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -95,7 +86,7 @@ router.post('/', async (req, res) => {
 //   try {
 //     const myRecipes=await User.findByPk(req.params.id, {
 //       where:{id: req.session.id},
-//       include: 
+//       include:
 //       {model: Recipe, through: SelectedRecipe, as: 'recipes'},
 //       attributes: { exclude: ['email','password'] }
 //     });
@@ -106,35 +97,31 @@ router.post('/', async (req, res) => {
 // });
 
 //all users
-router.get('/', async(req,res) => {
+router.get("/", async (req, res) => {
   try {
-    const myRecipes=await User.findAll({include: 
-      {model: Recipe, through: SelectedRecipe, as: 'recipes'}
+    const myRecipes = await User.findAll({
+      include: { model: Recipe, through: SelectedRecipe, as: "recipes" },
     });
     res.status(200).json(myRecipes);
-  } catch (err){
-    res.status(500).json(err);
-  }
-});
-
-router.get('/user', withAuth, async (req, res) => {
-  try {
-   
-    const userData = await User.findByPk(req.session.user_id, {
-      
-      attributes: { exclude: ['password'] },
-    });
-
-    if (!userData) {
-     
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    res.status(200).json(userData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
+// router.get("/user", withAuth, async (req, res) => {
+//   try {
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ["password"] },
+//     });
+
+//     if (!userData) {
+//       return res.status(404).json({ message: "User not found" });
+//     }
+
+//     res.status(200).json(userData);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;

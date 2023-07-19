@@ -2,19 +2,21 @@
 const signupFormFunction = async (event) => {
     event.preventDefault();
 
-    const username = document.querySelector('#username-signup').value.trim();
-    const password = document.querySelector('#password-signup').value.trim();
+    const name = document.querySelector('#username').value.trim();
+    const email = document.querySelector('#email').value.trim();
+    const password = document.querySelector('#password').value.trim();
 
     const response = await fetch('/api/users', {
         method: 'POST',
         body: JSON.stringify({
-            username, 
-            password,
+            name: name, 
+            email: email,
+            password: password,
         }),
         headers: { 'Content-Type': 'application/json' },
     });
     if (response.ok) {
-        document.location.replace('/dashboard');
+        document.location.replace('/savedrecipes');
     } else {
         alert('error!');
     }
