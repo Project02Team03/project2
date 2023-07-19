@@ -7,7 +7,7 @@ router.post('/login', async (req, res) => {
   
   try {
 
-    //console.log('================================');
+    
     
     // Find the user who matches the posted e-mail address
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -35,7 +35,7 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.loggedIn = true;
-      res.render('homepage',{ user: userData, loggedIn: req.session.loggedIn });
+      res.json({ user: userData, loggedIn: req.session.loggedIn });
   
       
      
@@ -102,7 +102,7 @@ router.get('/', async (req,res) => {
   }
 });
 
-//all recipes, favorited by logged in user????? we can add auth later
+//all recipes, favorited by logged in user?????
 router.get('/:id',withAuth, async(req,res) => {
   try {
     const myRecipes=await User.findByPk(req.params.id, {

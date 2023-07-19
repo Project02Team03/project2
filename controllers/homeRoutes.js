@@ -35,8 +35,8 @@ router.get('/' ,async (req, res) => {
       
       return  res.render('homepage', {
         recipes,
-        user,
-        logged_in:req.session.logged_in
+        
+        loggedIn:req.session.loggedIn
       });
     } else {
       console.log('================================');
@@ -53,7 +53,7 @@ router.get('/' ,async (req, res) => {
 
 //homepage after login
 
-router.get('/dashboard',  withAuth, async (req, res) => {
+router.get('/',  withAuth, async (req, res) => {
   console.log('HI THERE! ');
   
   try {
