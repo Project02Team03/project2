@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User, Recipe , SelectedRecipe} = require('../../models');
 const withAuth=require('../../utils/auth')
 
-router.post('/login', withAuth, async (req, res) => {
+router.post('/login', async (req, res) => {
   console.log("I am logged in");
   
   try {
