@@ -5,6 +5,9 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
+/* adds middleware to use .env file */
+require('dotenv').config();
+
 const sequelize = require('./config/connection');
 
 // Create a new sequelize store using the express-session package
@@ -17,7 +20,7 @@ const hbs = exphbs.create({ helpers });
 
 // Configure and link a session object with the sequelize store
 const sess = {
-  secret: 'Super secret secret',
+  secret: process.env.DB_SECRET,
   cookie: {},
   resave: false,
   saveUninitialized: true,
