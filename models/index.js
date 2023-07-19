@@ -1,3 +1,5 @@
+const sequelize = require('../config/connection');
+
 const User = require('./User');
 const Recipe=require('./Recipe');
 const Ingredients =require('./Ingredients');
@@ -43,15 +45,14 @@ Ingredients.belongsToMany(Recipe, {
 });
 
 Recipe.belongsToMany(Ingredients, {
-    through: {
-        model: ShoppingList,
-        unique: false
-      },
-      
-      as: 'ingredientList',
-})
+    through: ShoppingList,
+    as: 'ingredientList',
+    foreignKey: 'recipeId',
+  });
 
 
+
+sequelize.sync();
 
 module.exports = { 
     User,
