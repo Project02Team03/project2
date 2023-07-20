@@ -1,7 +1,7 @@
 
 const router = require('express').Router();
 const fetch = require('node-fetch');
-
+//const withAuth=require('../../utils/auth');
 /* adds middleware to use .env file */
 require('dotenv').config();
 
@@ -131,6 +131,7 @@ router.get("/recipe", async (req, res) => {
 });
 
 //then i need to get a single recipe
+//then i need to get a single recipe
 router.get("/:id", async (req, res) => {
 
     try {
@@ -147,6 +148,15 @@ router.get("/:id", async (req, res) => {
             return;
         }
 
+        // // get the SavedRecipe record
+        // const saved = await SavedRecipe.findOne({
+        //     where: {
+        //         recipe_id: req.params.id,
+        //         user_id: req.session.user_id
+        //     }
+        // });
+        
+
         const recipe = RecipeData.get({ plain: true });
         console.log("INGREDIENTS", recipe.ingredientList);
         
@@ -154,13 +164,14 @@ router.get("/:id", async (req, res) => {
         res.render("recipe-detail", {
             recipe,
             id: req.params.id,
-            
+           // isFavorite: saved.is_favorite,
         });
 
     }  catch(err){
         res.status(500).json(err)
     }
 });
+
 //     Recipe.findOne({
 //             where: {
 //                 id: req.params.id,
@@ -192,6 +203,21 @@ router.get("/:id", async (req, res) => {
 //         });
 // });
 
+//saving recipe to favorite
+router.put('/:id/favorite',withAuth, async (req,res) => {
+    try{
+        const recipeData=await SelectedRecipe.update({is_favorite: true}, {
+            where: {recipe_id: req.params.id, user_id: req.session.user_id}
+        });
+        if(recipeData){
+            res.status(200).json(recipeData)
+        }  else {
+            res.status(404).json.end();
+        }
+    }catch(err){
+        res.status(500).json(err);
+    }
+})
 
 //then I need to delete the recipe
 router.delete("/:id", withAuth, (req, res) => {
