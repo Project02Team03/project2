@@ -1,3 +1,25 @@
+document.querySelector("#recipeDetailContainer").addEventListener("click", (event) => {
+    const clickedElement = event.target;
+    const buttonId = clickedElement.id;
+  
+    if (buttonId.startsWith("inStockBtn")) {
+        const index = buttonId.split("-")[1];
+        const inStockBtn = document.querySelector(`#inStockBtn-${index}`);
+        const shoppingListBtn = document.querySelector(`#shoppingListBtn-${index}`);
+        toggleStockBtn(inStockBtn, shoppingListBtn);
+    }
+  
+    if (buttonId.startsWith("shoppingListBtn")) {
+        const index = buttonId.split("-")[1];
+        const shoppingListBtn = document.querySelector(`#shoppingListBtn-${index}`);
+        const inStockBtn = document.querySelector(`#inStockBtn-${index}`);
+        toggleListBtn(shoppingListBtn, inStockBtn);
+    }
+  });
+
+
+
+
 function toggleStockBtn(event) {
     event.preventDefault();
     const inStockBtn = event.target;
