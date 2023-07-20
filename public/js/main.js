@@ -2,10 +2,6 @@ const recipeCardGrid = document.querySelector('#recipeCardGrid');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-// require('dotenv').config();
-// const app_id = `9b79a237`; 
-// const app_key = `150185214857b1583f258fc60e628a04`;
-
 var recipeIngredientsUl = document.querySelector("#recipeIngredientsList")
 
 function updateRecipeCards(recipeIds) {
@@ -60,6 +56,9 @@ const searchRecipes = async (event) => {
         if (Array.isArray(data)) {
           const recipeIds = data.map((recipe) => recipe.id);
           updateRecipeCards(recipeIds);
+          /* if (window.location.href != "/") {
+            window.location.href = "/";
+          } */
         } else {
           console.error('Data is not an array.');
         }
