@@ -164,7 +164,8 @@ router.get("/:id", async (req, res) => {
         res.render("recipe-detail", {
             recipe,
             id: req.params.id,
-           // isFavorite: saved.is_favorite,
+            recipeIngredients,
+            logged_in: req.session.logged_in
         });
 
     }  catch(err){

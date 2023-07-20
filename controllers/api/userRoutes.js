@@ -93,13 +93,15 @@ router.get('/:id',withAuth, async(req,res) => {
       include: {model: Recipe, through: SelectedRecipe, as: 'recipes'},
       attributes: { exclude: ['name','email','password'] }
     });
+
     const recipes = myRecipes.map((recipe) => recipe.get({ plain: true }));
+    if (req.session){
     res.render('saved-recipes', {
        recipes,
        model: myRecipes,
        logged_in: req.session.logged_in});
     console.log(myRecipes);
-    
+    }
     console.log('----------MY RECIPES----------------');
     
   } catch (err){
