@@ -11,28 +11,22 @@ router.get('/', async (req, res) => {
     console.log('TRYING');
     
     const allRecipesData = await Recipe.findAll({
-      include: {
+      /* include: {
         model: Ingredients,
         through: {
           model: ShoppingList,
           unique: false
         },
         as: 'ingredientList'
-      }
+      } */
     });
-
+    console.log(allRecipesData[0]);
     const recipes = allRecipesData.map((recipe) => {
       const plainRecipe = recipe.get({ plain: true });
-      plainRecipe.ingredients = plainRecipe.ingredientList.map((ingredient) => ({
-        quantity: ingredient.amount,
-        measure: ingredient.units,
-        food: ingredient.ingredient_name,
-        image: ingredient.ingredient_img
-      }));
-      delete plainRecipe.ingredientList;
+
       return plainRecipe;
     });
-    console.log(recipes)
+
     res.render('homepage', {
       recipes,
       logged_in: req.session.logged_in
