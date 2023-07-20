@@ -130,7 +130,7 @@ router.get("/recipe", async (req, res) => {
     }
 });
 
-//then i need to get a single recipe
+
 //then i need to get a single recipe
 router.get("/:id", async (req, res) => {
 
@@ -172,45 +172,25 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-//     Recipe.findOne({
-//             where: {
-//                 id: req.params.id,
-//             },
-//             attributes: ['id', 'recipe_name', 'description', 'ingredients', 'is_favorite'],
-//             include: [
-//               {
-//                 model: SelectedRecipe,
-//                 attributes: ['id', 'is_favorite', 'recipe_id', 'user_id'],
-//                 include: {
-//                   model: User,
-//                   attributes: ['username'],
-//                 },
-//               },
-//             ],
-//           })
-//         .then((RecipeData) => {
-//             if (!RecipeData) {
-//                 res.status(404).json({
-//                     message: "Not found"
-//                 });
-//                 return;
-//             }
-//             res.json(RecipeData);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-// });
+
 
 //saving recipe to favorite
-router.put('/:id/favorite',withAuth, async (req,res) => {
+router.post('/:id/favorite',withAuth, async (req,res) => {
     try{
-        const recipeData=await SelectedRecipe.update({is_favorite: true}, {
-            where: {recipe_id: req.params.id, user_id: req.session.user_id}
+        const recipeData=await SelectedRecipe.create({
+            is_favorite: true, 
+            recipe_id: req.params.id, 
+            user_id: req.session.user_id
         });
         if(recipeData){
-            res.status(200).json(recipeData)
+            res.status(200).render('saved-recipes', {
+                recipe,
+                id: req.params.id,
+                recipeIngredients,
+                logged_in: req.session.logged_in
+            });
+            console.log('======================================');
+           
         }  else {
             res.status(404).json.end();
         }

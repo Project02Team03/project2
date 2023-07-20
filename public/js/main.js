@@ -153,31 +153,20 @@ const searchRecipes = async (event) => {
 document.querySelector("#recipeSearch").addEventListener("submit", searchRecipes);
 });
 
-//saving recipe as favorite
-const saveBtn=document.getElementById('saveRecipe');
-console.log(saveBtn);
+// //nav-bar rendering saved recipes
+// const getSavedRecipes=async(event) => {
+//   event.preventDefault();
+//   const id=1;
+//   const response= await fetch (`api/users/${id}`, {
+//     method: 'GET',
+//     headers: { 'Content-Type': 'application/json'}
+//   });
+//   if (response.ok) {
+//     document.location.replace('/savedrecipes');
+    
+//   } else {
+//     alert('Failed to log in');
+//   }
+// };
 
-const id=saveBtn.getAttribute('data-recipe');
-console.log(id);
-
-const savingRecipe=async (event) =>{
-  event.preventDefault();
-  const response=await fetch(`/api/recipes/${id}/favorite`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      is_favorite: true
-    }),
-//headers: { 'Content-Type': 'application/json' },
-  });
-  if (response.ok) {
-    //document.location.reload();
-    console.log('--------------------------------------------------------');
-    //changing style and text for button
-    saveBtn.setAttribute('class',"btn btn-primary m-2");
-    saveBtn.textContent='Saved';
-  } else {
-    alert('Failed to favorite');
-  }
-};
-
-document.getElementById('saveRecipe').addEventListener('click', savingRecipe);
+// document.getElementById('saved-recipes').addEventListener('click', getSavedRecipes);

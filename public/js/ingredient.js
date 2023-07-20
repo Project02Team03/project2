@@ -95,3 +95,32 @@ document.querySelector("#recipeDetailContainer").addEventListener("click", (even
 // document.querySelector("#defaultBtn").addEventListener("click", (event) => {
 //     updateIngredients(event, false, false);
 // });
+
+//saving recipe as favorite
+const saveBtn=document.getElementById('saveRecipe');
+console.log(saveBtn);
+
+const id=saveBtn.getAttribute('data-recipe');
+console.log(id);
+
+const savingRecipe=async (event) =>{
+  event.preventDefault();
+  const response=await fetch(`/api/recipes/${id}/favorite`, {
+    method: 'POST',
+    body: JSON.stringify({
+      is_favorite: true
+    }),
+//headers: { 'Content-Type': 'application/json' },
+  });
+  if (response.ok) {
+    //document.location.reload();
+    console.log('--------------------------------------------------------');
+    //changing style and text for button
+    saveBtn.setAttribute('class',"btn btn-primary m-2");
+    saveBtn.textContent='Saved';
+  } else {
+    alert('Failed to favorite');
+  }
+};
+
+document.getElementById('saveRecipe').addEventListener('click', savingRecipe);
