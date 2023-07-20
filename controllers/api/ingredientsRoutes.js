@@ -51,6 +51,32 @@ router.get("/", (req, res) => {
         });
 });
 
+/* Pulls ingredients for a single recipe */
+router.get('/:id', async (req, res) => {
+  try {
+    const recipeId = req.params.id;
+
+    const recipeData = await Recipe.findByPk(recipeId, {
+      include: {
+        model: Ingredients,
+        through: { attributes: [] },
+        as: 'ingredientList',
+      },
+    });
+
+    if (!recipeData) {
+      return res.status(404).json({ message: 'Recipe not found.' });
+    }
+
+    const ingredients = recipeData.ingredientList;
+
+    res.status(200).json(ingredients);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Can\'t find those ingredients' });
+  }
+});
+
 //update ingredient by its id , ex: in_stock: true
 router.put('/:id', async(req,res) =>{
   //console.log('---------LETS UPDATE-------------------');

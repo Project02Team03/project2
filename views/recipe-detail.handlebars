@@ -53,21 +53,21 @@
             </div>
             <!-- This is a test partial to fill in ingredients per Recipe -->
             <div id="recipeDetailContainer">
-            {{#each recipe.ingredients as |ingredient|}}
+            {{#each recipe.ingredientList as |ingredient|}}
                 <div class="card border-secondary mx-3 mb-1">
                     <div class="row g-0">
                         <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
                             <div class="d-flex justify-content-center">
                                 <div class="d-flex img-container">
                                     <!-- Static ingredient image is used for background -->
-                                    <div class="bg-image" style="background-image: url('{{this.image}}');">
+                                    <div class="bg-image" style="background-image: url('{{ingredient.ingredient_img}}');">
                                     </div>
                                 </div>
                                 <div class="d-flex flex-row justify-content-start align-items-center w-100">
                                     <div class="d-flex flex-row align-items-center">
                                         <div class="card-body">
                                             <!-- Ingredient amount, the units, and the name are listed -->
-                                            <h6 class="card-title m-0 p-3 p-sm-1 text-dark">{{this.quantity}} {{this.measure}} {{this.food}}</h6>
+                                            <h6 class="card-title m-0 p-3 p-sm-1 text-dark">{{ingredient.amount}} {{ingredient.units}} {{ingredient.ingredient_name}}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -86,10 +86,10 @@
                             <div class="d-flex btn-container">
                                 <!-- This button marks the ingredient as shopping_list: true -->
                                 <button class="btn btn-outline-primary mx-2 my-1 ing-btn shoppingListBtn" type="submit"
-                                    data-ingredient-img="{{this.image}}"
-                                    data-ingredient-name="{{this.food}}"
-                                    data-ingredient-amount="{{this.quantity}}"
-                                    data-ingredient-units="{{this.measure}}"
+                                    data-ingredient-img="{{ingredient.ingredient_img}}"
+                                    data-ingredient-name="{{ingredient.ingredient_name}}"
+                                    data-ingredient-amount="{{ingredient.amount}}"
+                                    data-ingredient-units="{{ingredient.units}}"
                                     data-recipe-id="{{recipe.id}}">
                                     <i class="fa-solid fa-cart-shopping pe-3"></i>Need It</button>
                             </div>

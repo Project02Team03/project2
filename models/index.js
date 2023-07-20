@@ -36,18 +36,15 @@ Ingredients.belongsTo(User, {
 
 //relationships Recipe-Ingredients
 Ingredients.belongsToMany(Recipe, {
-    through: {
-        model: ShoppingList,
-        unique: false
-      },
-      
-      as: 'recipes',
+    through: ShoppingList,
+    as: 'recipeList',
+    // foreignKey: 'recipeId',
 });
 
 Recipe.belongsToMany(Ingredients, {
     through: ShoppingList,
     as: 'ingredientList',
-    foreignKey: 'recipeId',
+    // foreignKey: 'recipeId',
   });
 
 
