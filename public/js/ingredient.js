@@ -9,7 +9,7 @@ document.querySelector("#recipeDetailContainer").addEventListener("click", async
         const ingredientUnits = clickedElement.getAttribute("data-ingredient-units");
         const recipeId = clickedElement.getAttribute("data-recipe-id");
   
-        const response = await fetch("/api/shopping-list", {
+        const response = await fetch("/api/ingredients/list", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
