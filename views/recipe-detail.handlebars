@@ -86,7 +86,11 @@
                             <div class="d-flex btn-container">
                                 <!-- This button marks the ingredient as shopping_list: true -->
                                 <button class="btn btn-outline-primary mx-2 my-1 ing-btn shoppingListBtn" type="submit"
-                                    data-button="{{recipe.id}}">
+                                    data-ingredient-img="{{this.image}}"
+                                    data-ingredient-name="{{this.food}}"
+                                    data-ingredient-amount="{{this.quantity}}"
+                                    data-ingredient-units="{{this.measure}}"
+                                    data-recipe-id="{{recipe.id}}">
                                     <i class="fa-solid fa-cart-shopping pe-3"></i>Need It</button>
                             </div>
                         </div>

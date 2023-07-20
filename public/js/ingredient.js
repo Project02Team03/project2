@@ -1,48 +1,40 @@
-document.querySelector("#recipeDetailContainer").addEventListener("click", (event) => {
+document.querySelector("#recipeDetailContainer").addEventListener("click", async (event) => {
     const clickedElement = event.target;
-    const buttonId = clickedElement.id;
   
-    if (buttonId.startsWith("inStockBtn")) {
-        const index = buttonId.split("-")[1];
-        const inStockBtn = document.querySelector(`#inStockBtn-${index}`);
-        const shoppingListBtn = document.querySelector(`#shoppingListBtn-${index}`);
-        toggleStockBtn(inStockBtn, shoppingListBtn);
-    }
+    if (clickedElement.classList.contains("shoppingListBtn")) {
+      try {
+        const ingredientImg = clickedElement.getAttribute("data-ingredient-img");
+        const ingredientName = clickedElement.getAttribute("data-ingredient-name");
+        const ingredientAmount = clickedElement.getAttribute("data-ingredient-amount");
+        const ingredientUnits = clickedElement.getAttribute("data-ingredient-units");
+        const recipeId = clickedElement.getAttribute("data-recipe-id");
   
-    if (buttonId.startsWith("shoppingListBtn")) {
-        const index = buttonId.split("-")[1];
-        const shoppingListBtn = document.querySelector(`#shoppingListBtn-${index}`);
-        const inStockBtn = document.querySelector(`#inStockBtn-${index}`);
-        toggleListBtn(shoppingListBtn, inStockBtn);
+        const response = await fetch("/api/shopping-list", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ingredient_img: ingredientImg,
+            ingredient_name: ingredientName,
+            amount: ingredientAmount,
+            units: ingredientUnits,
+            recipeId: recipeId,
+          }),
+        });
+  
+        if (response.ok) {
+          document.location.reload();
+        } else {
+          alert(response.statusText);
+        }
+      } catch (error) {
+        // Handle any other errors
+        console.error(error);
+      }
     }
   });
-
-
-
-
-function toggleStockBtn(event) {
-    event.preventDefault();
-    const inStockBtn = event.target;
-    if (inStockBtn.classList.contains("btn-outline-success")) {
-        inStockBtn.classList.remove("btn-outline-success");
-        inStockBtn.classList.add("btn-success");
-    } else if (inStockBtn.classList.contains("btn-success")) {
-        inStockBtn.classList.remove("btn-success");
-        inStockBtn.classList.add("btn-outline-success");
-    }
-}
-
-function toggleListBtn(event) {
-    event.preventDefault();
-    const shoppingListBtn = event.target;
-    if (shoppingListBtn.classList.contains("btn-outline-primary")) {
-        shoppingListBtn.classList.remove("btn-outline-primary");
-        shoppingListBtn.classList.add("btn-primary");
-    } else if (shoppingListBtn.classList.contains("btn-primary")) {
-        shoppingListBtn.classList.remove("btn-primary");
-        shoppingListBtn.classList.add("btn-outline-primary");
-    }
-}
+  
 
 /*
 const updateIngredients = async (event, shoppingList, inStock) => {
@@ -72,17 +64,7 @@ const updateIngredients = async (event, shoppingList, inStock) => {
 };
 */
 
-document.querySelector("#recipeDetailContainer").addEventListener("click", (event) => {
-    const clickedElement = event.target;
 
-    if (clickedElement.classList.contains("inStockBtn")) {
-        toggleStockBtn(event);
-    }
-
-    if (clickedElement.classList.contains("shoppingListBtn")) {
-        toggleListBtn(event);
-    }
-});
 
 // document.querySelector("#inStockBtn").addEventListener("click", (event) => {
 //     updateIngredients(event, false, true);

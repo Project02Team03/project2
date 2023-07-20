@@ -9,6 +9,32 @@ const { Recipe,
 
 const withAuth = require('../../utils/auth');
 
+router.post('/shopping-list', async (req, res) => {
+  try {
+    if (req.session) {
+      const { ingredient_img, ingredient_name, amount, units, recipeId } = req.body;
+      const needIt = await Ingredients.create({
+        ingredient_img: ingredient_img,
+        ingredient_name: ingredient_name,
+        amount: amount,
+        units: units,
+      });
+
+      await Recipe.findByPk(recipeId).then((recipe) => {
+        if (recipe) {
+          recipe.addIngredient(needIt);
+        }
+      });
+
+      res.json(needIt);
+    } else {
+      res.redirect("/login")
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
 //get all ingredients
 router.get("/", (req, res) => {
    //console.log('HI THERE');
