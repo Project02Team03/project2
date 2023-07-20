@@ -32,14 +32,10 @@ router.get('/', async (req, res) => {
       delete plainRecipe.ingredientList;
       return plainRecipe;
     });
-
+    console.log(recipes)
     res.render('homepage', {
       recipes,
-
       logged_in: req.session.logged_in
-     
-
-
     });
   } catch (err) {
     console.error(err)
