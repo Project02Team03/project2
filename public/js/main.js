@@ -2,10 +2,6 @@ const recipeCardGrid = document.querySelector('#recipeCardGrid');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-// require('dotenv').config();
-// const app_id = `9b79a237`; 
-// const app_key = `150185214857b1583f258fc60e628a04`;
-
 var recipeIngredientsUl = document.querySelector("#recipeIngredientsList")
 
 function updateRecipeCards(recipeIds) {
