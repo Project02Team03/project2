@@ -131,47 +131,51 @@ router.get("/recipe", async (req, res) => {
 });
 
 //then i need to get a single recipe
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
 
     try {
-        const RecipeData = await Recipe.findOne({  
-            where: {
-                id: req.params.id,
-            },
-            include:{model: Ingredients, through: ShoppingList, as: 'ingredientList'}
-        });  
-        if (!RecipeData) {
-            res.status(404).json({
-                message: "Not found"
-            });
-            return;
-        }
-
-        const recipe = RecipeData.get({ plain: true });
-
-        const recipeIngredients = await Ingredients.findAll({
-            where: {
-                id: { [Op.ne]: req.params.id },
-                ingredient_name: recipe.ingredientList.map((ingredient) => ingredient.ingredient_name),
-            },
-            /* 
-            include: {
-                model: Ingredients,
-                through: ShoppingList,
-                as: 'ingredientList',
+        if (req.session) {
+            const RecipeData = await Recipe.findOne({  
                 where: {
+                    id: req.params.id,
+                },
+                include:{model: Ingredients, through: ShoppingList, as: 'ingredientList'}
+            });  
+            if (!RecipeData) {
+                res.status(404).json({
+                    message: "Not found"
+                });
+                return;
+            }
+    
+            const recipe = RecipeData.get({ plain: true });
+    
+            const recipeIngredients = await Ingredients.findAll({
+                where: {
+                    id: { [Op.ne]: req.params.id },
                     ingredient_name: recipe.ingredientList.map((ingredient) => ingredient.ingredient_name),
                 },
-            },
-             */
-        });
+                /* 
+                include: {
+                    model: Ingredients,
+                    through: ShoppingList,
+                    as: 'ingredientList',
+                    where: {
+                        ingredient_name: recipe.ingredientList.map((ingredient) => ingredient.ingredient_name),
+                    },
+                },
+                 */
+            });
+            
+            
+            res.render("recipe-detail", {
+                recipe,
+                id: req.params.id,
+                recipeIngredients,
+                logged_in: req.session.logged_in
+            });
+        }; 
         
-        
-        res.render("recipe-detail", {
-            recipe,
-            id: req.params.id,
-            recipeIngredients,
-        });
 
     }  catch(err){
         res.status(500).json(err)

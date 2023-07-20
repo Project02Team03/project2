@@ -9,7 +9,7 @@ const { Recipe,
 
 const withAuth = require('../../utils/auth');
 
-router.post('/list', async (req, res) => {
+router.post('/list', withAuth, async (req, res) => {
   try {
     if (req.session) {
       const { ingredient_img, ingredient_name, amount, units, recipeId } = req.body;
@@ -28,8 +28,6 @@ router.post('/list', async (req, res) => {
       });
       console.log(needIt);
       res.json(needIt);
-    } else {
-      res.redirect("/login")
     }
   } catch (err) {
     res.status(500).json(err);
@@ -52,8 +50,9 @@ router.get("/", (req, res) => {
 });
 
 /* Pulls ingredients for a single recipe */
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
+    if (req.session) {
     const recipeId = req.params.id;
 
     const recipeData = await Recipe.findByPk(recipeId, {
@@ -70,7 +69,10 @@ router.get('/:id', async (req, res) => {
 
     const ingredients = recipeData.ingredientList;
 
+    console.log(ingredients.map((ingredient) => ingredient.in_list));
+
     res.status(200).json(ingredients);
+    };
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Can\'t find those ingredients' });

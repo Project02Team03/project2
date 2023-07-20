@@ -54,7 +54,39 @@
             <!-- This is a test partial to fill in ingredients per Recipe -->
             <div id="recipeDetailContainer">
             {{#each recipe.ingredientList as |ingredient|}}
-                <div class="card border-secondary mx-3 mb-1">
+                {{#if ingredient.in_list}}
+                    <div class="card border-primary bg-primary-subtle mx-3 mb-1">
+                        <div class="row g-0">
+                            <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
+                            <div class="d-flex justify-content-center position-relative">
+                                
+                                <div class="d-flex img-container">
+                                <div class="d-flex justify-content-center align-items-center need-it"><i class="fa-solid fa-cart-shopping fa-2xl text-white"></i></div>
+                                <div class="bg-image" style="background-image: url('{{ingredient.ingredient_img}}');"></div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-start align-items-center w-100">
+                                <div class="d-flex flex-row align-items-center">
+                                    <div class="card-body">
+                                    <h6 class="card-title m-0 p-3 p-sm-1 text-body-tertiary">{{ingredient.amount}} {{ingredient.units}} {{ingredient.ingredient_name}}</h6>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
+                            <div class="d-flex justify-content-between flex-wrap">
+                                <div class="d-flex btn-container">
+                                <button class="btn btn-info mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-list-ul pe-3"></i>In List</button>
+                                </div>
+                                <div class="d-flex btn-container">
+                                <button class="btn btn-dark mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-xmark"></i></button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                {{else}}
+                    <div class="card border-secondary mx-3 mb-1">
                     <div class="row g-0">
                         <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
                             <div class="d-flex justify-content-center">
@@ -97,6 +129,9 @@
                 
                     </div>
                 </div>
+                {{/if}}
+                
+                
         {{/each}}
          </div>   
     </div>
