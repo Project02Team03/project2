@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's For Dinner?</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,600;0,800;1,100;1,200;1,300;1,400;1,600;1,800&family=Roboto+Mono:ital,wght@0,100;0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/custom.css">
+
+    <script src="https://kit.fontawesome.com/b6896b1ef3.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
+        <div class="container-fluid">
+          <a class="navbar-brand text-primary-emphasis" href="/public/layout.html">What's For Dinner?</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
+              <li class="nav-item">
+                <a class="nav-link" href="/public/my-recipes.html">Recipes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/public/shopping-list.html">Shopping List</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/public/pantry.html">Pantry</a>
+              </li>
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li> -->
+            </ul>
+            <form class="d-flex mx-lg-5 w-50" role="search">
+              <input class="form-control me-2" type="search" placeholder="Get random recipes... or type a search term to get started!" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-primary mx-2" type="submit">Login</button>
+                <button class="btn btn-primary mx-2" type="submit">Sign Up</button>
+                <!-- Avatar -->
+                <div class="dropdown">
+                  <a
+                    class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                    href="#"
+                    id="navbarDropdownMenuAvatar"
+                    role="button"
+                    data-mdb-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                      class="rounded-circle"
+                      height="25"
+                      alt="Black and White Portrait of a Man"
+                      loading="lazy"
+                    />
+                  </a>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDropdownMenuAvatar"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="#">My profile</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Settings</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Logout</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+      </nav>
+    <!-- Shopping List -->
+        <div class="list-title">
+          <h2 class="text-center text-white m-4">Shopping List</h2>
+          <p class="subtitle text-center">Let's head to the store and complete your pantry!</p>
+        </div>
+        <!-- Ingredient Card -->
+        <div class="card bg-white border-secondary mx-3 mb-1">
+          <div class="row g-0">
+            <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
+              <div class="d-flex justify-content-center">
+                <div class="d-flex img-container">
+                  <div class="bg-image" style="background-image: url('https://www.edamam.com/food-img/19f/19fc0706f04d44f62fc79ab4d7a07d7b.jpg');"></div>
+                </div>
+                <div class="d-flex flex-row justify-content-start align-items-center w-100">
+                  <div class="d-flex flex-row align-items-center">
+                    <div class="card-body">
+                      <h6 class="card-title m-0 p-3 p-sm-1 text-dark">1 1/2 lbs. Potatoes</h6>
+                      <!-- <p class="card-text m-0 p-3 p-sm-1 pt-1 ">This is a comment</p> -->
+                    </div>
+                    <button class="btn btn-sm btn-dark justify-content-start" type="submit"><i class="fa-solid fa-comment"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
+              <div class="d-flex justify-content-between flex-wrap">
+                <div class="d-flex btn-container">
+                  <button class="btn btn-info mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-file-lines pe-3"></i>View Recipe</button>
+                </div>
+                <div class="d-flex btn-container">
+                    <button class="btn btn-success mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-circle-check pe-3"></i>Grabbed It!</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+         <!-- Ingredient Card with Comment Field -->
+         <div class="card bg-white border-secondary mx-3 mb-1">
+            <div class="row g-0">
+              <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                  <div class="d-flex img-container">
+                    <div class="bg-image" style="background-image: url('https://www.edamam.com/food-img/19f/19fc0706f04d44f62fc79ab4d7a07d7b.jpg');"></div>
+                  </div>
+                  <div class="d-flex flex-row justify-content-start align-items-center w-100">
+                    <div class="d-flex flex-row align-items-center">
+                      <div class="card-body">
+                        <h6 class="card-title m-0 p-3 p-sm-1 text-dark">1 1/2 lbs. Potatoes</h6>
+                        <form class="d-flex flex-row" action="">
+                          <input class="form-control form-control-sm" id="comment-field" type="text" placeholder="Add your comment here...">
+                          <button class="btn btn-sm btn-outline-success justify-content-start" type="submit"><i class="fa-solid fa-comment"></i></button>
+                        </form>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <div class="d-flex btn-container">
+                        <button class="btn btn-info mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-file-lines pe-3"></i>View Recipe</button>
+                      </div>
+                      <div class="d-flex btn-container">
+                          <button class="btn btn-success mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-circle-check pe-3"></i>Grabbed It!</button>
+                        </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Ingredient Card with Comment -->
+          <div class="card bg-white border-secondary mx-3 mb-1">
+            <div class="row g-0">
+              <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                  <div class="d-flex img-container">
+                    <div class="bg-image" style="background-image: url('https://www.edamam.com/food-img/19f/19fc0706f04d44f62fc79ab4d7a07d7b.jpg');"></div>
+                  </div>
+                  <div class="d-flex flex-row justify-content-start align-items-center w-100">
+                    <div class="d-flex flex-row align-items-center">
+                      <div class="card-body">
+                        <h6 class="card-title m-0 p-3 p-sm-1 text-dark">1 1/2 lbs. Potatoes</h6>
+                        <div class="d-flex flex-row">
+                        <p class="card-text m-0 p-3 p-sm-1 pt-1 ">This is a comment that I need to test how long I can make it to make sure it doesn't wrap oddly</p>
+                        <button class="btn btn-sm btn-outline-dark justify-content-start" type="submit"><i class="fa-solid fa-comment"></i></button>
+                      </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <div class="d-flex btn-container">
+                        <button class="btn btn-info mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-file-lines pe-3"></i>View Recipe</button>
+                      </div>
+                      <div class="d-flex btn-container">
+                          <button class="btn btn-success mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-circle-check pe-3"></i>Grabbed It!</button>
+                        </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        <!-- HAVE IT IT Ingredient Card -->
+        <div class="card border-success bg-success-subtle mx-3 mb-1">
+          <div class="row g-0">
+            <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
+              <div class="d-flex justify-content-center position-relative">
+                
+                <div class="d-flex img-container">
+                  <div class="d-flex justify-content-center align-items-center have-it"><i class="fa-solid fa-circle-check fa-2xl text-white"></i></div>
+                  <div class="bg-image" style="background-image: url('https://www.edamam.com/food-img/19f/19fc0706f04d44f62fc79ab4d7a07d7b.jpg');"></div>
+                </div>
+                <div class="d-flex flex-row justify-content-start align-items-center w-100">
+                  <div class="d-flex flex-row align-items-center">
+                    <div class="card-body">
+                      <h6 class="card-title m-0 p-3 p-sm-1 text-body-tertiary">1 1/2 lbs. Potatoes</h6>
+                      <!-- <p class="card-text m-0 p-3 p-sm-1 pt-1 text-body-tertiary">This is a comment</p> -->
+                    </div>
+                    <button class="btn btn-sm btn-dark justify-content-start" type="submit"><i class="fa-solid fa-comment"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
+              <div class="d-flex justify-content-between flex-wrap">
+                <div class="d-flex btn-container">
+                    <button class="btn btn-info mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-file-lines pe-3"></i>View Recipe</button>
+                  </div>
+                <div class="d-flex btn-container">
+                  <button class="btn btn-dark mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+ 
+    
+
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+
+    <script src="/public/js/main.js"></script>
+</body>
+</html>

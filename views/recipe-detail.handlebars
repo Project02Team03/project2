@@ -1,0 +1,98 @@
+
+<div class="d-flex flex-wrap justify-content-center">
+    <div class="card bg-white m-3 col-md-10 col-sm-12">
+        <div class="row g-0"> 
+                <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
+                    <div class="d-flex img-container-wide">
+                        <div class="bg-image" style="background-image: url('{{recipe.image_link}}');">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
+                    <div class="card-body">
+                
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                        <h3 class="card-title text-dark ps-2">{{recipe.recipe_name}}</h3>
+                        </div>
+                        <div class="col-auto">
+                        <a href="/" class="btn btn-outline-dark mx-2 my-1 ing-btn">
+                            Back
+                        </a>
+                        </div>
+                    </div>
+                
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                        <a href="{{recipe.recipe_url}}" class="btn btn-dark m-2">View Full Instructions</a>
+                        </div>
+                        <div class="col-auto">
+                        {{#if recipe.is_favorite}}
+                            <button class="btn btn-primary m-2" id="removeRecipe" type="submit" data-recipe="{{recipe.id}}">
+                            <i class="far fa-star fa-solid pe-3"></i>Remove from your Saved Recipes?
+                        </button>
+                        {{else}}
+                            <button class="btn btn-outline-primary m-2" id="saveRecipe" type="submit" data-recipe="{{recipe.id}}">
+                            <i class="far fa-star pe-3"></i>Save to Favorites
+                        </button>
+                        {{/if}}
+                        </div>
+                    </div>
+                
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="ingredients-title">
+                <h4 class="text-center">Ingredients</h4>
+                <p class="subtitle text-center">Click <span class="text-primary">"Need It"</span> to add to your
+                    Shopping
+                    List or <span class="text-success">"Have It"</span> to indicate you have it on hand!</p>
+            </div>
+            <!-- This is a test partial to fill in ingredients per Recipe -->
+            {{#each recipe.ingredients as |ingredient|}}
+                <div class="card border-secondary mx-3 mb-1">
+                    <div class="row g-0">
+                        <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
+                            <div class="d-flex justify-content-center">
+                                <div class="d-flex img-container">
+                                    <!-- Static ingredient image is used for background -->
+                                    <div class="bg-image" style="background-image: url('{{this.image}}');">
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-start align-items-center w-100">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div class="card-body">
+                                            <!-- Ingredient amount, the units, and the name are listed -->
+                                            <h6 class="card-title m-0 p-3 p-sm-1 text-dark">{{this.quantity}} {{this.measure}} {{this.food}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Marking ingredient state is only available for authorized users -->
+                
+                        <div
+                            class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
+                            <div class="d-flex btn-container">
+                                <!-- This button marks the ingredient as in_stock: true AND leaves default shopping_list: false -->
+                                <button class="btn btn-success mx-2 my-1 ing-btn" id="inStockBtn" type="submit"
+                                    data-button="{{recipe.id}}">
+                                    <i class="fa-solid fa-circle-check pe-3"></i>Have It</button>
+                            </div>
+                            <div class="d-flex btn-container">
+                                <!-- This button marks the ingredient as shopping_list: true -->
+                                <button class="btn btn-primary mx-2 my-1 ing-btn" id="shoppingListBtn" type="submit"
+                                    data-button="{{recipe.id}}">
+                                    <i class="fa-solid fa-cart-shopping pe-3"></i>Need It</button>
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+        {{/each}}
+            
+    </div>
+</div>

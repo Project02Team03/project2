@@ -1,0 +1,43 @@
+<!-- This is an ingredient that appears on the /shopping-list view with value in_stock: true -->
+    <div class="card border-success bg-success-subtle mx-3 mb-1">
+        <div class="row g-0">
+            <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
+                <div class="d-flex justify-content-center position-relative">
+
+                    <div class="d-flex img-container">
+                        <div class="d-flex justify-content-center align-items-center have-it"><i
+                                class="fa-solid fa-circle-check fa-2xl text-white"></i></div>
+                        <!-- Static ingredient image is used for background -->
+                        <div class="bg-image"
+                            style="background-image: url('{{ingredient_img}}');">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row justify-content-start align-items-center w-100">
+                        <div class="d-flex flex-row align-items-center">
+                            <div class="card-body">
+                                <!-- Ingredient amount, the units, and the name are listed -->
+                                <h6 class="card-title m-0 p-3 p-sm-1 text-body-tertiary">{{amount}} {{units}} {{ingredient_name}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <div class="d-flex btn-container">
+                        <!-- This button opens the Recipe in the recipe-modal -->
+                        <button type="button" class="btn btn-info mx-2 my-1 ing-btn" data-toggle="modal" data-target="#recipeModal">
+                            <i class="fa-solid fa-file-lines pe-3"></i>View Recipe
+                        </button>
+                    </div>
+                    <div class="d-flex btn-container">
+                        <!-- This button reverts ingredient to default values; in_stock: false AND shopping_list: false -->
+                        <button class="btn btn-dark mx-2 my-1 ing-btn" id="defaultBtn" type="submit" data-button="{{id}}">
+                            <i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

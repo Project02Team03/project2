@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
+        <div class="container-fluid">
+          <a class="navbar-brand text-primary-emphasis" href="/">What's For Dinner?</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <!-- These views appear for authorized users -->
+              {{#if logged_in}}
+              <li class="nav-item">
+                <a class="nav-link" href="/recipes">Recipes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/shopping-list">Shopping List</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/pantry">Pantry</a>
+              </li>
+              {{/if}}
+            </ul>
+            <form class="d-flex mx-lg-5 w-50" role="search" id="recipeSearch">
+                <input class="form-control me-2" type="search" placeholder="Get random recipes... or type a search term to get started!" aria-label="Search" name="search-terms">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <div class="d-flex align-items-center">
+                {{#if logged_in}}
+                  <button class="btn btn-primary mx-2" type="submit"><a href="/logout" id="logout" class="text-white text-decoration-none">Logout</a></button>
+                {{else}}
+                  <button class="btn btn-primary mx-2" type="submit"><a href="/login" class="text-white text-decoration-none">Login</a></button>
+                  <button class="btn btn-primary mx-2" type="submit"><a href="/signup" class="text-white text-decoration-none">Sign Up</a></button>
+                {{/if}}
+              </div>
+          </div>
+        </div>
+      </nav>
