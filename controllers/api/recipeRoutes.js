@@ -101,8 +101,10 @@ router.post("/", async (req, res) => {
             */
         }
       }
-  
-      res.status(200).json({ message: "Recipe stored!" });
+
+      const allRecipes = await Recipe.findAll();
+
+      res.status(200).json(allRecipes);
     } catch (err) {
         console.error(err);
         res.status(500).json(err);
