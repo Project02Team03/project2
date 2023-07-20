@@ -38,11 +38,11 @@ Ingredients.init(
             defaultValue: false
            }, 
 
-        note: {
+        /* note: {
             type: DataTypes.STRING,
             allowNull:true,
            
-        }
+        } */
     },
     {
         sequelize,
