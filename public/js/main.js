@@ -60,6 +60,7 @@ const searchRecipes = async (event) => {
         if (Array.isArray(data)) {
           const recipeIds = data.map((recipe) => recipe.id);
           updateRecipeCards(recipeIds);
+          window.location.href = "/";
         } else {
           console.error('Data is not an array.');
         }
