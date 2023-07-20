@@ -11,19 +11,17 @@ router.get('/', async (req, res) => {
     console.log('TRYING');
     
     const allRecipesData = await Recipe.findAll({
-      /* include: {
+      include: {
         model: Ingredients,
-        through: {
-          model: ShoppingList,
-          unique: false
-        },
-        as: 'ingredientList'
-      } */
+        through: ShoppingList,
+        as: 'ingredientList',
+      },
     });
     console.log(allRecipesData[0]);
     const recipes = allRecipesData.map((recipe) => {
       const plainRecipe = recipe.get({ plain: true });
 
+      
       return plainRecipe;
     });
 
