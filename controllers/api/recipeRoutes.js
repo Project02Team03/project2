@@ -1,4 +1,4 @@
-const { Op } = require("sequelize")
+const { Op } = require("sequelize");
 const router = require('express').Router();
 const fetch = require('node-fetch');
 

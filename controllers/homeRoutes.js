@@ -109,7 +109,7 @@ router.get('/signup', (req, res) => {
 
 
 //all recipes, favorited by logged in user
-router.get('/favorites', withAuth, async(req,res) => {
+router.get('/favorites', withAuth, async (req,res) => {
   try {
     const myRecipes=await User.findOne({
       where: {id: req.session.user_id},
