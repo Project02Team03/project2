@@ -102,22 +102,25 @@ console.log(saveBtn);
 
 const id=saveBtn.getAttribute('data-recipe');
 console.log(id);
-
+const recipe_id = id;
+//const user_id =document.getElementById('saved-recipes').getAttribute('data-user');
 const savingRecipe=async (event) =>{
   event.preventDefault();
   const response=await fetch(`/api/recipes/${id}/favorite`, {
     method: 'POST',
     body: JSON.stringify({
-      is_favorite: true
+      is_favorite: true,
+      recipe_id: recipe_id,
+      
     }),
 //headers: { 'Content-Type': 'application/json' },
   });
   if (response.ok) {
-    //document.location.reload();
+    document.location.reload();
     console.log('--------------------------------------------------------');
     //changing style and text for button
-    saveBtn.setAttribute('class',"btn btn-primary m-2");
-    saveBtn.textContent='Saved';
+   //saveBtn.setAttribute('class',"btn btn-primary m-2");
+   //saveBtn.textContent='Saved';
   } else {
     alert('Failed to favorite');
   }

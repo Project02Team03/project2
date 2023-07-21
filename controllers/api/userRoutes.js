@@ -30,13 +30,14 @@ router.post("/login",  async (req, res) => {
     // Create session variables based on the logged in user
     req.session.save(() => {
       console.log("UPdating session");
-      id: req.params.id,
-      req.session.logged_in = true;
-      
-      res.render("homepage" ,{ user: userData, logged_in:req.session.logged_in, user_id: userData.id})
+      id: req.params.user_id,
+      req.session.logged_in = true,
+      req.session.user_id = userData.id,
+      res.render("homepage" ,{ user: userData, logged_in:req.session.logged_in,
+      user_id: userData.id})
     });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json(err)
   }
 });
 
