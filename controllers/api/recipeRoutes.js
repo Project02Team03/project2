@@ -1,7 +1,7 @@
 
 const router = require('express').Router();
 const fetch = require('node-fetch');
-
+//const withAuth=require('../../utils/auth');
 /* adds middleware to use .env file */
 require('dotenv').config();
 
@@ -130,6 +130,7 @@ router.get("/recipe", async (req, res) => {
     }
 });
 
+
 //then i need to get a single recipe
 router.get("/:id", async (req, res) => {
 
@@ -138,8 +139,10 @@ router.get("/:id", async (req, res) => {
             where: {
                 id: req.params.id,
             },
-            include:{model: Ingredients, through: ShoppingList, as: 'ingredientList'}
+            include: !req.session.logged_in ? {model: Ingredients, through: ShoppingList, as: 'ingredientList'} 
+            :[{model: Ingredients, through: ShoppingList, as: 'ingredientList'}, {model: User, through: SelectedRecipe, as: 'users'}]
         });  
+
         if (!RecipeData) {
             res.status(404).json({
                 message: "Not found"
@@ -147,51 +150,59 @@ router.get("/:id", async (req, res) => {
             return;
         }
 
-        const recipe = RecipeData.get({ plain: true });
-        console.log("INGREDIENTS", recipe.ingredientList);
+        // // get the SavedRecipe record
+        // const saved = await SavedRecipe.findOne({
+        //     where: {
+        //         recipe_id: req.params.id,
+        //         user_id: req.session.user_id
+        //     }
+        // });
         
+
+        const recipe = RecipeData.get({ plain: true });
+        //console.log("RECIPE", recipe.users[0].selected_recipes);
+        recipe.is_favorite=recipe.users?.filter(user =>user.id==req.session.user_id && user.selected_recipes.is_favorite).length>0;
+        console.log(recipe);
         
         res.render("recipe-detail", {
             recipe,
             id: req.params.id,
             
+            logged_in: req.session.logged_in
         });
 
     }  catch(err){
+        console.log(err);
+        
         res.status(500).json(err)
     }
 });
-//     Recipe.findOne({
-//             where: {
-//                 id: req.params.id,
-//             },
-//             attributes: ['id', 'recipe_name', 'description', 'ingredients', 'is_favorite'],
-//             include: [
-//               {
-//                 model: SelectedRecipe,
-//                 attributes: ['id', 'is_favorite', 'recipe_id', 'user_id'],
-//                 include: {
-//                   model: User,
-//                   attributes: ['username'],
-//                 },
-//               },
-//             ],
-//           })
-//         .then((RecipeData) => {
-//             if (!RecipeData) {
-//                 res.status(404).json({
-//                     message: "Not found"
-//                 });
-//                 return;
-//             }
-//             res.json(RecipeData);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-// });
 
+
+
+//saving recipe to favorite
+router.post('/:id/favorite',withAuth, async (req,res) => {
+    try{
+        console.log('USER', req.session.user_id, 'RECIPE',req.params.id);
+        
+        const recipeData=await SelectedRecipe.create({
+            is_favorite: true, 
+            recipe_id: req.params.id, 
+            user_id: req.session.user_id
+        });
+        console.log(recipeData.is_favorite);
+        
+        if(recipeData){
+            res.status(200).json({is_favorite:true});
+            console.log('======================================');
+           
+        }  else {
+            res.status(404).json.end();
+        }
+    }catch(err){
+        res.status(500).json(err);
+    }
+})
 
 //then I need to delete the recipe
 router.delete("/:id", withAuth, (req, res) => {
