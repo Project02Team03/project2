@@ -204,27 +204,49 @@ router.post('/:id/favorite',withAuth, async (req,res) => {
     }
 })
 
-//then I need to delete the recipe
-router.delete("/:id", withAuth, (req, res) => {
-    Recipe.destroy({
-            where: {
-                id: req.params.id,
-            },
-        })
-        .then((RecipeData) => {
-            if (!RecipeData) {
-                res.status(404).json({
-                    message: "Not found!"
-                });
-                return;
-            }
-            res.json(RecipeData);
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
+//removing from favorites,
+router.delete('/:id', withAuth, async(req,res) =>{
+  try{
+    const favoriteData=await SelectedRecipe.destroy({
+        where:{
+            recipe_id: req.params.id,
+            user_id:req.session.id
+        }
+    });
+    if(!favoriteData){
+        res.status(404).json({message: 'recipe not found'});
+        return;
+    }
+    res.status(200).json(favoriteData)
+  } catch(err){
+    res.status(500).json(err);
+  }
+
+
+
+})
+
+// //then I need to delete the recipe
+// router.delete("/:id", withAuth, (req, res) => {
+//     Recipe.destroy({
+//             where: {
+//                 id: req.params.id,
+//             },
+//         })
+//         .then((RecipeData) => {
+//             if (!RecipeData) {
+//                 res.status(404).json({
+//                     message: "Not found!"
+//                 });
+//                 return;
+//             }
+//             res.json(RecipeData);
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         });
+// });
 
 module.exports = router;
 

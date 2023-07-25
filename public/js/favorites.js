@@ -7,7 +7,7 @@ const getSavedRecipes=async(event) => {
       headers: { 'Content-Type': 'application/json'}
     });
     if (response.ok) {
-      document.location.replace('/saved-recipes');
+      document.location.replace('/');
      
     } else {
       alert('Failed to log in');

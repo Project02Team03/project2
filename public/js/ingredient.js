@@ -127,3 +127,28 @@ const savingRecipe=async (event) =>{
 };
 
 document.getElementById('saveRecipe').addEventListener('click', savingRecipe);
+
+
+//removing from favorites
+const removeBtn=document.getElementById('removeRecipe');
+console.log(removeBtn);
+
+const id=removeBtn.getAttribute('data-recipe');
+console.log(id);
+const recipe_id = id;
+const removingRecipe=async(event) => {
+    event.preventDefault();
+    const response=await fetch(`/api/recipes/${id}/`, {
+        method: 'DELETE',
+        
+    });
+
+    if (response.ok) {
+        document.location.reload();
+        
+        
+      } else {
+        alert('Failed to unfavorite');
+      } 
+};
+document.getElementById('removeRecipe').addEventListener('click', removingRecipe);
