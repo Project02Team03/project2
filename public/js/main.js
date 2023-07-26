@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const recipeIds = data.map((recipe) => recipe.id);
         updateRecipeCards(recipeIds);
         recipes = data;
-        } else {
-          console.log("Where did my data go?");
-        };
+      } else {
+        console.log("Where did my data go?");
+      };
 
       /* This posts the returned Recipes and their associated Ingredients to the local db */
       fetch("/api/recipes", {
@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((response) => response.json())
         .then((data) => {
 
-          console.log(data);          
-          
+          console.log(data);
+
           if (Array.isArray(data)) {
             const recipeIds = data.map((recipe) => recipe.id);
             updateRecipeCards(recipeIds);
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             console.error('Data is not an array.');
           }
-        })      
+        })
         .catch((error) => console.error(error));
 
       /* This function clears the recipe card div of previously rendered cards */
@@ -75,9 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       /* for loop for creating values for each recipe */
       for (var i = 0; i < recipes.length; i++) {
-        
+
         let ingredientsArr = recipes[i].ingredients
-        
+
         function createIngredientList(ingredients) {
           return new Promise((resolve) => {
             var ingredientsList = [];
@@ -91,10 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
           </li>  
             `;
-        
+
               ingredientsList.push(ingredientHTML);
             }
-        
+
             resolve(ingredientsList.join(''));
           });
         }
@@ -143,10 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
         var ingredientListHTML = await createIngredientList(ingredientsArr);
         var recipeCard = createRecipeCard(recipes[i], ingredientListHTML);
         recipeCardGrid.appendChild(recipeCard);
-      } 
+      }
 
-        return recipeCardGrid;
-      
+      return recipeCardGrid;
+
     } else {
       alert(response.statusText);
     }

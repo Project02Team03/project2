@@ -53,8 +53,8 @@
             </div>
             <!-- This is a test partial to fill in ingredients per Recipe -->
             <div id="recipeDetailContainer">
-            {{#each recipe.ingredientList as |ingredient|}}
-                {{#if ingredient.in_list}}
+            {{#each recipe.ingredients as |ingredient|}}
+                {{!-- {{#if ingredient.in_list}} --}}
                     <div class="card border-primary bg-primary-subtle mx-3 mb-1">
                         <div class="row g-0">
                             <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
@@ -129,7 +129,7 @@
                 
                     </div>
                 </div>
-                {{/if}}
+                {{!-- {{/if}} --}}
                 
                 
         {{/each}}
