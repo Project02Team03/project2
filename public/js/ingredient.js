@@ -49,7 +49,7 @@ const updateIngredients = async (event, shoppingList, inStock) => {
         method: "PUT",
         body: JSON.stringify({
             ingredient_id: id,
-            shopping_list: shoppingList,
+            in_list: shoppingList,
             in_stock: inStock,
         }),
         headers: {
