@@ -206,19 +206,26 @@ router.post('/:id/favorite',withAuth, async (req,res) => {
 
 //removing from favorites,
 router.delete('/:id', withAuth, async(req,res) =>{
+   // console.log("Req Parameter: ", req.params);   // --> { id: '1' }
   try{
+
     const favoriteData=await SelectedRecipe.destroy({
         where:{
             recipe_id: req.params.id,
-            user_id:req.session.id
+            user_id:req.session.user_id
         }
     });
     if(!favoriteData){
         res.status(404).json({message: 'recipe not found'});
         return;
     }
+    //console.log("Data from DB: ", favoriteData);
+
+
+    // we w ill search for the curretUser ID (req.session.id)
     res.status(200).json(favoriteData)
   } catch(err){
+    console.log("Error: ", err);
     res.status(500).json(err);
   }
 

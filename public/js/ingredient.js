@@ -98,57 +98,65 @@ document.querySelector("#recipeDetailContainer").addEventListener("click", (even
 
 //saving recipe as favorite
 const saveBtn=document.getElementById('saveRecipe');
-console.log(saveBtn);
-
-const id=saveBtn.getAttribute('data-recipe');
-console.log(id);
-const recipe_id = id;
-//const user_id =document.getElementById('saved-recipes').getAttribute('data-user');
+let id;
 const savingRecipe=async (event) =>{
-  event.preventDefault();
-  const response=await fetch(`/api/recipes/${id}/favorite`, {
-    method: 'POST',
-    body: JSON.stringify({
-      is_favorite: true,
-      recipe_id: recipe_id,
-      
-    }),
-//headers: { 'Content-Type': 'application/json' },
-  });
-  if (response.ok) {
-    document.location.reload();
-    console.log('--------------------------------------------------------');
-    //changing style and text for button
-   //saveBtn.setAttribute('class',"btn btn-primary m-2");
-   //saveBtn.textContent='Saved';
-  } else {
-    alert('Failed to favorite');
-  }
+    event.preventDefault();
+    const response=await fetch(`/api/recipes/${id}/favorite`, {
+        method: 'POST',
+        body: JSON.stringify({
+            is_favorite: true,
+            recipe_id: recipe_id,
+            
+        }),
+        //headers: { 'Content-Type': 'application/json' },
+    });
+    if (response.ok) {
+        document.location.reload();
+        console.log('--------------------------------------------------------');
+        //changing style and text for button
+        //saveBtn.setAttribute('class',"btn btn-primary m-2");
+        //saveBtn.textContent='Saved';
+    } else {
+        alert('Failed to favorite');
+    }
 };
-
-document.getElementById('saveRecipe').addEventListener('click', savingRecipe);
+// document.getElementById('saveRecipe').addEventListener('click', savingRecipe);
 
 
 //removing from favorites
-const removeBtn=document.getElementById('removeRecipe');
-console.log(removeBtn);
-
-const id=removeBtn.getAttribute('data-recipe');
-console.log(id);
-const recipe_id = id;
 const removingRecipe=async(event) => {
     event.preventDefault();
     const response=await fetch(`/api/recipes/${id}/`, {
         method: 'DELETE',
         
     });
-
+    
     if (response.ok) {
         document.location.reload();
         
         
-      } else {
+    } else {
         alert('Failed to unfavorite');
-      } 
+    } 
 };
-document.getElementById('removeRecipe').addEventListener('click', removingRecipe);
+// document.getElementById('removeRecipe').addEventListener('click', removingRecipe);
+let recipe_id;
+if(!saveBtn) {
+
+    const removeBtn=document.getElementById('removeRecipe');
+    console.log(removeBtn);
+    
+    id=removeBtn.getAttribute('data-recipe');
+    console.log(id);
+    recipe_id = id;
+    document.getElementById('removeRecipe').addEventListener('click', removingRecipe);
+} else {
+
+    console.log(saveBtn);
+    
+    id=saveBtn.getAttribute('data-recipe');
+    console.log(id);
+    recipe_id = id;
+    const user_id = document.getElementById('saved-recipes').getAttribute('data-user');
+    document.getElementById('saveRecipe').addEventListener('click', savingRecipe);
+}
