@@ -26,6 +26,7 @@ Recipe.init(
         //     type: DataTypes.BOOLEAN,
         //     allowNull: false
         // },
+        /*
         ingredients: {
             type: DataTypes.JSON,
             allowNull: false,
@@ -38,6 +39,7 @@ Recipe.init(
               },
             },
           },
+          */
         },
     {
         sequelize,

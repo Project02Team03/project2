@@ -1,4 +1,4 @@
-
+const { Op } = require("sequelize")
 const router = require('express').Router();
 const fetch = require('node-fetch');
 //const withAuth=require('../../utils/auth');
@@ -15,6 +15,7 @@ const {
 
 const withAuth = require('../../utils/auth');
 
+/* This is the route for the 3rd party API call */
 router.post("/edamam", async (req, res) => {
     try {
         const { searchTerms } = req.body;
@@ -62,47 +63,46 @@ router.post("/", async (req, res) => {
       const { recipes } = req.body;
   
       for (const recipe of recipes) {
-        const { label, image: image_link, url, ingredients } = recipe;
+        const { label: recipe_name, image: image_link, url: recipe_url, ingredients } = recipe;
         // const recipeIngredients = JSON.parse(ingredients);
 
-        console.log("Recipe:", label, image_link, url);
+        console.log("Recipe:", recipe_name, image_link, recipe_url);
         console.log("Ingredients:", ingredients);
 
         const createdRecipe = await Recipe.create({ 
-            recipe_name: label, 
+            recipe_name, 
             image_link, 
-            recipe_url: url,
-            ingredients, 
+            recipe_url
         });
 
         for (const recipeIngredient of ingredients) {
             const { quantity, measure, food, image: ingredient_img } = recipeIngredient;
             console.log("Ingredient:", food, quantity, measure, ingredient_img);
 
-            const ingredientsData = {
-                ingredient_img: ingredients.image || "",
-                ingredient_name: ingredients.food || "",
-                amount: ingredients.quantity || 0,
-                units: ingredients.measure || "",
+            const createdIngredient = await Ingredients.create({
+                ingredient_img: ingredient_img || "",
+                ingredient_name: food || "",
+                amount: quantity || null,
+                units: measure || "",
                 in_stock: false,
                 in_list: false,
-            };
-
-            const createdIngredient = await Ingredients.create(ingredientsData);
-
-            /*
-            await Ingredients.create({ 
-                ingredient_img, 
-                ingredient_name: food, 
-                amount: quantity, 
-                units: measure, 
-                recipe_id: createdRecipe.id 
             });
-            */
+
+            await ShoppingList.create({
+                recipe_id: createdRecipe.id,
+                ingredient_id: createdIngredient.id,
+            });
+
         }
       }
 
-      const allRecipes = await Recipe.findAll();
+      const allRecipes = await Recipe.findAll({
+        include: {
+            model: Ingredients,
+            through: ShoppingList,
+            as: "ingredientList",
+        }
+      });
 
       res.status(200).json(allRecipes);
     } catch (err) {
@@ -132,12 +132,47 @@ router.get("/recipe", async (req, res) => {
 
 
 //then i need to get a single recipe
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
 
     try {
-        const RecipeData=await Recipe.findOne({  
-            where: {
+        if (req.session) {
+            const RecipeData = await Recipe.findOne({  
+                where: {
+                    id: req.params.id,
+                },
+                include:{model: Ingredients, through: ShoppingList, as: 'ingredientList'}
+            });  
+            if (!RecipeData) {
+                res.status(404).json({
+                    message: "Not found"
+                });
+                return;
+            }
+    
+            const recipe = RecipeData.get({ plain: true });
+    
+            const recipeIngredients = await Ingredients.findAll({
+                where: {
+                    id: { [Op.ne]: req.params.id },
+                    ingredient_name: recipe.ingredientList.map((ingredient) => ingredient.ingredient_name),
+                },
+                /* 
+                include: {
+                    model: Ingredients,
+                    through: ShoppingList,
+                    as: 'ingredientList',
+                    where: {
+                        ingredient_name: recipe.ingredientList.map((ingredient) => ingredient.ingredient_name),
+                    },
+                },
+                 */
+            });
+            
+            
+            res.render("recipe-detail", {
+                recipe,
                 id: req.params.id,
+
             },
             include: !req.session.logged_in ? {model: Ingredients, through: ShoppingList, as: 'ingredientList'} 
             :[{model: Ingredients, through: ShoppingList, as: 'ingredientList'}, {model: User, through: SelectedRecipe, as: 'users'}]
@@ -170,6 +205,7 @@ router.get("/:id", async (req, res) => {
             
             logged_in: req.session.logged_in
         });
+
 
     }  catch(err){
         console.log(err);

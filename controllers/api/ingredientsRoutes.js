@@ -9,6 +9,31 @@ const { Recipe,
 
 const withAuth = require('../../utils/auth');
 
+router.post('/list', withAuth, async (req, res) => {
+  try {
+    if (req.session) {
+      const { ingredient_img, ingredient_name, amount, units, recipeId } = req.body;
+      const needIt = await Ingredients.create({
+        ingredient_img: ingredient_img,
+        ingredient_name: ingredient_name,
+        amount: amount,
+        units: units,
+        in_list: true,
+      });
+
+      await Recipe.findByPk(recipeId).then((recipe) => {
+        if (recipe) {
+          recipe.addIngredient(needIt);
+        }
+      });
+      console.log(needIt);
+      res.json(needIt);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
+
 //get all ingredients
 router.get("/", (req, res) => {
    //console.log('HI THERE');
@@ -22,6 +47,36 @@ router.get("/", (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+/* Pulls ingredients for a single recipe */
+router.get('/:id', withAuth, async (req, res) => {
+  try {
+    if (req.session) {
+    const recipeId = req.params.id;
+
+    const recipeData = await Recipe.findByPk(recipeId, {
+      include: {
+        model: Ingredients,
+        through: { attributes: [] },
+        as: 'ingredientList',
+      },
+    });
+
+    if (!recipeData) {
+      return res.status(404).json({ message: 'Recipe not found.' });
+    }
+
+    const ingredients = recipeData.ingredientList;
+
+    console.log(ingredients.map((ingredient) => ingredient.in_list));
+
+    res.status(200).json(ingredients);
+    };
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Can\'t find those ingredients' });
+  }
 });
 
 //update ingredient by its id , ex: in_stock: true
