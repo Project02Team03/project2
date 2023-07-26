@@ -1,3 +1,4 @@
+/*
 document.querySelector("#recipeDetailContainer").addEventListener("click", async (event) => {
     const clickedElement = event.target;
   
@@ -35,8 +36,9 @@ document.querySelector("#recipeDetailContainer").addEventListener("click", async
     }
   });
   
+  */
 
-/*
+
 const updateIngredients = async (event, shoppingList, inStock) => {
     event.preventDefault();
     console.log(event, shoppingList, inStock);
@@ -62,7 +64,7 @@ const updateIngredients = async (event, shoppingList, inStock) => {
         alert(response.statusText);
     }
 };
-*/
+
 
 
 
@@ -70,10 +72,10 @@ const updateIngredients = async (event, shoppingList, inStock) => {
 //     updateIngredients(event, false, true);
 // });
 
-// document.querySelector("#shoppingListBtn").addEventListener("click", (event) => {
-//     updateIngredients(event, true, false);
-// });
+document.querySelector("#shoppingListBtn").addEventListener("click", (event) => {
+     updateIngredients(event, true, false);
+ });
 
-// document.querySelector("#defaultBtn").addEventListener("click", (event) => {
-//     updateIngredients(event, false, false);
-// });
+ document.querySelector("#defaultBtn").addEventListener("click", (event) => {
+     updateIngredients(event, false, false);
+ });
