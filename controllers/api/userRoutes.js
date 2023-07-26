@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, Recipe, SelectedRecipe } = require("../../models");
+const withAuth = require('../../utils/auth');
 
 router.post("/login",  async (req, res) => {
   console.log(req.body.email);
@@ -29,13 +30,14 @@ router.post("/login",  async (req, res) => {
     // Create session variables based on the logged in user
     req.session.save(() => {
       console.log("UPdating session");
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-      console.log("SEND A RESPONSE");
-      res.json({ user: userData, message: "You are now logged in!" });
+      id: req.params.user_id,
+      req.session.logged_in = true,
+      req.session.user_id = userData.id,
+      res.render("homepage" ,{ user: userData, logged_in:req.session.logged_in,
+      user_id: userData.id})
     });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json(err)
   }
 });
 
@@ -84,20 +86,29 @@ router.post("/signup", async (req, res) => {
 //   }
 // });
 
-//all recipes, favorited by logged in user????? we can add auth later
-// router.get('/:id',withAuth, async(req,res) => {
-//   try {
-//     const myRecipes=await User.findByPk(req.params.id, {
-//       where:{id: req.session.id},
-//       include:
-//       {model: Recipe, through: SelectedRecipe, as: 'recipes'},
-//       attributes: { exclude: ['email','password'] }
-//     });
-//     res.status(200).json(myRecipes);
-//   } catch (err){
-//     res.status(500).json(err);
-//   }
-// });
+//all recipes, favorited by logged in user
+router.get('/:id',withAuth, async(req,res) => {
+  try {
+    const myRecipes=await User.findByPk(req.params.id, {
+      where: {id: req.session.user_id},
+      include: {model: Recipe, through: SelectedRecipe, as: 'recipes'},
+      attributes: { exclude: ['name','email','password'] }
+    });
+
+    const recipes = myRecipes.map((recipe) => recipe.get({ plain: true }));
+    if (req.session){
+    res.render('saved-recipes', {
+       recipes,
+       model: myRecipes,
+       logged_in: req.session.logged_in});
+    console.log(myRecipes);
+    }
+    console.log('----------MY RECIPES----------------');
+    
+  } catch (err){
+    res.status(500).json(err);
+  }
+});
 
 //all users
 router.get("/", async (req, res) => {

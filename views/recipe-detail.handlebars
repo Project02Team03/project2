@@ -28,6 +28,7 @@
                         <a href="{{recipe.recipe_url}}" class="btn btn-dark m-2">View Full Instructions</a>
                         </div>
                         <div class="col-auto">
+                            {{#if logged_in}}
                         {{#if recipe.is_favorite}}
                             <button class="btn btn-primary m-2" id="removeRecipe" type="submit" data-recipe="{{recipe.id}}">
                             <i class="far fa-star fa-solid pe-3"></i>Remove from your Saved Recipes?
@@ -36,6 +37,7 @@
                             <button class="btn btn-outline-primary m-2" id="saveRecipe" type="submit" data-recipe="{{recipe.id}}">
                             <i class="far fa-star pe-3"></i>Save to Favorites
                         </button>
+                        {{/if}}
                         {{/if}}
                         </div>
                     </div>

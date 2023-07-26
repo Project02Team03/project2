@@ -6,7 +6,7 @@ const loginFormHandler = async (event) => {
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
-  console.log(email, password);
+  
   if (email && password) {
     // Send the e-mail and password to the server
     const response = await fetch('/api/users/login', {
@@ -19,9 +19,10 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/savedrecipes');
+     document.location.replace('/')
+      
     } else {
-      alert('Failed to log in');
+      alert('Failed to login');
     }
   }
 };
