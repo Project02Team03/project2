@@ -13,7 +13,7 @@ SelectedRecipe.init(
       is_favorite: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        //defaultValue: false
     },
       user_id:{
         type: DataTypes.INTEGER,

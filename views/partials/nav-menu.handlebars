@@ -8,8 +8,8 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <!-- These views appear for authorized users -->
               {{#if logged_in}}
-              <li class="nav-item">
-                <a class="nav-link" href="/recipes">Recipes</a>
+              <li class="nav-item" id="saved-recipes" data-user=>
+                <a class="nav-link" href="/saved-recipes">Recipes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/shopping-list">Shopping List</a>

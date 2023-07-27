@@ -115,12 +115,20 @@ router.get('/favorites', withAuth, async (req, res) => {
       where: { id: req.session.user_id },
       include: { model: Recipe, through: SelectedRecipes, as: 'recipes' },
     })
-    // res.status(200).json(myRecipes)
-    // what handlebar needs to be rendered
+
   } catch (err) {
+
+     res.render( 'saved-recipes',{
+      myRecipes,
+      logged_in: req.session.logged_in
+     });
+    
+  } catch (err){
+
     res.status(500).json(err);
   }
 });
+
 
 router.get('/savedrecipes', withAuth, (req, res) => {
   res.render('saved-recipes', {
@@ -128,18 +136,9 @@ router.get('/savedrecipes', withAuth, (req, res) => {
   })
 });
 
-// router.get('/pantry', withAuth, async(req,res) => {
-//   try {
-//     const myRecipes=await User.findOne({
-//       where: {id: req.session.user_id},
-//       include: {model: Ingredients, through: SelectedRecipes, as: 'recipes'},
-//     })
-//     // res.status(200).json(myRecipes)
-//     // what handlebar needs to be rendered
-//   } catch (err){
-//     res.status(500).json(err);
-//   }
-// });
+
+
+
 
 router.get('/recipes/:id', withAuth, async (req, res) => {
   try {

@@ -76,6 +76,9 @@ document.querySelector("#shoppingListBtn").addEventListener("click", (event) => 
      updateIngredients(event, true, false);
  });
 
+
  document.querySelector("#defaultBtn").addEventListener("click", (event) => {
      updateIngredients(event, false, false);
  });
+
+
