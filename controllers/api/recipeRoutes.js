@@ -131,7 +131,7 @@ router.get("/recipe", async (req, res) => {
 });
 
 
-//then i need to get a single recipe
+
 router.get("/:id", async (req, res) => {
 
     try {
@@ -236,6 +236,7 @@ router.delete('/:id', withAuth, async(req,res) =>{
 // //then I need to delete the recipe
 // router.delete("/:id", withAuth, (req, res) => {
 //     Recipe.destroy({
+
 //             where: {
 //                 id: req.params.id,
 //             },

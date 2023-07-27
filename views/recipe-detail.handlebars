@@ -55,8 +55,8 @@
             </div>
             <!-- This is a test partial to fill in ingredients per Recipe -->
             <div id="recipeDetailContainer">
-            {{#each recipe.ingredientList as |ingredient|}}
-                {{#if ingredient.in_list}}
+            {{#each recipe.ingredients as |ingredient|}}
+                {{!-- {{#if ingredient.in_list}} --}}
                     <div class="card border-primary bg-primary-subtle mx-3 mb-1">
                         <div class="row g-0">
                             <div class="col-xl-9 col-lg-7 col-md-6 col-sm-12">
@@ -78,10 +78,10 @@
                             <div class="col-xl-3 col-lg-5 col-md-6 col-sm-12 d-flex justify-content-md-end justify-content-center align-items-center">
                             <div class="d-flex justify-content-between flex-wrap">
                                 <div class="d-flex btn-container">
-                                <button class="btn btn-info mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-list-ul pe-3"></i>In List</button>
+                                <button class="btn btn-info mx-2 my-1 ing-btn" type="submit" onclick="/shopping-list"><i class="fa-solid fa-list-ul pe-3"></i>In List</button>
                                 </div>
                                 <div class="d-flex btn-container">
-                                <button class="btn btn-dark mx-2 my-1 ing-btn" type="submit"><i class="fa-solid fa-xmark"></i></button>
+                                <button class="btn btn-dark mx-2 my-1 ing-btn" type="submit" data-button = "{{ingredient.id}}"><i class="fa-solid fa-xmark"></i></button>
                                 </div>
                             </div>
                             </div>
@@ -114,24 +114,24 @@
                             <div class="d-flex btn-container">
                                 <!-- This button marks the ingredient as in_stock: true AND leaves default shopping_list: false -->
                                 <button class="btn btn-outline-success mx-2 my-1 ing-btn inStockBtn" type="submit"
-                                    data-button="{{recipe.id}}">
+                                    data-button="{{ingredient.id}}">
                                     <i class="fa-solid fa-circle-check pe-3"></i>Have It</button>
                             </div>
                             <div class="d-flex btn-container">
                                 <!-- This button marks the ingredient as shopping_list: true -->
                                 <button class="btn btn-outline-primary mx-2 my-1 ing-btn shoppingListBtn" type="submit"
-                                    data-ingredient-img="{{ingredient.ingredient_img}}"
-                                    data-ingredient-name="{{ingredient.ingredient_name}}"
-                                    data-ingredient-amount="{{ingredient.amount}}"
-                                    data-ingredient-units="{{ingredient.units}}"
-                                    data-recipe-id="{{recipe.id}}">
+                                    data-ingredient-img = "{{ingredient.ingredient_img}}"
+                                    data-ingredient-name = "{{ingredient.ingredient_name}}"
+                                    data-ingredient-amount = "{{ingredient.amount}}"
+                                    data-ingredient-units = "{{ingredient.units}}"
+                                    data-button = "{{ingredient.id}}">
                                     <i class="fa-solid fa-cart-shopping pe-3"></i>Need It</button>
                             </div>
                         </div>
                 
                     </div>
                 </div>
-                {{/if}}
+                {{!-- {{/if}} --}}
                 
                 
         {{/each}}

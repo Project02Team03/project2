@@ -11,22 +11,22 @@ const shoppingListData=require('./shoppingData.json');
 const seedDatabase = async () => {
     await sequelize.sync({ force: false });
   
-    await User.bulkCreate(userData, {
+    // await User.bulkCreate(userData, {
+    //   individualHooks: true,
+    //   returning: true,
+    // });
+    
+    await Recipe.bulkCreate(recipeData, {
       individualHooks: true,
       returning: true,
     });
     
-   /*
-    await Recipe.bulkCreate(recipeData, {
-        individualHooks: true,
-        returning: true,
-      });
-  
-      await Ingredients.bulkCreate(ingredientsData, {
-        individualHooks: true,
-        returning: true,
-      });
-
+    await Ingredients.bulkCreate(ingredientsData, {
+      individualHooks: true,
+      returning: true,
+    });
+    
+    /*
     
       await SelectedRecipe.bulkCreate(selectedData, {
         individualHooks: true,
