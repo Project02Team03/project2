@@ -4,15 +4,14 @@ const User = require('./User');
 const Recipe=require('./Recipe');
 const Ingredients =require('./Ingredients');
 const SelectedRecipe = require('./SelectedRecipe');
-const ShoppingList = require('./ShoppingList');
+// const ShoppingList = require('./ShoppingList');
 //relationships User-Recipe
 User.belongsToMany(Recipe, {
     through: {
         model: SelectedRecipe,
         unique: false
       },
-      
-      as: 'recipes'
+
 });
 
 Recipe.belongsToMany(User, {
@@ -20,35 +19,34 @@ Recipe.belongsToMany(User, {
         model: SelectedRecipe,
         unique: false
       },
-      
-      as: 'users'
+
 });
 
 //relationships User-Ingredients
-User.hasOne(Ingredients, {
-    foreign_key: 'user_id',
-    onDelete: 'CASCADE',
-});
+// User.hasOne(Ingredients, {
+//     foreign_key: 'user_id',
+//     onDelete: 'CASCADE',
+// });
 
-Ingredients.belongsTo(User, {
-    foreign_key: 'user_id',
-} );
+// Ingredients.belongsTo(User, {
+//     foreign_key: 'user_id',
+// } );
 
 //relationships Recipe-Ingredients
-Ingredients.belongsToMany(Recipe, {
-    through: {
-        model: ShoppingList,
-        unique: false
-      },
-      
-      as: 'recipes',
-});
+// Ingredients.belongsToMany(Recipe, {
+//     through: ShoppingList,
+//     as: 'recipeList',
+//     // foreignKey: 'recipeId',
+// });
 
-Recipe.belongsToMany(Ingredients, {
-    through: ShoppingList,
-    as: 'ingredientList',
-    foreignKey: 'recipeId',
-  });
+// Recipe.belongsToMany(Ingredients, {
+//     through: ShoppingList,
+//     as: 'ingredientList',
+//     // foreignKey: 'recipeId',
+//   });
+Recipe.hasMany(Ingredients,{
+    foreignKey: 'recipe_id'
+})
 
 
 
@@ -58,5 +56,6 @@ module.exports = {
     User,
     Recipe,
     Ingredients,
-    ShoppingList,
-    SelectedRecipe};
+    // ShoppingList,
+    SelectedRecipe
+};

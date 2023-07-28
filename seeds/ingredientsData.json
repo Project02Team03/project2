@@ -1,118 +1,128 @@
 [
-    
-       { 
+    {
         "ingredient_img": "https://www.edamam.com/food-img/651/6512e82417bce15c2899630c1a2799df.jpg",
         "ingredient_name": "potato",
-         "amount": 2,
-         "units": "ea"
-        },
-        {
+        "amount": 2,
+        "units": "ea",
+        "recipe_id": 1
+    },
+    {
         "ingredient_img": "https://www.edamam.com/food-img/4d6/4d651eaa8a353647746290c7a9b29d84.jpg",
         "ingredient_name": "olive oil",
-         "amount": 1,
-         "units": "tbsp"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/cfa/cfae8f9276eaf8f0d9349ba662744a0c.jpg",
-            "ingredient_name": "small lean beef meatball",
-             "amount": 250,
-             "units": "g"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/205/205e6bf2399b85d34741892ef91cc603.jpg",
-            "ingredient_name": "onion",
-             "amount": 1,
-             "units": "ea"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/6ee/6ee142951f48aaf94f4312409f8d133d.jpg",
-            "ingredient_name": "garlic",
-             "amount": 2,
-             "units": "clove"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/0ac/0ac8f7cf6f2d0ad7b1a2f9900fae44f3.jpg",
-            "ingredient_name": "rosemary",
-             "amount": 1,
-             "units": "tbsp"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/d70/d7026867f3273c7210135ca14431139b.jpg",
-            "ingredient_name": "passata",
-             "amount": 560,
-             "units": "ml"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/c91/c9130a361d5c5b279bf48c69e2466ec2.jpg",
-            "ingredient_name": "frozen pea",
-             "amount": 200,
-             "units": "g"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/f58/f588658627c59d5041e4664119829aa9.jpg",
-            "ingredient_name": "parmesan",
-             "amount": 1,
-             "units": "few shaving"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/19f/19fc0706f04d44f62fc79ab4d7a07d7b.jpg",
-            "ingredient_name": "refrigerated pizza crust",
-             "amount": 1,
-             "units": "can"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/08b/08b3bb49c006689a458a8b9c4a4e0057.jpg",
-            "ingredient_name": "mini-meatball pasta sauce",
-             "amount": 1,
-             "units": "jar"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/bcd/bcd94dde1fcde1475b5bf0540f821c5d.jpg",
-            "ingredient_name": "shredded Italian cheese blend",
-             "amount": 1,
-             "units": "c."
-        },
-        {
-            "ingredient_img": "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322745_1100-732x549.jpg",
-            "ingredient_name": "salt",
-             "amount": 1,
-             "units": "tsp"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/d4e/d4e29ae7cde7eb5415fa8ef451a5ac26.png",
-            "ingredient_name": "Italian Meatball",
-             "amount": 3,
-             "units": "cups"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/a39/a39102018ed39c6008134e0570af8a6c.jpg",
-            "ingredient_name": "cannellini beans",
-             "amount": 15,
-             "units": "ounce"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/bcd/bcd94dde1fcde1475b5bf0540f821c5d.jpg",
-            "ingredient_name": "Cheese",
-             "amount": 2,
-             "units": "cup"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/aef/aef4e029118da71388e526086506053a.jpg",
-            "ingredient_name": "tomato paste",
-             "amount": 6,
-             "units": "ounce"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/d4e/d4e8110d51db4311bc894167a8f77816.jpg",
-            "ingredient_name": "diced tomatoes",
-             "amount": 14.5,
-             "units": "ounce"
-        },
-        {
-            "ingredient_img": "https://www.edamam.com/food-img/b8a/b8ad23dcc06f2324f944e47eb579d644.jpg",
-            "ingredient_name": "corn tortillas",
-             "amount": 12,
-             "units": "ea"
-        }
-        
+        "amount": 1,
+        "units": "tbsp",
+        "recipe_id": 1
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/cfa/cfae8f9276eaf8f0d9349ba662744a0c.jpg",
+        "ingredient_name": "small lean beef meatball",
+        "amount": 250,
+        "units": "g",
+        "recipe_id": 1
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/205/205e6bf2399b85d34741892ef91cc603.jpg",
+        "ingredient_name": "onion",
+        "amount": 1,
+        "units": "ea",
+        "recipe_id": 1
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/6ee/6ee142951f48aaf94f4312409f8d133d.jpg",
+        "ingredient_name": "garlic",
+        "amount": 2,
+        "units": "clove",
+        "recipe_id": 1
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/0ac/0ac8f7cf6f2d0ad7b1a2f9900fae44f3.jpg",
+        "ingredient_name": "rosemary",
+        "amount": 1,
+        "units": "tbsp",
+        "recipe_id": 1
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/d70/d7026867f3273c7210135ca14431139b.jpg",
+        "ingredient_name": "passata",
+        "amount": 560,
+        "units": "ml",
+        "recipe_id": 1
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/c91/c9130a361d5c5b279bf48c69e2466ec2.jpg",
+        "ingredient_name": "frozen pea",
+        "amount": 200,
+        "units": "g",
+        "recipe_id": 1
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/f58/f588658627c59d5041e4664119829aa9.jpg",
+        "ingredient_name": "parmesan",
+        "amount": 1,
+        "units": "few shaving",
+        "recipe_id": 1
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/19f/19fc0706f04d44f62fc79ab4d7a07d7b.jpg",
+        "ingredient_name": "refrigerated pizza crust",
+        "amount": 1,
+        "units": "can",
+        "recipe_id": 2
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/08b/08b3bb49c006689a458a8b9c4a4e0057.jpg",
+        "ingredient_name": "mini-meatball pasta sauce",
+        "amount": 1,
+        "units": "jar",
+        "recipe_id": 2
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/bcd/bcd94dde1fcde1475b5bf0540f821c5d.jpg",
+        "ingredient_name": "shredded Italian cheese blend",
+        "amount": 1,
+        "units": "c.",
+        "recipe_id": 2
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/d4e/d4e29ae7cde7eb5415fa8ef451a5ac26.png",
+        "ingredient_name": "Italian Meatball",
+        "amount": 3,
+        "units": "cups",
+        "recipe_id": 3
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/a39/a39102018ed39c6008134e0570af8a6c.jpg",
+        "ingredient_name": "cannellini beans",
+        "amount": 15,
+        "units": "ounce",
+        "recipe_id": 3
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/bcd/bcd94dde1fcde1475b5bf0540f821c5d.jpg",
+        "ingredient_name": "Cheese",
+        "amount": 2,
+        "units": "cup",
+        "recipe_id": 3
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/aef/aef4e029118da71388e526086506053a.jpg",
+        "ingredient_name": "tomato paste",
+        "amount": 6,
+        "units": "ounce",
+        "recipe_id": 3
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/d4e/d4e8110d51db4311bc894167a8f77816.jpg",
+        "ingredient_name": "diced tomatoes",
+        "amount": 14.5,
+        "units": "ounce",
+        "recipe_id": 3
+    },
+    {
+        "ingredient_img": "https://www.edamam.com/food-img/b8a/b8ad23dcc06f2324f944e47eb579d644.jpg",
+        "ingredient_name": "corn tortillas",
+        "amount": 12,
+        "units": "ea",
+        "recipe_id": 3
+    }
 ]

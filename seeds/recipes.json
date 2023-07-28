@@ -1,44 +1,41 @@
 [
-    {   "image_link":   "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1075583_11-c033c8c.jpg",
-       "recipe_name": "Speedy meatball stew",
-       "recipe_url": "http://www.edamam.com/ontologies/edamam.owl#recipe_edb19a464bb694565c551ba14ce7e7a8",
-       
-       "ingredients": [
-        "2 medium potato, peeled and cut into bite-size cubes",
-        "1 tbsp olive oil",
-        "250g small lean beef meatball",
-        "1 onion, chopped",
-        "2 garlic clove, chopped",
-        "1 tbsp chopped rosemary",
-        "560ml jar passata",
-        "200g frozen pea",
-        "few Parmesan shavings, to serve (optional)"
-      ]
-
-    },
-    {   "image_link":   "https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg",
-       "recipe_name": "Meatball Calzones",
-       "recipe_url": "http://www.edamam.com/ontologies/edamam.owl#recipe_24a4a3853bc9b804657fc6495f1bc875",
-       
-       "ingredients":  [
-        "1 can refrigerated pizza crust",
-        "1 jar mini-meatball pasta sauce",
-        "1 c. shredded Italian cheese blend"
-      ]
-
-    },
-    {   "image_link":   "https://www.eatingwell.com/thmb/D7WzROwR0R8bKEIwtt_sqhILj7A=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/5245768-2db6a5ac0bb6451ea265d957aad860de.jpg",
-       "recipe_name": "Cheesy meatball bake",
-       "recipe_url": "http://www.edamam.com/ontologies/edamam.owl#recipe_207721bfd378b3587dde01691dfb5be2",
-       
-       "ingredients":  [
-        "3 cups reserved Italian Meatball Soup (see associated recipe)",
-        "1 (15 ounce) can no-salt-added cannellini beans, rinsed and drained",
-        "2 cups shredded reduced-fat Italian blend cheese, divided",
-        "1 (6 ounce) can no-salt-added tomato paste",
-        "1 (14.5 ounce) can no-salt-added diced tomatoes with basil, garlic, and oregano",
-        "12 (6 inch) corn tortillas, halved"
-      ]
-
-    }
+  {
+    "image_link": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-1075583_11-c033c8c.jpg",
+    "recipe_name": "Speedy meatball stew",
+    "recipe_url": "http://www.edamam.com/ontologies/edamam.owl#recipe_edb19a464bb694565c551ba14ce7e7a8",
+    "ingredients": [
+      "2 medium potato, peeled and cut into bite-size cubes",
+      "1 tbsp olive oil",
+      "250g small lean beef meatball",
+      "1 onion, chopped",
+      "2 garlic clove, chopped",
+      "1 tbsp chopped rosemary",
+      "560ml jar passata",
+      "200g frozen pea",
+      "few Parmesan shavings, to serve (optional)"
+    ]
+  },
+  {
+    "image_link": "https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f8dbc8bf80e_-_meatball-calzones-lg.jpg",
+    "recipe_name": "Meatball Calzones",
+    "recipe_url": "http://www.edamam.com/ontologies/edamam.owl#recipe_24a4a3853bc9b804657fc6495f1bc875",
+    "ingredients": [
+      "1 can refrigerated pizza crust",
+      "1 jar mini-meatball pasta sauce",
+      "1 c. shredded Italian cheese blend"
+    ]
+  },
+  {
+    "image_link": "https://www.eatingwell.com/thmb/D7WzROwR0R8bKEIwtt_sqhILj7A=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/5245768-2db6a5ac0bb6451ea265d957aad860de.jpg",
+    "recipe_name": "Cheesy meatball bake",
+    "recipe_url": "http://www.edamam.com/ontologies/edamam.owl#recipe_207721bfd378b3587dde01691dfb5be2",
+    "ingredients": [
+      "3 cups reserved Italian Meatball Soup (see associated recipe)",
+      "1 (15 ounce) can no-salt-added cannellini beans, rinsed and drained",
+      "2 cups shredded reduced-fat Italian blend cheese, divided",
+      "1 (6 ounce) can no-salt-added tomato paste",
+      "1 (14.5 ounce) can no-salt-added diced tomatoes with basil, garlic, and oregano",
+      "12 (6 inch) corn tortillas, halved"
+    ]
+  }
 ]

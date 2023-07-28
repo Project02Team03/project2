@@ -1,4 +1,4 @@
-
+const { Op } = require("sequelize")
 const router = require('express').Router();
 const fetch = require('node-fetch');
 //const withAuth=require('../../utils/auth');
@@ -15,6 +15,7 @@ const {
 
 const withAuth = require('../../utils/auth');
 
+/* This is the route for the 3rd party API call */
 router.post("/edamam", async (req, res) => {
     try {
         const { searchTerms } = req.body;
@@ -62,47 +63,46 @@ router.post("/", async (req, res) => {
       const { recipes } = req.body;
   
       for (const recipe of recipes) {
-        const { label, image: image_link, url, ingredients } = recipe;
+        const { label: recipe_name, image: image_link, url: recipe_url, ingredients } = recipe;
         // const recipeIngredients = JSON.parse(ingredients);
 
-        console.log("Recipe:", label, image_link, url);
+        console.log("Recipe:", recipe_name, image_link, recipe_url);
         console.log("Ingredients:", ingredients);
 
         const createdRecipe = await Recipe.create({ 
-            recipe_name: label, 
+            recipe_name, 
             image_link, 
-            recipe_url: url,
-            ingredients, 
+            recipe_url
         });
 
         for (const recipeIngredient of ingredients) {
             const { quantity, measure, food, image: ingredient_img } = recipeIngredient;
             console.log("Ingredient:", food, quantity, measure, ingredient_img);
 
-            const ingredientsData = {
-                ingredient_img: ingredients.image || "",
-                ingredient_name: ingredients.food || "",
-                amount: ingredients.quantity || 0,
-                units: ingredients.measure || "",
+            const createdIngredient = await Ingredients.create({
+                ingredient_img: ingredient_img || "",
+                ingredient_name: food || "",
+                amount: quantity || null,
+                units: measure || "",
                 in_stock: false,
                 in_list: false,
-            };
-
-            const createdIngredient = await Ingredients.create(ingredientsData);
-
-            /*
-            await Ingredients.create({ 
-                ingredient_img, 
-                ingredient_name: food, 
-                amount: quantity, 
-                units: measure, 
-                recipe_id: createdRecipe.id 
             });
-            */
+
+            await ShoppingList.create({
+                recipe_id: createdRecipe.id,
+                ingredient_id: createdIngredient.id,
+            });
+
         }
       }
 
-      const allRecipes = await Recipe.findAll();
+      const allRecipes = await Recipe.findAll({
+        include: {
+            model: Ingredients,
+            through: ShoppingList,
+            as: "ingredientList",
+        }
+      });
 
       res.status(200).json(allRecipes);
     } catch (err) {
@@ -131,7 +131,7 @@ router.get("/recipe", async (req, res) => {
 });
 
 
-//then i need to get a single recipe
+
 router.get("/:id", async (req, res) => {
 
     try {
@@ -204,27 +204,57 @@ router.post('/:id/favorite',withAuth, async (req,res) => {
     }
 })
 
-//then I need to delete the recipe
-router.delete("/:id", withAuth, (req, res) => {
-    Recipe.destroy({
-            where: {
-                id: req.params.id,
-            },
-        })
-        .then((RecipeData) => {
-            if (!RecipeData) {
-                res.status(404).json({
-                    message: "Not found!"
-                });
-                return;
-            }
-            res.json(RecipeData);
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
+//removing from favorites,
+router.delete('/:id', withAuth, async(req,res) =>{
+   // console.log("Req Parameter: ", req.params);   // --> { id: '1' }
+  try{
+
+    const favoriteData=await SelectedRecipe.destroy({
+        where:{
+            recipe_id: req.params.id,
+            user_id:req.session.user_id
+        }
+    });
+    if(!favoriteData){
+        res.status(404).json({message: 'recipe not found'});
+        return;
+    }
+    //console.log("Data from DB: ", favoriteData);
+
+
+    // we w ill search for the curretUser ID (req.session.id)
+    res.status(200).json(favoriteData)
+  } catch(err){
+    console.log("Error: ", err);
+    res.status(500).json(err);
+  }
+
+
+
+})
+
+// //then I need to delete the recipe
+// router.delete("/:id", withAuth, (req, res) => {
+//     Recipe.destroy({
+
+//             where: {
+//                 id: req.params.id,
+//             },
+//         })
+//         .then((RecipeData) => {
+//             if (!RecipeData) {
+//                 res.status(404).json({
+//                     message: "Not found!"
+//                 });
+//                 return;
+//             }
+//             res.json(RecipeData);
+//         })
+//         .catch((err) => {
+//             console.log(err);
+//             res.status(500).json(err);
+//         });
+// });
 
 module.exports = router;
 
